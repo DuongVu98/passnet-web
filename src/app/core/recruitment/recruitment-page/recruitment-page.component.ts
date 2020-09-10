@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { RecruitorApiService } from "../services/recruitor-api.service";
 
 @Component({
 	selector: "recruitment-recruitment-page",
@@ -6,7 +7,10 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./recruitment-page.component.scss"],
 })
 export class RecruitmentPageComponent implements OnInit {
-	constructor() {}
+	constructor(private recruitorApiService: RecruitorApiService) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.recruitorApiService.testServiceCall();
+		console.log("hello");
+	}
 }

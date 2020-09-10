@@ -5,7 +5,12 @@ import { environment } from "../../../environments/environment";
 	providedIn: "root",
 })
 export class RecruitmentApiService {
-	constructor() {
-		console.log(environment.recruitmentApi);
+
+    private recruitementApiServer = environment.recruitmentApi;
+
+	constructor() {}
+
+	testEnv(): void {
+		console.log(`hello env --> ${this.recruitementApiServer}`);
 	}
 }
