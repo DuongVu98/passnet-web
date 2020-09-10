@@ -127,6 +127,15 @@
   dependencies:
     tslib "^2.0.0"
 
+"@angular/cdk@^10.2.0":
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-10.2.0.tgz#0d8579367bb36cdea57564079414b5e4fccff61d"
+  integrity sha512-KYEBOuGimnWtYS8KvLz/dPWC2pzDzKh1ETkvyJCSm5yXZgNPdj1XatbGQrnQgy9vJwxjbZQ1s8P9tzWx1Dj7dg==
+  dependencies:
+    tslib "^2.0.0"
+  optionalDependencies:
+    parse5 "^5.0.0"
+
 "@angular/cli@~10.0.4":
   version "10.0.8"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-10.0.8.tgz#133f1ea23e622923fd5dae27f5689379cfacaad3"
@@ -207,6 +216,13 @@
   version "10.0.14"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-10.0.14.tgz#b6e1a7f872c318039be21b0a11839c8df063f0a3"
   integrity sha512-McKh3rXDlAE7qmCnyWKENb2HhqAT+1dsAfChuqs0w8jhKkoRgA00RDFee6dZ6XQCc907DwuV0K8+wC3CvBp35w==
+  dependencies:
+    tslib "^2.0.0"
+
+"@angular/material@^10.2.0":
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-10.2.0.tgz#620bbb7b761559513a9fe5ae0fbbf289800febd8"
+  integrity sha512-IplZVu1OpyvGYlrzkV36+5xKdwyyfl8AOykcC+jWU1MtnbTrnVmqGGF94qv7YEYN4PcVKbhSuNnz6/vPQm27ZA==
   dependencies:
     tslib "^2.0.0"
 
@@ -1060,6 +1076,27 @@
     enhanced-resolve "4.1.1"
     rxjs "6.5.5"
     webpack-sources "1.4.3"
+
+"@ngxs-labs/data@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@ngxs-labs/data/-/data-4.1.1.tgz#abaf0e7d1bdde9b592275a586a6b6a75c5b94178"
+  integrity sha512-T9hcH/KkdoX1DJGV3jfh3ciiCYsg9vRYeJ2E6e8ZNRuSiLZ2kaAmVBl+uIKTZedTcMznK+DvvgHg18fc+Paogg==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngxs-labs/dispatch-decorator@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@ngxs-labs/dispatch-decorator/-/dispatch-decorator-2.1.0.tgz#d35a21566b9786ccff094c3227935f9d7bf45444"
+  integrity sha512-0O+1b2ILLs9enA0PmRzlA6IJTP9mMdeB/GRdH56lhXk5eSNpFM5TGtEVvAgOnUn17Lo99JfuBMOsfgFZUU4ecw==
+  dependencies:
+    tslib "^1.9.0"
+
+"@ngxs/store@^3.7.0":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.7.0.tgz#e46387219dae610c685accc119ae42e351afcaa4"
+  integrity sha512-w9fG/DhKBgH1VJMKSoeNW9x9ycD9/Dzy+VkpFD8Jv0JBNX0MRgP+5KQQe3ZKwnJ+7S0UV/99JvJaWgxc/WOvPw==
+  dependencies:
+    tslib "^1.9.0"
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
@@ -6156,6 +6193,11 @@ parse5@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
   integrity sha512-VrZ7eOd3T1Fk4XWNXMgiGBK/z0MG48BWG2uQNU4I72fkQuKUTZpl+u9k+CxEG0twMVzSmXEEz12z5Fnw1jIQFA==
+
+parse5@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
+  integrity sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
 
 parseqs@0.0.5:
   version "0.0.5"
