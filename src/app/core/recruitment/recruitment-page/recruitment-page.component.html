@@ -1,3 +1,7 @@
 <div>
-    <p>hello</p>
+	<div *ngFor="let job of jobsList">
+        <p>Course: {{job.title}}</p>
+        <p>Department: {{job.department}}</p>
+        <p>Descriton: {{job.description}}</p>
+    </div>
 </div>
