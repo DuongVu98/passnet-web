@@ -1,0 +1,10 @@
+<p>profile-page works!</p>
+<div>
+	<div>User: {{ userProfile.id }}</div>
+	<div>Posted jobs:</div>
+	<div *ngFor="let job of postedJobsList" style="border: solid 1x">
+		<div>{{ job.title }}</div>
+		<div>{{ job.department }}</div>
+		<div>{{ job.description }}</div>
+	</div>
+</div>

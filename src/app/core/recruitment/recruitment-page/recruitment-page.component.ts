@@ -17,14 +17,5 @@ export class RecruitmentPageComponent implements OnInit {
 		this.fetchData();
 	}
 
-	fetchData(): void {
-		this.recruiterApiService.getTeacherProfile("unique-id").subscribe((profile) => {
-			this.teacherProfile = profile;
-			this.teacherProfile.postedJobsId.forEach((jobId) => {
-				this.applicatorApiService.getJobDetail(jobId).subscribe((job) => {
-					this.jobsList.push(job);
-				});
-			});
-		});
-	}
+	fetchData(): void {}
 }

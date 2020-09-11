@@ -1,0 +1,4 @@
+<p>login works!</p>
+<div *ngIf="auth.user$ | async user; else login">
+    {{ user | json }}
+</div>
