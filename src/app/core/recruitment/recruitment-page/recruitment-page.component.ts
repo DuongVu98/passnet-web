@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { RecruiterApiService } from "../services/recruiter-api.service";
+import { ApplicatorApiService } from "../services/applicator-api.service";
 
 @Component({
 	selector: "recruitment-recruitment-page",
@@ -6,7 +8,14 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./recruitment-page.component.scss"],
 })
 export class RecruitmentPageComponent implements OnInit {
-	constructor() {}
+	jobsList = [];
+	teacherProfile: any;
 
-	ngOnInit(): void {}
+	constructor(private recruiterApiService: RecruiterApiService, private applicatorApiService: ApplicatorApiService) {}
+
+	ngOnInit(): void {
+		this.fetchData();
+	}
+
+	fetchData(): void {}
 }
