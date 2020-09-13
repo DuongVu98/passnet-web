@@ -7,7 +7,23 @@ import { LoginService } from "../services/login.service";
 	styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
+	email: string;
+	password: string;
+
 	constructor(private loginService: LoginService) {}
 
 	ngOnInit(): void {}
+
+	login(): void {
+		console.log(`email: ${this.email} - password: ${this.password}`);
+		this.loginService.login(this.email, this.password);
+	}
+
+	googleLogin(): void {
+		this.loginService.loginWithGoogle();
+	}
+
+	logout(): void {
+		this.loginService.logout();
+	}
 }

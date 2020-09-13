@@ -14,4 +14,4 @@ import { environment } from "../../../environments/environment";
 		AngularFirestoreModule,
 	],
 })
-export class FirebaseAuthModule {}
+export class FirebaseAppModule {}

@@ -1,42 +1,42 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/firestore";
+import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { Observable, of } from "rxjs";
-import { UserModel } from "../auth.models";
-import { switchMap } from "rxjs/operators";
+import { User } from "firebase";
 import { auth } from "firebase/app";
 
 @Injectable({
 	providedIn: "root",
 })
 export class LoginService {
-	user$: Observable<UserModel>;
+	user: User;
 	constructor(private afStore: AngularFirestore, private afAuth: AngularFireAuth) {
-		this.user$ = this.afAuth.authState.pipe(
-			switchMap((user) => {
-				if (user) {
-					return this.afStore.doc<UserModel>(`users/${user.uid}`).valueChanges();
-				} else {
-					return of(null);
-				}
-			})
-		);
+		this.afAuth.authState.subscribe((user) => {
+			if (user) {
+				this.user = user;
+				console.log(`user logged --> ${JSON.stringify(user)}`);
+				localStorage.setItem("user", JSON.stringify(this.user));
+			} else {
+				console.log(`user not log`);
+				localStorage.setItem("user", null);
+			}
+		});
 	}
 
-	async googleSignin(): Promise<void> {
-		const provider = new auth.GoogleAuthProvider();
-		const credential = await this.afAuth.auth.signInWithPopup(provider);
-		return this.updateUserData(credential.user);
+	async login(email: string, password: string): Promise<void> {
+		const result = await this.afAuth.signInWithEmailAndPassword(email, password);
+		console.log(`log in to firebase --> ${result}`);
+		// this.router.navigate(["admin/list"]);
 	}
 
-	private updateUserData({ uid, email, displayName, photoURL }: UserModel): any {
-		const userRef: AngularFirestoreDocument<UserModel> = this.afStore.doc(`users/${uid}`);
-		const data = {
-			uid,
-			email,
-			displayName,
-			photoURL,
-		};
-		return userRef.set(data, { merge: true });
+	async loginWithGoogle(): Promise<void> {
+		await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());
+		console.log(`log in to firebase with google`);
+		// this.router.navigate(["admin/list"]);
+	}
+
+	async logout(): Promise<void> {
+		await this.afAuth.signOut();
+		// localStorage.removeItem('user');
+		// this.router.navigate(['admin/login']);
 	}
 }

@@ -14,7 +14,7 @@
 		"contextual-lifecycle": true,
 		"directive-class-suffix": true,
 		"directive-selector": [true, "attribute", "app", "camelCase"],
-		"component-selector": [true, "element", ["app", "recruitment", "profile"], "kebab-case"],
+		"component-selector": [true, "element", ["app", "recruitment", "profile", "auth"], "kebab-case"],
 		"eofline": true,
 		"import-blacklist": [true, "rxjs/Rx"],
 		"import-spacing": true,

@@ -212,10 +212,12 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/fire@5.4.2":
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/@angular/fire/-/fire-5.4.2.tgz#fb2d54935de0d83789e940e5f57a6ffc0e1ef4eb"
-  integrity sha512-QzB5d1wtqr9jxfsVNv2+569MlfK4/QrrpNy0IngOHdxS4FBbXqMOcx37iv1m2mzJv9zlGUddUX44IZP5Xfb3cw==
+"@angular/fire@^6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@angular/fire/-/fire-6.0.2.tgz#6c391128496f4fa16afba436a7a57a25e3e510f1"
+  integrity sha512-r59v7XD2oNN1oJghRMcph+PVqJj49aQnQevArOU4ldW07K0t9k2Ud8ALO/z3iNvMOBkumenGlYSS/h3v4foLBg==
+  dependencies:
+    tslib "^1.10.0"
 
 "@angular/forms@~10.0.5":
   version "10.0.14"
@@ -1833,13 +1835,6 @@ alphanum-sort@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
-
-angularfire2@^5.4.2:
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/angularfire2/-/angularfire2-5.4.2.tgz#e6b7df3c070aaddba6f650abfdc4c89aec306f7a"
-  integrity sha512-7brktOHPObHgMnCN+QkakyCBr2mnxMxMSVLlEZ7OF70LjFIQz/RV3t5a7cH1SjystbY+kzR3qYvn/irlWs27/Q==
-  dependencies:
-    "@angular/fire" "5.4.2"
 
 ansi-colors@4.1.1:
   version "4.1.1"
