@@ -1,7 +1,15 @@
-export interface UserModel {
+export class UserModel {
 	uid: string;
 	email: string;
-	password: string;
 	displayname?: string;
 	photoURl?: string;
+
+	setUid(uid: string): UserModel {
+		this.uid = uid;
+		return this;
+	}
+	setEmail(email: string): UserModel {
+		this.email = email;
+		return this;
+	}
 }

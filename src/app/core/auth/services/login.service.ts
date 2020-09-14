@@ -1,23 +1,24 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { User } from "firebase";
 import { auth } from "firebase/app";
+import { Store } from "@ngxs/store";
+import { SetLoggedUser } from "../store/auth.actions";
+import { UserModel } from "../models/auth.models";
 
 @Injectable({
 	providedIn: "root",
 })
 export class LoginService {
 	user: User;
-	constructor(private afStore: AngularFirestore, private afAuth: AngularFireAuth) {
+	constructor(private afAuth: AngularFireAuth, private store: Store) {
 		this.afAuth.authState.subscribe((user) => {
 			if (user) {
 				this.user = user;
 				console.log(`user logged --> ${JSON.stringify(user)}`);
-				localStorage.setItem("user", JSON.stringify(this.user));
+				this.store.dispatch(new SetLoggedUser(new UserModel().setUid(user.uid).setEmail(user.email)));
 			} else {
 				console.log(`user not log`);
-				localStorage.setItem("user", null);
 			}
 		});
 	}
