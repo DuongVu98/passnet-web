@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { LoginService } from "../services/login.service";
 
-import { SetLoggedUser } from "../store/auth.actions";
+import { SetLoggedUserAction } from "../store/auth.actions";
 import { UserModel } from "../models/auth.models";
 
 @Component({

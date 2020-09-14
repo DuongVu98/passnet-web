@@ -3,7 +3,7 @@ import { NgxsDataRepository } from "@ngxs-labs/data/repositories";
 import { StateRepository, Persistence } from "@ngxs-labs/data/decorators";
 
 import { UserModel } from "../models/auth.models";
-import { SetLoggedUser, UserLogout } from "./auth.actions";
+import { SetLoggedUserAction, UserLogoutAction } from "./auth.actions";
 
 export class AuthStateModel {
 	loggedUser: UserModel;
@@ -25,8 +25,8 @@ export class AuthState extends NgxsDataRepository<AuthStateModel> {
 		return state.loggedUser;
 	}
 
-	@Action(SetLoggedUser)
-	setUser(context: StateContext<AuthStateModel>, action: SetLoggedUser): void {
+	@Action(SetLoggedUserAction)
+	setUser(context: StateContext<AuthStateModel>, action: SetLoggedUserAction): void {
 		const state = context.getState();
 		context.setState({
 			loggedUser: action.payload,
@@ -34,8 +34,8 @@ export class AuthState extends NgxsDataRepository<AuthStateModel> {
 		});
 	}
 
-    @Action(UserLogout)
-	userLogout(context: StateContext<AuthStateModel>, action: UserLogout): void {
+	@Action(UserLogoutAction)
+	userLogout(context: StateContext<AuthStateModel>, action: UserLogoutAction): void {
 		context.setState({
 			loggedUser: null,
 			isLogged: false,
