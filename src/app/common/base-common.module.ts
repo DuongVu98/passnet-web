@@ -6,6 +6,6 @@ import { FormsModule } from "@angular/forms";
 
 @NgModule({
 	declarations: [],
-	imports: [CommonModule, FormsModule,  ApiModule, FirebaseAppModule],
+	imports: [CommonModule, FormsModule, ApiModule, FirebaseAppModule],
 })
 export class BaseCommonModule {}
