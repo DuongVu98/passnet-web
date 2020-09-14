@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
 	}
 
 	googleLogin(): void {
-        this.loginService.loginWithGoogle();
-        this.router.navigate(["/"]);
+		this.loginService.loginWithGoogle();
+		this.router.navigate(["/"]);
 	}
 
 	logout(): void {
-        this.loginService.logout();
-        this.router.navigate(["/"]);
+		this.loginService.logout();
+		this.router.navigate(["/"]);
 	}
 }
