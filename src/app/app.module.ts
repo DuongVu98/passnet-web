@@ -10,6 +10,7 @@ import { NgxsLoggerPluginModule } from "@ngxs/logger-plugin";
 import { NgxsDataPluginModule } from "@ngxs-labs/data";
 import { NGXS_DATA_STORAGE_PLUGIN } from "@ngxs-labs/data/storage";
 
+import { BaseCommonModule } from "./common/base-common.module";
 import { RecruitmentModule } from "./core/recruitment/recruitment.module";
 import { ProfileModule } from "./core/profile/profile.module";
 import { AuthModule } from "./core/auth/auth.module";
@@ -28,6 +29,7 @@ import { environment } from "src/environments/environment";
 		NgxsDataPluginModule.forRoot([NGXS_DATA_STORAGE_PLUGIN]),
 		NgxsReduxDevtoolsPluginModule.forRoot(),
 		NgxsLoggerPluginModule.forRoot(),
+		BaseCommonModule,
 		RecruitmentModule,
 		ProfileModule,
 		AuthModule,
