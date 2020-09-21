@@ -4,7 +4,7 @@ import { ButtonsModule, DropdownModule, IconsModule, NavbarModule } from "angula
 
 @NgModule({
 	declarations: [],
-	imports: [CommonModule],
+	imports: [CommonModule, DropdownModule.forRoot()],
 	exports: [IconsModule, NavbarModule, ButtonsModule, DropdownModule],
 })
 export class MdbModule {}

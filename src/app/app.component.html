@@ -16,23 +16,6 @@
                 </li>
             </ul>
             <ul class="navbar-nav nav-flex-icons">
-                <button mat-mini-fab color="primary">
-                    <mdb-icon fab icon="facebook-f"></mdb-icon>
-                </button>
-                <div class="btn-group" mdbDropdown>
-                    <a mdbDropdownToggle type="button" mdbBtn color="primary" class="dropdown-toggle waves-light"
-                        mdbWavesEffect>
-                        Basic dropdown
-                    </a>
-
-                    <div class="dropdown-menu dropdown-primary">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="divider dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                </div>
                 <li class="nav-item waves-light" mdbWavesEffect>
                     <a class="nav-link">
                         <mdb-icon fab icon="facebook-f"></mdb-icon>
@@ -48,6 +31,18 @@
                         <mdb-icon fab icon="instagram"></mdb-icon>
                     </a>
                 </li>
+                <div mdbDropdown>
+                    <button mat-mini-fab color="primary" mdbDropdownToggle>
+                        <mdb-icon fab icon="facebook-f"></mdb-icon>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" [routerLink]="['/profile']">Profile</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="divider dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </div>
             </ul>
         </links>
     </mdb-navbar>
