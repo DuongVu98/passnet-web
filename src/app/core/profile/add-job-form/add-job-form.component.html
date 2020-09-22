@@ -1,0 +1,32 @@
+<div style="width: 500px">
+	<form>
+		<div class="grid-form">
+			<mat-grid-list cols="2" rowHeight="200">
+				<mat-grid-tile>
+					<div class="single-grid">
+						<mat-form-field class="example-full-width">
+							<mat-label>Course name</mat-label>
+							<input matInput />
+						</mat-form-field>
+						<mat-form-field appearance="fill">
+							<mat-label>Department</mat-label>
+							<mat-select [(ngModel)]="departmentSelectInput">
+								<mat-option *ngFor="let department of departmentsList" [value]="department">
+									{{ department }}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+				</mat-grid-tile>
+				<mat-grid-tile>
+					<div class="single-grid">
+						<mat-form-field>
+							<mat-label>Description</mat-label>
+							<textarea matInput></textarea>
+						</mat-form-field>
+					</div>
+				</mat-grid-tile>
+			</mat-grid-list>
+		</div>
+	</form>
+</div>

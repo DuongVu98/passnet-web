@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { ApplicatorApiService } from "../../recruitment/services/applicator-api.service";
 import { RecruiterApiService } from "../../recruitment/services/recruiter-api.service";
+import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
 
 @Component({
 	selector: "profile-profile-page",
@@ -11,7 +13,11 @@ export class ProfilePageComponent implements OnInit {
 	userProfile: any;
 	postedJobsList: any[] = [];
 
-	constructor(private recruiterApiService: RecruiterApiService, private applicatorApiService: ApplicatorApiService) {}
+	constructor(
+		private recruiterApiService: RecruiterApiService,
+		private applicatorApiService: ApplicatorApiService,
+		private matDialog: MatDialog
+	) {}
 
 	ngOnInit(): void {
 		this.fetchData();
@@ -26,5 +32,9 @@ export class ProfilePageComponent implements OnInit {
 				});
 			});
 		});
+	}
+
+	openAddJobFormModal(): void {
+		this.matDialog.open(AddJobFormComponent);
 	}
 }
