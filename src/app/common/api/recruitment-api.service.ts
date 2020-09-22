@@ -27,6 +27,8 @@ export class RecruitmentApiService {
 		return this.httpClient.post<JobFormDto>(
 			`${this.recruitementApiServer}/recruiter/post-job/${teacherId}`,
 			jobFormDto
-		);
+        );
+        // console.log(JSON.stringify(jobFormDto) + " - " + teacherId);
+        // return null;
 	}
 }

@@ -12,6 +12,7 @@ export class JobFormModel {
 		return this;
 	}
 	setJobDescription(jobDescription: string): JobFormModel {
-		this.jobDescription = jobDescription;
+        this.jobDescription = jobDescription;
+        return this;
 	}
 }

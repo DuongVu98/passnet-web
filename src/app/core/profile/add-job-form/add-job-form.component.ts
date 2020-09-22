@@ -26,11 +26,16 @@ export class AddJobFormComponent implements OnInit {
 	ngOnInit(): void {}
 
 	onSubmit(): void {
-		this.recruiterService.addNewJob(
-			new JobFormModel()
-				.setCourseName(this.addJobForm.value.courseName)
-				.setDepartment(this.addJobForm.value.department)
-				.setJobDescription(this.addJobForm.value.jobDescription)
-		);
+		this.recruiterService
+			.addNewJob(
+				new JobFormModel()
+					.setCourseName(this.addJobForm.value.courseName)
+					.setDepartment(this.addJobForm.value.department)
+					.setJobDescription(this.addJobForm.value.jobDescription)
+			)
+			.then((serviceObservable$) => {
+				console.log(serviceObservable$);
+				serviceObservable$.subscribe();
+			});
 	}
 }

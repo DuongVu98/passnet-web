@@ -1,17 +1,18 @@
 export class JobFormDto {
-    courseName: string;
+    title: string;
     department: string;
-    jobDescription: string;
+    description: string;
 
-    setCourseName(courseName: string): JobFormDto {
-		this.courseName = courseName;
+    setTitle(title: string): JobFormDto {
+		this.title = title;
 		return this;
 	}
 	setDepartment(department: string): JobFormDto {
 		this.department = department;
 		return this;
 	}
-	setJobDescription(jobDescription: string): JobFormDto {
-		this.jobDescription = jobDescription;
+	setDescription(description: string): JobFormDto {
+        this.description = description;
+        return this;
 	}
 }
