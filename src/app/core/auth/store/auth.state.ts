@@ -10,14 +10,16 @@ export class AuthStateModel {
 	isLogged: boolean;
 }
 
+const initState: AuthStateModel = {
+	loggedUser: null,
+	isLogged: false,
+};
+
 @Persistence()
 @StateRepository()
 @State<AuthStateModel>({
 	name: "auth",
-	defaults: {
-		loggedUser: null,
-		isLogged: false,
-	},
+	defaults: initState,
 })
 export class AuthState extends NgxsDataRepository<AuthStateModel> {
 	@Selector()
