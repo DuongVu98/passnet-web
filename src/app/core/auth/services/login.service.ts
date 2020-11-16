@@ -36,7 +36,7 @@ export class LoginService {
 			if (result) {
 				const loggedUser = result.user_dto;
 				this.store.dispatch(
-					new SetLoggedUserAction(new UserModel().setUid(loggedUser.uid).setEmail(loggedUser.email))
+					new SetLoggedUserAction(new UserModel().withUid(loggedUser.uid).withEmail(loggedUser.email))
 				);
 			}
 		});

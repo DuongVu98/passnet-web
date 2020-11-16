@@ -4,11 +4,11 @@ export class UserModel {
 	displayname?: string;
 	photoURl?: string;
 
-	setUid(uid: string): UserModel {
+	withUid(uid: string): UserModel {
 		this.uid = uid;
 		return this;
 	}
-	setEmail(email: string): UserModel {
+	withEmail(email: string): UserModel {
 		this.email = email;
 		return this;
 	}

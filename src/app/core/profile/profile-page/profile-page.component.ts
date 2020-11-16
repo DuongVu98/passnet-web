@@ -14,7 +14,7 @@ export class ProfilePageComponent implements OnInit {
 	constructor(private recruiterApiService: RecruiterApiService, private applicatorApiService: ApplicatorApiService) {}
 
 	ngOnInit(): void {
-		this.fetchData();
+		// this.fetchData();
 	}
 
 	fetchData(): void {
