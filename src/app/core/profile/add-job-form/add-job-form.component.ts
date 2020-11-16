@@ -29,9 +29,9 @@ export class AddJobFormComponent implements OnInit {
 		this.recruiterService
 			.addNewJob(
 				new JobFormModel()
-					.setCourseName(this.addJobForm.value.courseName)
-					.setDepartment(this.addJobForm.value.department)
-					.setJobDescription(this.addJobForm.value.jobDescription)
+					.withCourseName(this.addJobForm.value.courseName)
+					.withDepartment(this.addJobForm.value.department)
+					.withJobDescription(this.addJobForm.value.jobDescription)
 			)
 			.then((serviceObservable$) => {
 				console.log(serviceObservable$);

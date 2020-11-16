@@ -14,6 +14,7 @@ export class RecruiterService {
 
 	constructor(private recruitmentApiService: RecruitmentApiService) {}
 
+    // Add new job method
 	async addNewJob(jobFormModel: JobFormModel): Promise<Observable<any>> {
 		let id: string;
 		await this.loggedUser$.subscribe((user) => {
@@ -21,9 +22,9 @@ export class RecruiterService {
 		});
 		return this.recruitmentApiService.postJob(
 			new JobFormDto()
-				.setTitle(jobFormModel.courseName)
-				.setDepartment(jobFormModel.department)
-				.setDescription(jobFormModel.jobDescription),
+				.withTitle(jobFormModel.courseName)
+				.withDepartment(jobFormModel.department)
+				.withDescription(jobFormModel.jobDescription),
 			id
 		);
 	}
