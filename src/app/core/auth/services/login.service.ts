@@ -4,8 +4,10 @@ import { User } from "firebase";
 import { auth } from "firebase/app";
 import { Store } from "@ngxs/store";
 import { SetLoggedUserAction, UserLogoutAction } from "../store/auth.actions";
+
 import { UserModel } from "../models/auth.models";
 import { AuthenticaionApiService } from "src/app/common/api/authentication-api.service";
+import { LogoutPublisher } from "src/app/common/events/publishers/logout.publisher";
 
 @Injectable({
 	providedIn: "root",
@@ -15,12 +17,16 @@ export class LoginService {
 	constructor(
 		private afAuth: AngularFireAuth,
 		private authenticationApiService: AuthenticaionApiService,
-		private store: Store
-	) {}
+		private store: Store,
+		private logoutPublisher: LogoutPublisher
+	) {
+		logoutPublisher.getObservable().subscribe((event) => {
+			console.log("logout event");
+			this.logout();
+		});
+	}
 
 	async login(email: string, password: string): Promise<void> {
-		// const result = await this.afAuth.signInWithEmailAndPassword(email, password);
-		// console.log(`log in to firebase --> ${result}`);
 		this.authenticationApiService.login(email, password).subscribe((result) => {
 			console.log(`loggedUser --> ${JSON.stringify(result)}`);
 			if (result) {
@@ -40,8 +46,7 @@ export class LoginService {
 		console.log(`log in to firebase with google`);
 	}
 
-	async logout(): Promise<void> {
-		await this.afAuth.signOut();
+	logout(): void {
 		this.store.dispatch(new UserLogoutAction());
 	}
 }

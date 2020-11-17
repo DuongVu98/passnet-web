@@ -15,7 +15,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 		this.loggedUser$.subscribe((loggedUser) => {
 			if (loggedUser.token != null) {
 				request = request.clone({
-					headers: request.headers.set("Authentication", `Bearer ${loggedUser.token}`),
+					headers: request.headers.set("Authorization", `Bearer ${loggedUser.token}`),
 				});
 			}
 		});
