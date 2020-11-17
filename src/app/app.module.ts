@@ -16,6 +16,8 @@ import { ProfileModule } from "./core/profile/profile.module";
 import { AuthModule } from "./core/auth/auth.module";
 
 import { environment } from "src/environments/environment";
+import { GraphQLModule } from "./graphql.module";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
 	declarations: [AppComponent],
@@ -33,6 +35,8 @@ import { environment } from "src/environments/environment";
 		RecruitmentModule,
 		ProfileModule,
 		AuthModule,
+		GraphQLModule,
+		HttpClientModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
