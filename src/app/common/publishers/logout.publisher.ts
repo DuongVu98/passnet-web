@@ -7,7 +7,7 @@ import { Observable, Subject } from "rxjs";
 export class LogoutPublisher {
 	private bus = new Subject();
 
-	getObservable(): Observable<any> {
+    public getObservable(): Observable<any> {
 		return this.bus.asObservable();
 	}
 

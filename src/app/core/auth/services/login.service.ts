@@ -7,7 +7,7 @@ import { SetLoggedUserAction, UserLogoutAction } from "../store/auth.actions";
 
 import { UserModel } from "../models/auth.models";
 import { AuthenticaionApiService } from "src/app/common/api/authentication-api.service";
-import { LogoutPublisher } from "src/app/common/events/publishers/logout.publisher";
+import { LogoutPublisher } from "src/app/common/publishers/logout.publisher";
 
 @Injectable({
 	providedIn: "root",
