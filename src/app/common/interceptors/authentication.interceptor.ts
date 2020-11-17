@@ -14,7 +14,9 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 	intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 		this.loggedUser$.subscribe((loggedUser) => {
 			if (loggedUser.token != null) {
-				request.headers.set("Authentication", `Bearer ${loggedUser.token}`);
+				request = request.clone({
+					headers: request.headers.set("Authentication", `Bearer ${loggedUser.token}`),
+				});
 			}
 		});
 		return next.handle(request);

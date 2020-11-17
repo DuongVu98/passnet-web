@@ -18,8 +18,8 @@ import { AuthenticationInterceptor } from "./interceptors/authentication.interce
 			provide: HTTP_INTERCEPTORS,
 			useClass: HttpRequestInterceptor,
 			multi: true,
-        },
-        {
+		},
+		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: AuthenticationInterceptor,
 			multi: true,

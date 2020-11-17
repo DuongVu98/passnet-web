@@ -16,17 +16,7 @@ export class LoginService {
 		private afAuth: AngularFireAuth,
 		private authenticationApiService: AuthenticaionApiService,
 		private store: Store
-	) {
-		// this.afAuth.authState.subscribe((user) => {
-		// 	if (user) {
-		// 		this.user = user;
-		// 		console.log(`user logged --> ${JSON.stringify(user)}`);
-		// 		this.store.dispatch(new SetLoggedUserAction(new UserModel().setUid(user.uid).setEmail(user.email)));
-		// 	} else {
-		// 		console.log(`user not log`);
-		// 	}
-		// });
-	}
+	) {}
 
 	async login(email: string, password: string): Promise<void> {
 		// const result = await this.afAuth.signInWithEmailAndPassword(email, password);
@@ -37,9 +27,9 @@ export class LoginService {
 				const loggedUser = result.user_dto;
 				this.store.dispatch(
 					new SetLoggedUserAction({
-                        user: new UserModel().withUid(loggedUser.uid).withEmail(loggedUser.email),
-                        token: result.token
-                    })
+						user: new UserModel().withUid(loggedUser.uid).withEmail(loggedUser.email),
+						token: result.token,
+					})
 				);
 			}
 		});
