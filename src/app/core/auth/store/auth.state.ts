@@ -7,7 +7,8 @@ import { SetLoggedUserAction, UserLogoutAction } from "./auth.actions";
 
 export class AuthStateModel {
 	loggedUser: UserModel;
-	isLogged: boolean;
+    isLogged: boolean;
+    token: string;
 }
 
 @Persistence()
@@ -16,7 +17,8 @@ export class AuthStateModel {
 	name: "auth",
 	defaults: {
 		loggedUser: null,
-		isLogged: false,
+        isLogged: false,
+        token: null
 	},
 })
 export class AuthState extends NgxsDataRepository<AuthStateModel> {
@@ -29,8 +31,9 @@ export class AuthState extends NgxsDataRepository<AuthStateModel> {
 	setUser(context: StateContext<AuthStateModel>, action: SetLoggedUserAction): void {
 		const state = context.getState();
 		context.setState({
-			loggedUser: action.payload,
-			isLogged: true,
+			loggedUser: action.payload.user,
+            isLogged: true,
+            token: action.payload.token
 		});
 	}
 
@@ -38,7 +41,8 @@ export class AuthState extends NgxsDataRepository<AuthStateModel> {
 	userLogout(context: StateContext<AuthStateModel>, action: UserLogoutAction): void {
 		context.setState({
 			loggedUser: null,
-			isLogged: false,
+            isLogged: false,
+            token: null
 		});
 	}
 }
