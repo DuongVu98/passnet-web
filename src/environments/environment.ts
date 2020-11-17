@@ -4,8 +4,8 @@
 
 export const environment = {
 	production: false,
-    recruitmentApi: "http://localhost:8080",
-    authenticationApi: "http://192.168.33.10:1323",
+	recruitmentApi: "http://localhost:8080",
+	authenticationApi: "http://192.168.33.10:1323",
 	firebaseConfig: {
 		apiKey: "AIzaSyBiaLJvzLZPpGTgg19DYxpkQrkOAhA6bcQ",
 		authDomain: "passnet-auth.firebaseapp.com",
