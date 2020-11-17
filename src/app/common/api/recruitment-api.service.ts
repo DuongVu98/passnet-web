@@ -11,24 +11,10 @@ export class RecruitmentApiService {
 
 	constructor(private httpClient: HttpClient) {}
 
-	getRecruitorPostedJob(): Observable<any> {
-		return this.httpClient.get<any>(`${this.recruitementApiServer}/recruiter/posted-jobs`);
-	}
-
-	getTeacherProfile(teacherId: string): Observable<any> {
-		return this.httpClient.get<any>(`${this.recruitementApiServer}/applicator/teacher-profile/${teacherId}`);
-	}
-
-	getJobDetail(jobId: string): Observable<any> {
-		return this.httpClient.get<any>(`${this.recruitementApiServer}/applicator/job/${jobId}`);
-	}
-
 	postJob(jobFormDto: JobFormDto, teacherId: string): Observable<any> {
 		return this.httpClient.post<JobFormDto>(
 			`${this.recruitementApiServer}/recruiter/post-job/${teacherId}`,
 			jobFormDto
         );
-        // console.log(JSON.stringify(jobFormDto) + " - " + teacherId);
-        // return null;
 	}
 }

@@ -16,12 +16,15 @@ export class AddJobFormComponent implements OnInit {
 		"Business Administration",
 		"Industial Engineer and Management",
 	];
-	addJobForm = new FormGroup({
-		courseName: new FormControl(""),
-		department: new FormControl(""),
-		jobDescription: new FormControl(""),
-	});
-	constructor(private recruiterService: RecruiterService) {}
+	addJobForm: FormGroup;
+
+	constructor(private recruiterService: RecruiterService) {
+		this.addJobForm = new FormGroup({
+			courseName: new FormControl(""),
+			department: new FormControl(""),
+			jobDescription: new FormControl(""),
+		});
+	}
 
 	ngOnInit(): void {}
 

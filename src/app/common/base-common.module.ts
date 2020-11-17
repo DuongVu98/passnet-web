@@ -13,7 +13,7 @@ import { LogoutPublisher } from "./publishers/logout.publisher";
 
 @NgModule({
 	declarations: [],
-	imports: [CommonModule, FormsModule, ApiModule, FirebaseAppModule, MdbModule, MaterialModule],
+	imports: [CommonModule, FormsModule, ReactiveFormsModule, ApiModule, FirebaseAppModule, MdbModule, MaterialModule],
 	providers: [
 		LogoutPublisher,
 		{
@@ -27,6 +27,6 @@ import { LogoutPublisher } from "./publishers/logout.publisher";
 			multi: true,
 		},
 	],
-	exports: [CommonModule, FormsModule, ApiModule, FirebaseAppModule, MdbModule, MaterialModule],
+	exports: [CommonModule, FormsModule, ReactiveFormsModule, ApiModule, FirebaseAppModule, MdbModule, MaterialModule],
 })
 export class BaseCommonModule {}
