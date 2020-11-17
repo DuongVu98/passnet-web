@@ -13,7 +13,8 @@ export class AuthStateModel {
 
 const initState: AuthStateModel = {
 	loggedUser: null,
-	isLogged: false,
+    isLogged: false,
+    token: null,
 };
 
 @Persistence()
