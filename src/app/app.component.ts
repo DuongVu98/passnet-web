@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { LogoutPublisher } from "./common/publishers/logout.publisher";
 
 @Component({
 	selector: "app-root",
@@ -7,4 +8,9 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
 	title = "passnet-web";
+	constructor(private logoutPublisher: LogoutPublisher) {}
+
+	logout(): void {
+		this.logoutPublisher.send("logout");
+	}
 }

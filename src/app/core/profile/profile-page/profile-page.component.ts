@@ -20,7 +20,7 @@ export class ProfilePageComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.fetchData();
+		// this.fetchData();
 	}
 
 	fetchData(): void {

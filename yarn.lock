@@ -7331,6 +7331,18 @@ prettier@^2.1.1:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.1.1.tgz#d9485dd5e499daa6cb547023b87a6cf51bee37d6"
   integrity sha512-9bY+5ZWCfqj3ghYBLxApy2zf6m+NJo5GzmLTpr9FsApsfjriNnS2dahWReHMi7qNPhhHl9SYHJs2cHZLgexNIw==
 
+primeicons@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-4.0.0.tgz#a3594b3af213dcf8c4c3d6fc99eea05b7c92f57c"
+  integrity sha512-JQBIswGSItn8I0Pq21RchENpKJxSi1MjfBDfggMQpXtoKNKblJoHmol/7tCV3CAV2Dlb94ht8TD8qdIAW01pGg==
+
+primeng@^10.0.3:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/primeng/-/primeng-10.0.3.tgz#e9d0ea425b9c5023bc9eef2cb014941939d0c35e"
+  integrity sha512-Nsiwpmy3RlFPBlxabdzeAYxFn4fXEyZjj7iAi1X5J4RRGD7NoB67+NbnOInE1rXTnNVHYxCca91OvaNiHSWWrg==
+  dependencies:
+    tslib "^2.0.0"
+
 process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"

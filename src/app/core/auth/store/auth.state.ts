@@ -8,6 +8,7 @@ import { SetLoggedUserAction, UserLogoutAction } from "./auth.actions";
 export class AuthStateModel {
 	loggedUser: UserModel;
 	isLogged: boolean;
+	token: string;
 }
 
 const initState: AuthStateModel = {
@@ -24,15 +25,19 @@ const initState: AuthStateModel = {
 export class AuthState extends NgxsDataRepository<AuthStateModel> {
 	@Selector()
 	static getLoggedUser(state: AuthStateModel): any {
-		return state.loggedUser;
+		return {
+			user: state.loggedUser,
+			token: state.token,
+		};
 	}
 
 	@Action(SetLoggedUserAction)
 	setUser(context: StateContext<AuthStateModel>, action: SetLoggedUserAction): void {
 		const state = context.getState();
 		context.setState({
-			loggedUser: action.payload,
+			loggedUser: action.payload.user,
 			isLogged: true,
+			token: action.payload.token,
 		});
 	}
 
@@ -41,6 +46,7 @@ export class AuthState extends NgxsDataRepository<AuthStateModel> {
 		context.setState({
 			loggedUser: null,
 			isLogged: false,
+			token: null,
 		});
 	}
 }

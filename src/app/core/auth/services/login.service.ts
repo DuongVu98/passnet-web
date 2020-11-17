@@ -4,28 +4,41 @@ import { User } from "firebase";
 import { auth } from "firebase/app";
 import { Store } from "@ngxs/store";
 import { SetLoggedUserAction, UserLogoutAction } from "../store/auth.actions";
+
 import { UserModel } from "../models/auth.models";
+import { AuthenticaionApiService } from "src/app/common/api/authentication-api.service";
+import { LogoutPublisher } from "src/app/common/publishers/logout.publisher";
 
 @Injectable({
 	providedIn: "root",
 })
 export class LoginService {
 	user: User;
-	constructor(private afAuth: AngularFireAuth, private store: Store) {
-		this.afAuth.authState.subscribe((user) => {
-			if (user) {
-				this.user = user;
-				console.log(`user logged --> ${JSON.stringify(user)}`);
-				this.store.dispatch(new SetLoggedUserAction(new UserModel().setUid(user.uid).setEmail(user.email)));
-			} else {
-				console.log(`user not log`);
-			}
+	constructor(
+		private afAuth: AngularFireAuth,
+		private authenticationApiService: AuthenticaionApiService,
+		private store: Store,
+		private logoutPublisher: LogoutPublisher
+	) {
+		logoutPublisher.getObservable().subscribe((event) => {
+			console.log("logout event");
+			this.logout();
 		});
 	}
 
 	async login(email: string, password: string): Promise<void> {
-		const result = await this.afAuth.signInWithEmailAndPassword(email, password);
-		console.log(`log in to firebase --> ${result}`);
+		this.authenticationApiService.login(email, password).subscribe((result) => {
+			console.log(`loggedUser --> ${JSON.stringify(result)}`);
+			if (result) {
+				const loggedUser = result.user_dto;
+				this.store.dispatch(
+					new SetLoggedUserAction({
+						user: new UserModel().withUid(loggedUser.uid).withEmail(loggedUser.email),
+						token: result.token,
+					})
+				);
+			}
+		});
 	}
 
 	async loginWithGoogle(): Promise<void> {
@@ -33,8 +46,7 @@ export class LoginService {
 		console.log(`log in to firebase with google`);
 	}
 
-	async logout(): Promise<void> {
-		await this.afAuth.signOut();
+	logout(): void {
 		this.store.dispatch(new UserLogoutAction());
 	}
 }
