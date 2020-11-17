@@ -8,6 +8,7 @@ import { MaterialModule } from "./material/material.module";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { HttpRequestInterceptor } from "./interceptors/http-request.interceptor";
+import { AuthenticationInterceptor } from "./interceptors/authentication.interceptor";
 
 @NgModule({
 	declarations: [],
@@ -16,6 +17,11 @@ import { HttpRequestInterceptor } from "./interceptors/http-request.interceptor"
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: HttpRequestInterceptor,
+			multi: true,
+        },
+        {
+			provide: HTTP_INTERCEPTORS,
+			useClass: AuthenticationInterceptor,
 			multi: true,
 		},
 	],
