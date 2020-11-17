@@ -1,1 +1,6 @@
-<div>hello</div>
+<div>
+	<div *ngFor="let job of postedJobsView.postedJobs">
+		<p>{{ job.jobTitle }}</p>
+        <p>{{ job.teacherId }}</p>
+	</div>
+</div>

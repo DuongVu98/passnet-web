@@ -8,8 +8,11 @@ import { ApplicatorApiService } from "../services/applicator-api.service";
 	styleUrls: ["./recruitment-page.component.scss"],
 })
 export class RecruitmentPageComponent implements OnInit {
-	jobsList = [];
-	teacherProfile: any;
+	postedJobsView: {
+		postedJobs: any[];
+	} = {
+		postedJobs: [],
+	};
 
 	constructor(private recruiterApiService: RecruiterApiService, private applicatorApiService: ApplicatorApiService) {}
 
@@ -17,5 +20,9 @@ export class RecruitmentPageComponent implements OnInit {
 		this.fetchData();
 	}
 
-	fetchData(): void {}
+	fetchData(): void {
+		this.recruiterApiService.getAllRecruiterPostedJobs().subscribe((result) => {
+			this.postedJobsView = result.data.postedJobsView;
+		});
+	}
 }
