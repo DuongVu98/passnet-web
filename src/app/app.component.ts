@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { LogoutPublisher } from "./common/events/publishers/logout.publisher";
+import { LogoutPublisher } from "./common/publishers/logout.publisher";
 
 @Component({
 	selector: "app-root",

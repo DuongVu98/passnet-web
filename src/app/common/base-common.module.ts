@@ -9,7 +9,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { HttpRequestInterceptor } from "./interceptors/http-request.interceptor";
 import { AuthenticationInterceptor } from "./interceptors/authentication.interceptor";
-import { LogoutPublisher } from "./events/publishers/logout.publisher";
+import { LogoutPublisher } from "./publishers/logout.publisher";
 
 @NgModule({
 	declarations: [],
