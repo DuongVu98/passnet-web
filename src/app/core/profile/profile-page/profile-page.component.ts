@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { Select } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { AuthState } from "../../auth/store/auth.state";
 import { ApplicatorApiService } from "../../recruitment/services/applicator-api.service";
 import { RecruiterApiService } from "../../recruitment/services/recruiter-api.service";
 import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
@@ -10,8 +13,9 @@ import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
 	styleUrls: ["./profile-page.component.scss"],
 })
 export class ProfilePageComponent implements OnInit {
-	userProfile: any;
-	postedJobsList: any[] = [];
+	@Select(AuthState.getLoggedUser) loggedUser$: Observable<any>;
+
+	userProfile;
 
 	constructor(
 		private recruiterApiService: RecruiterApiService,
@@ -20,17 +24,12 @@ export class ProfilePageComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		// this.fetchData();
+		this.fetchData();
 	}
 
 	fetchData(): void {
-		this.recruiterApiService.getTeacherProfile("unique-id").subscribe((profile) => {
-			this.userProfile = profile;
-			this.userProfile.postedJobsId.forEach((jobId) => {
-				this.applicatorApiService.getJobDetail(jobId).subscribe((job) => {
-					this.postedJobsList.push(job);
-				});
-			});
+		this.loggedUser$.subscribe((loggedUser) => {
+			this.userProfile = loggedUser.user;
 		});
 	}
 
