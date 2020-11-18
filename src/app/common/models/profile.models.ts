@@ -1,18 +1,28 @@
 export class JobFormDto {
-    title: string;
-    department: string;
-    description: string;
+	jobTitle: string;
+	courseName: string;
+	requirement: string;
+	content: string;
+	semester: string;
 
-    withTitle(title: string): JobFormDto {
-		this.title = title;
+	withTitle(title: string): JobFormDto {
+		this.jobTitle = title;
 		return this;
 	}
-	withDepartment(department: string): JobFormDto {
-		this.department = department;
+	withCourseName(courseName: string): JobFormDto {
+		this.courseName = courseName;
 		return this;
 	}
-	withDescription(description: string): JobFormDto {
-        this.description = description;
-        return this;
+	withRequirement(requirement: string): JobFormDto {
+		this.requirement = requirement;
+		return this;
+	}
+	withContent(content: string): JobFormDto {
+		this.content = content;
+		return this;
+	}
+	withSemester(semester: string): JobFormDto {
+		this.semester = semester;
+		return this;
 	}
 }

@@ -17,10 +17,11 @@ export class RecruitmentApiService {
 	}
 
 	postJob(jobFormDto: JobFormDto, teacherId: string): Observable<any> {
-		return this.httpClient.post<JobFormDto>(
-			`${this.recruitementApiServer}/recruiter/post-job/${teacherId}`,
-			jobFormDto
-		);
+		return this.httpClient.post<JobFormDto>(`${this.recruitementApiServer}/recruiter/post-job`, jobFormDto, {
+			params: {
+				teacherId,
+			},
+		});
 	}
 
 	getAllJobs(): Observable<any> {

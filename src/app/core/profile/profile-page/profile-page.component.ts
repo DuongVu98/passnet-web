@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Select } from "@ngxs/store";
 import { Observable } from "rxjs";
-import { AuthState } from "../../auth/store/auth.state";
+import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
 import { ApplicatorApiService } from "../../recruitment/services/applicator-api.service";
 import { RecruiterApiService } from "../../recruitment/services/recruiter-api.service";
 import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
@@ -13,7 +13,7 @@ import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
 	styleUrls: ["./profile-page.component.scss"],
 })
 export class ProfilePageComponent implements OnInit {
-	@Select(AuthState.getLoggedUser) loggedUser$: Observable<any>;
+	@Select(AuthState.getLoggedUser) loggedUser$: Observable<LoggedUserStateSelection>;
 
 	userProfile;
 

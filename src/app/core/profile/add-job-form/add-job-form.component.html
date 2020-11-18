@@ -1,9 +1,13 @@
 <div style="width: 500px">
 	<form [formGroup]="addJobForm" (ngSubmit)="onSubmit()">
 		<div class="grid-form">
-			<mat-grid-list cols="2" rowHeight="200">
+			<mat-grid-list cols="2" rowHeight="300">
 				<mat-grid-tile>
 					<div class="single-grid">
+                        <mat-form-field class="example-full-width">
+							<mat-label>Title</mat-label>
+							<input matInput formControlName="title"/>
+						</mat-form-field>
 						<mat-form-field class="example-full-width">
 							<mat-label>Course name</mat-label>
 							<input matInput formControlName="courseName"/>
@@ -15,6 +19,14 @@
 									{{ department }}
 								</mat-option>
 							</mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+							<mat-label>Requirement</mat-label>
+							<input matInput formControlName="requirement"/>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+							<mat-label>Semester</mat-label>
+							<input matInput formControlName="semester"/>
 						</mat-form-field>
 					</div>
 				</mat-grid-tile>

@@ -16,29 +16,28 @@ export class AddJobFormComponent implements OnInit {
 		"Business Administration",
 		"Industial Engineer and Management",
 	];
-	addJobForm: FormGroup;
+	addJobForm: FormGroup = new FormGroup({
+		title: new FormControl(""),
+		courseName: new FormControl(""),
+		department: new FormControl(""),
+		jobDescription: new FormControl(""),
+		requirement: new FormControl(""),
+		semester: new FormControl(""),
+	});
 
-	constructor(private recruiterService: RecruiterService) {
-		this.addJobForm = new FormGroup({
-			courseName: new FormControl(""),
-			department: new FormControl(""),
-			jobDescription: new FormControl(""),
-		});
-	}
+	constructor(private recruiterService: RecruiterService) {}
 
 	ngOnInit(): void {}
 
 	onSubmit(): void {
-		this.recruiterService
-			.addNewJob(
-				new JobFormModel()
-					.withCourseName(this.addJobForm.value.courseName)
-					.withDepartment(this.addJobForm.value.department)
-					.withJobDescription(this.addJobForm.value.jobDescription)
-			)
-			.then((serviceObservable$) => {
-				console.log(serviceObservable$);
-				serviceObservable$.subscribe();
-			});
+		this.recruiterService.addNewJob(
+			new JobFormModel()
+				.withTitle(this.addJobForm.value.title)
+				.withCourseName(this.addJobForm.value.courseName)
+				.withDepartment(this.addJobForm.value.department)
+				.withRequirement(this.addJobForm.value.requirement)
+				.withContent(this.addJobForm.value.jobDescription)
+		        .withSemester(this.addJobForm.value.semester),
+		);
 	}
 }

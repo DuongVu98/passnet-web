@@ -13,8 +13,8 @@ export class AuthStateModel {
 
 const initState: AuthStateModel = {
 	loggedUser: null,
-    isLogged: false,
-    token: null,
+	isLogged: false,
+	token: null,
 };
 
 @Persistence()
@@ -25,11 +25,8 @@ const initState: AuthStateModel = {
 })
 export class AuthState extends NgxsDataRepository<AuthStateModel> {
 	@Selector()
-	static getLoggedUser(state: AuthStateModel): any {
-		return {
-			user: state.loggedUser,
-			token: state.token,
-		};
+	static getLoggedUser(state: AuthStateModel): LoggedUserStateSelection {
+		return new LoggedUserStateSelection(state.loggedUser, state.token);
 	}
 
 	@Action(SetLoggedUserAction)
@@ -50,4 +47,8 @@ export class AuthState extends NgxsDataRepository<AuthStateModel> {
 			token: null,
 		});
 	}
+}
+
+export class LoggedUserStateSelection {
+	constructor(public user: UserModel, public token: string) {}
 }
