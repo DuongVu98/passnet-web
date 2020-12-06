@@ -35,7 +35,7 @@ import { HttpClientModule } from "@angular/common/http";
 		RecruitmentModule,
 		ProfileModule,
 		AuthModule,
-		GraphQLModule,
+		// GraphQLModule,
 		HttpClientModule,
 	],
 	providers: [],

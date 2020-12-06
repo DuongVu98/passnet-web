@@ -1,6 +1,9 @@
 <div>
-	<div *ngFor="let job of postedJobsView.postedJobs">
-		<p>{{ job.jobTitle }}</p>
-        <p>{{ job.teacherId }}</p>
+	<div *ngFor="let job of postedJobsView">
+		<p>{{ job.courseName }}</p>
+        <p>{{ job.jobTitle }}</p>
+        <p>{{ job.semester }}</p>
+        <p>{{ job.department }}</p>
+        <p>{{ job.appliedAmount }}</p>
 	</div>
 </div>

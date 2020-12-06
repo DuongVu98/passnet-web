@@ -3,8 +3,6 @@ import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { JobFormDto } from "../models/profile.models";
-import { Apollo } from "apollo-angular";
-import gql from "graphql-tag";
 
 @Injectable({
 	providedIn: "root",
@@ -12,7 +10,7 @@ import gql from "graphql-tag";
 export class RecruitmentApiService {
 	private recruitementApiServer = environment.recruitmentApi;
 
-	constructor(private httpClient: HttpClient, private apolloClient: Apollo) {
+	constructor(private httpClient: HttpClient) {
 		this.getAllJobs();
 	}
 
@@ -25,18 +23,6 @@ export class RecruitmentApiService {
 	}
 
 	getAllJobs(): Observable<any> {
-		return this.apolloClient.watchQuery({
-			query: gql`
-				{
-					postedJobsView {
-						postedJobs {
-							teacherId
-							jobTitle
-							courseName
-						}
-					}
-				}
-			`,
-		}).valueChanges;
+        return this.httpClient.get<any> (`${this.recruitementApiServer}/query/posted-jobs`);
 	}
 }
