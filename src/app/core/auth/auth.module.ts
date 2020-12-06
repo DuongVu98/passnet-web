@@ -8,21 +8,18 @@ import { AuthState } from "./store/auth.state";
 import { LoginService } from "./services/login.service";
 
 const initServices = [
-    {
-        provide: APP_INITIALIZER,
-        useFactory: (loginService: LoginService) => () => {},
-        deps: [LoginService],
-        multi: true,
-    },
-]
+	{
+		provide: APP_INITIALIZER,
+		useFactory: (loginService: LoginService) => () => {},
+		deps: [LoginService],
+		multi: true,
+	},
+];
 
 @NgModule({
 	declarations: [LoginComponent],
 	imports: [CommonModule, BaseCommonModule, FormsModule, NgxsModule.forFeature([AuthState])],
-	providers: [
-        LoginService,
-        initServices.map(service => service)
-	],
+	providers: [LoginService, initServices.map((service) => service)],
 	exports: [LoginComponent],
 })
 export class AuthModule {}

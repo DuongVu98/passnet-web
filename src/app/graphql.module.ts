@@ -21,7 +21,7 @@ export function provideApollo(httpLink: HttpLink) {
 	const basic = setContext((operation, context) => ({
 		headers: {
 			Accept: "charset=utf-8",
-			skip: "true"
+			skip: "true",
 		},
 	}));
 

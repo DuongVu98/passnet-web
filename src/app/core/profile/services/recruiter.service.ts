@@ -21,14 +21,16 @@ export class RecruiterService {
 		this.loggedUser$.subscribe((loggedUser) => {
 			uid = loggedUser.user.uid;
 		});
-		this.recruitmentApiService.postJob(
-			new JobFormDto()
-				.withTitle(jobFormModel.courseName)
-				.withCourseName(jobFormModel.courseName)
-                .withContent(jobFormModel.content)
-				.withRequirement(jobFormModel.requirement)
-				.withSemester(jobFormModel.semester),
-			uid
-		).subscribe();
+		this.recruitmentApiService
+			.postJob(
+				new JobFormDto()
+					.withTitle(jobFormModel.courseName)
+					.withCourseName(jobFormModel.courseName)
+					.withContent(jobFormModel.content)
+					.withRequirement(jobFormModel.requirement)
+					.withSemester(jobFormModel.semester),
+				uid
+			)
+			.subscribe();
 	}
 }

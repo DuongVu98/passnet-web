@@ -37,7 +37,7 @@ export class AddJobFormComponent implements OnInit {
 				.withDepartment(this.addJobForm.value.department)
 				.withRequirement(this.addJobForm.value.requirement)
 				.withContent(this.addJobForm.value.jobDescription)
-		        .withSemester(this.addJobForm.value.semester),
+				.withSemester(this.addJobForm.value.semester)
 		);
 	}
 }

@@ -9,7 +9,7 @@ export class RecruiterApiService {
 	constructor(private recruitmentApiService: RecruitmentApiService) {}
 
 	getAllRecruiterPostedJobs(): Observable<any> {
-        return this.recruitmentApiService.getAllJobs();
+		return this.recruitmentApiService.getAllJobs();
 	}
 	getTeacherProfile(teacherId: string): Observable<any> {
 		return null;
