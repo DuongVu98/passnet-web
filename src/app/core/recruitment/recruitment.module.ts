@@ -5,11 +5,12 @@ import { BaseCommonModule } from "../../common/base-common.module";
 import { RecruitmentPageComponent } from "./recruitment-page/recruitment-page.component";
 import { RecruiterApiService } from "./services/recruiter-api.service";
 import { ApplicatorApiService } from "./services/applicator-api.service";
+import { JobDetailComponent } from "./job-detail/job-detail.component";
 
 @NgModule({
-	declarations: [RecruitmentPageComponent],
+	declarations: [RecruitmentPageComponent, JobDetailComponent],
 	imports: [CommonModule, BaseCommonModule],
-	exports: [RecruitmentPageComponent],
+	exports: [RecruitmentPageComponent, JobDetailComponent],
 	providers: [RecruiterApiService, ApplicatorApiService],
 })
 export class RecruitmentModule {}

@@ -1,0 +1,11 @@
+<div *ngIf="isLoading==false; then loaded else elseBlock"></div>
+
+<ng-template #loaded>
+    <h1>{{jobDetail.jobTitle}}</h1>
+    <p>{{jobDetail.courseName}}</p>
+    <p>{{jobDetail.teacher}}</p>
+    <p>{{jobDetail.description}}</p>
+    <p>{{jobDetail.requirement}}</p>
+    <p>{{jobDetail.semester}}</p>
+</ng-template>
+<ng-template #elseBlock>Content to render when condition is false.</ng-template>

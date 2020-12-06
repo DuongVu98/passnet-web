@@ -13,6 +13,6 @@ export class ApplicatorApiService {
 	}
 
 	getJobDetail(jobId: string): Observable<any> {
-		return null;
+		return this.recruitmentApiService.getJobDetail(jobId);
 	}
 }
