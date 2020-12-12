@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ApplicatorApiService } from "../services/applicator-api.service";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
+import { JobDetail } from "../models/recruitment.models";
 
 @Component({
 	selector: "recruitment-job-detail",
@@ -9,14 +10,7 @@ import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 })
 export class JobDetailComponent implements OnInit {
 	jobId: string;
-	jobDetail = {} as {
-		teacher: string;
-		jobTitle: string;
-		courseName: string;
-		description: string;
-		requirement: string;
-		semester: string;
-	};
+	jobDetail: JobDetail = {} as JobDetail;
 	isLoading: boolean;
 
 	constructor(private route: ActivatedRoute, private applicatorApiService: ApplicatorApiService) {
