@@ -10,11 +10,12 @@ import { JobDetail } from "../models/recruitment.models";
 })
 export class JobDetailComponent implements OnInit {
 	jobId: string;
-	jobDetail: JobDetail = {} as JobDetail;
+	jobDetail: JobDetail;
 	isLoading: boolean;
 
 	constructor(private route: ActivatedRoute, private applicatorApiService: ApplicatorApiService) {
 		this.isLoading = true;
+		this.jobDetail = {} as JobDetail;
 	}
 
 	ngOnInit(): void {

@@ -11,15 +11,17 @@ import { Router } from "@angular/router";
 export class RecruitmentPageComponent implements OnInit {
 	postedJobsView: {
 		postedJobs: any[];
-	} = {
-		postedJobs: [],
 	};
 
 	constructor(
 		private recruiterApiService: RecruiterApiService,
 		private applicatorApiService: ApplicatorApiService,
 		private router: Router
-	) {}
+	) {
+		this.postedJobsView = {
+			postedJobs: [],
+		};
+	}
 
 	ngOnInit(): void {
 		this.fetchData();
@@ -27,8 +29,8 @@ export class RecruitmentPageComponent implements OnInit {
 
 	fetchData(): void {
 		this.recruiterApiService.getAllRecruiterPostedJobs().subscribe((result) => {
-            this.postedJobsView.postedJobs = result.litePostedJobs;
-            console.log(this.postedJobsView);
+			this.postedJobsView.postedJobs = result.litePostedJobs;
+			console.log(this.postedJobsView);
 		});
 	}
 
@@ -39,9 +41,9 @@ export class RecruitmentPageComponent implements OnInit {
 				jobId: jobId,
 			},
 		});
-    }
-    
-    quickApplyJob(jobId: string){
+	}
+
+	quickApplyJob(jobId: string) {
 		console.log(jobId);
-    }
+	}
 }
