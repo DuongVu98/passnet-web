@@ -29,4 +29,12 @@ export class RecruitmentApiService {
 	getAllJobs(): Observable<any> {
 		return this.httpClient.get<any>(`${this.recruitementApiServer}/query/posted-jobs`);
 	}
+
+	getJobDetail(jobId: string): Observable<any> {
+		return this.httpClient.get<any>(`${this.recruitementApiServer}/query/job-view`, {
+			params: {
+				jobId: jobId,
+			},
+		});
+	}
 }

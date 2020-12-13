@@ -4,6 +4,7 @@ import { ApiModule } from "./api/api.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MdbModule } from "./mdb/mdb.module";
 import { MaterialModule } from "./material/material.module";
+import { PrimengModule } from "./primeng/primeng.module";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { HttpRequestInterceptor } from "./interceptors/http-request.interceptor";
