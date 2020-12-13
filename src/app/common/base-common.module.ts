@@ -5,6 +5,7 @@ import { FirebaseAppModule } from "./firebase-auth/firebase-app.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MdbModule } from "./mdb/mdb.module";
 import { MaterialModule } from "./material/material.module";
+import { PrimengModule } from "./primeng/primeng.module";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { HttpRequestInterceptor } from "./interceptors/http-request.interceptor";
@@ -13,7 +14,7 @@ import { LogoutPublisher } from "./publishers/logout.publisher";
 
 @NgModule({
 	declarations: [],
-	imports: [CommonModule, FormsModule, ReactiveFormsModule, ApiModule, FirebaseAppModule, MdbModule, MaterialModule],
+	imports: [CommonModule, FormsModule, ReactiveFormsModule, ApiModule, FirebaseAppModule, MdbModule, MaterialModule, PrimengModule],
 	providers: [
 		LogoutPublisher,
 		{
@@ -27,6 +28,6 @@ import { LogoutPublisher } from "./publishers/logout.publisher";
 			multi: true,
 		},
 	],
-	exports: [CommonModule, FormsModule, ReactiveFormsModule, ApiModule, FirebaseAppModule, MdbModule, MaterialModule],
+	exports: [CommonModule, FormsModule, ReactiveFormsModule, ApiModule, FirebaseAppModule, MdbModule, MaterialModule, PrimengModule],
 })
 export class BaseCommonModule {}

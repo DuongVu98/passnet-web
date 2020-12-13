@@ -1,9 +1,21 @@
 <div>
-	<div *ngFor="let job of postedJobsView">
-		<p>{{ job.courseName }}</p>
-		<p>{{ job.jobTitle }}</p>
-		<p>{{ job.semester }}</p>
-		<p>{{ job.department }}</p>
-		<p>{{ job.appliedAmount }}</p>
-	</div>
+    <div *ngFor="let job of postedJobsView.postedJobs">
+        <div class="single-job-card">
+            <p-card [style]="{width: '360px'}" styleClass="p-card-shadow">
+                <p-header>
+                    <h2>{{ job.jobTitle }}</h2>
+                </p-header>
+                <p>{{ job.courseName }}</p>
+                <p>{{ job.semester }}</p>
+                <p>{{ job.department }}</p>
+                <p>{{ job.appliedAmount }}</p>
+
+                <ng-template pTemplate="footer">
+                    <p-button label="Quick apply" icon="pi pi-check" (click)="quickApplyJob(job.id)"></p-button>
+                    <p-button label="Details" icon="pi pi-times" styleClass="p-button-secondary"
+                        [style]="{'margin-left': '.5em'}" (click)="goToJobDetail(job.id)"></p-button>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RecruiterApiService } from "../services/recruiter-api.service";
 import { ApplicatorApiService } from "../services/applicator-api.service";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: "recruitment-recruitment-page",
@@ -14,7 +15,11 @@ export class RecruitmentPageComponent implements OnInit {
 		postedJobs: [],
 	};
 
-	constructor(private recruiterApiService: RecruiterApiService, private applicatorApiService: ApplicatorApiService) {}
+	constructor(
+		private recruiterApiService: RecruiterApiService,
+		private applicatorApiService: ApplicatorApiService,
+		private router: Router
+	) {}
 
 	ngOnInit(): void {
 		this.fetchData();
@@ -22,7 +27,21 @@ export class RecruitmentPageComponent implements OnInit {
 
 	fetchData(): void {
 		this.recruiterApiService.getAllRecruiterPostedJobs().subscribe((result) => {
-			this.postedJobsView = result.litePostedJobs;
+            this.postedJobsView.postedJobs = result.litePostedJobs;
+            console.log(this.postedJobsView);
 		});
 	}
+
+	goToJobDetail(jobId: string) {
+		console.log(jobId);
+		this.router.navigate(["/job-detail"], {
+			queryParams: {
+				jobId: jobId,
+			},
+		});
+    }
+    
+    quickApplyJob(jobId: string){
+		console.log(jobId);
+    }
 }
