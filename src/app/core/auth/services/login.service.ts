@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { User } from "firebase";
-import { auth } from "firebase/app";
+// import { AngularFireAuth } from "@angular/fire/auth";
+// import { User } from "firebase";
+// import { auth } from "firebase/app";
 import { Store } from "@ngxs/store";
 import { SetLoggedUserAction, UserLogoutAction } from "../store/auth.actions";
 
@@ -13,9 +13,9 @@ import { LogoutPublisher } from "src/app/common/publishers/logout.publisher";
 	providedIn: "root",
 })
 export class LoginService {
-	user: User;
+	// user: User;
 	constructor(
-		private afAuth: AngularFireAuth,
+		// private afAuth: AngularFireAuth,
 		private authenticationApiService: AuthenticaionApiService,
 		private store: Store,
 		private logoutPublisher: LogoutPublisher
@@ -42,7 +42,7 @@ export class LoginService {
 	}
 
 	async loginWithGoogle(): Promise<void> {
-		await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());
+		// await this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());
 		console.log(`log in to firebase with google`);
 	}
 
