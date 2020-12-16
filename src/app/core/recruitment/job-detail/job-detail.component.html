@@ -1,11 +1,15 @@
 <div *ngIf="isLoading == false; then loaded; else elseBlock"></div>
 
 <ng-template #loaded>
-	<h1>{{ jobDetail.jobTitle }}</h1>
-	<p>{{ jobDetail.courseName }}</p>
-	<p>{{ jobDetail.teacher }}</p>
-	<p>{{ jobDetail.description }}</p>
-	<p>{{ jobDetail.requirement }}</p>
-	<p>{{ jobDetail.semester }}</p>
+    <h1>{{ jobDetail.jobTitle }}</h1>
+    <p>{{ jobDetail.courseName }}</p>
+    <p>{{ jobDetail.teacher }}</p>
+    <p>{{ jobDetail.description }}</p>
+    <p>{{ jobDetail.requirement }}</p>
+    <p>{{ jobDetail.semester }}</p>
+
+    <button pButton pRipple type="button" label="Apply" class="p-button-raised p-button-success"></button>
+    <button pButton pRipple type="button" label="Save" class="p-button-outlined p-button-success"></button>
 </ng-template>
+
 <ng-template #elseBlock>Content to render when condition is false.</ng-template>
