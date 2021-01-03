@@ -6,3 +6,10 @@ export interface JobDetail {
 	requirement: string;
 	semester: string;
 }
+
+export class ApplicationForm {
+    fullName: string;
+    gpa: string;
+    major: string;
+    letter: string;
+}

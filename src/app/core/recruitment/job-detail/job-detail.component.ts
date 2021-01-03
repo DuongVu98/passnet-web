@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ApplicatorApiService } from "../services/applicator-api.service";
+import { ApplicatorService } from "../services/applicator-api.service";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
-import { JobDetail } from "../models/recruitment.models";
+import { ApplicationForm, JobDetail } from "../models/recruitment.models";
 
 @Component({
 	selector: "recruitment-job-detail",
@@ -13,9 +13,12 @@ export class JobDetailComponent implements OnInit {
 	jobDetail: JobDetail;
 	isLoading: boolean;
 
-	constructor(private route: ActivatedRoute, private applicatorApiService: ApplicatorApiService) {
+	applicationFormDialog: boolean;
+
+	constructor(private route: ActivatedRoute, private applicatorApiService: ApplicatorService) {
 		this.isLoading = true;
 		this.jobDetail = {} as JobDetail;
+		this.applicationFormDialog = false;
 	}
 
 	ngOnInit(): void {
@@ -37,5 +40,14 @@ export class JobDetailComponent implements OnInit {
 				this.isLoading = false;
 			});
 		});
+	}
+
+	onClickApply(): void {
+		console.log(this.jobId);
+		this.applicationFormDialog = true;
+	}
+
+	sendApplicationForm(applicationForm: ApplicationForm) {
+        console.log(JSON.stringify(applicationForm));
 	}
 }

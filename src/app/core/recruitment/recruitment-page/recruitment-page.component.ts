@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { RecruiterApiService } from "../services/recruiter-api.service";
-import { ApplicatorApiService } from "../services/applicator-api.service";
+import { ApplicatorService } from "../services/applicator-api.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -15,7 +15,7 @@ export class RecruitmentPageComponent implements OnInit {
 
 	constructor(
 		private recruiterApiService: RecruiterApiService,
-		private applicatorApiService: ApplicatorApiService,
+		private applicatorApiService: ApplicatorService,
 		private router: Router
 	) {
 		this.postedJobsView = {

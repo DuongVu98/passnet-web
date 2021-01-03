@@ -3,6 +3,7 @@ import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { JobFormDto } from "../models/profile.models";
+import { ApplicationFormDto } from "../models/recruitment.models";
 
 @Injectable({
 	providedIn: "root",
@@ -35,6 +36,16 @@ export class RecruitmentApiService {
 			params: {
 				jobId: jobId,
 			},
+		});
+	}
+
+	applyJob(applicationForm: ApplicationFormDto, jobId: string, studentId: string): Observable<any> {
+		return this.httpClient.post<ApplicationFormDto>(`${this.recruitementApiServer}/command/applicator/apply-job`, {
+			params: {
+				jobId: jobId,
+				studentId: studentId,
+			},
+			applicationForm,
 		});
 	}
 }

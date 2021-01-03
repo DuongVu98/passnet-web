@@ -3,7 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { Select } from "@ngxs/store";
 import { Observable } from "rxjs";
 import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
-import { ApplicatorApiService } from "../../recruitment/services/applicator-api.service";
+import { ApplicatorService } from "../../recruitment/services/applicator-api.service";
 import { RecruiterApiService } from "../../recruitment/services/recruiter-api.service";
 import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
 
@@ -19,7 +19,7 @@ export class ProfilePageComponent implements OnInit {
 
 	constructor(
 		private recruiterApiService: RecruiterApiService,
-		private applicatorApiService: ApplicatorApiService,
+		private applicatorApiService: ApplicatorService,
 		private matDialog: MatDialog
 	) {}
 
