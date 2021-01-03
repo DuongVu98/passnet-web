@@ -46,8 +46,4 @@ export class JobDetailComponent implements OnInit {
 		console.log(this.jobId);
 		this.applicationFormDialog = true;
 	}
-
-	sendApplicationForm(applicationForm: ApplicationForm) {
-        console.log(JSON.stringify(applicationForm));
-	}
 }

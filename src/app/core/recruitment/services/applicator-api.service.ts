@@ -3,12 +3,23 @@ import { RecruitmentApiService } from "../../../common/api/recruitment-api.servi
 import { Observable } from "rxjs";
 import { ApplicationForm } from "../models/recruitment.models";
 import { ApplicationFormDto } from "src/app/common/models/recruitment.models";
+import { Select } from "@ngxs/store";
+import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
 
 @Injectable({
 	providedIn: "root",
 })
 export class ApplicatorService {
-	constructor(private recruitmentApiService: RecruitmentApiService) {}
+    @Select(AuthState.getLoggedUser)
+    loggedUser$: Observable<LoggedUserStateSelection>;
+    
+    userId: string;
+    
+	constructor(private recruitmentApiService: RecruitmentApiService) {
+        this.loggedUser$.subscribe(loggedUser => {
+            this.userId = loggedUser.user.uid;
+        })
+    }
 
 	getTeacherProfile(teacherId: string): Observable<any> {
 		return null;
@@ -21,7 +32,7 @@ export class ApplicatorService {
 	sendApplicationForm(applicationForm: ApplicationForm, jobId: string): Observable<any> {
 		return this.recruitmentApiService.applyJob(
 			new ApplicationFormDto().withLetter(applicationForm.letter).withContent(applicationForm.letter),
-			"",
+			this.userId,
 			jobId
 		);
 	}

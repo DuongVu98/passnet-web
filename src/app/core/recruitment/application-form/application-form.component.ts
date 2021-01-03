@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { ApplicationForm } from "../models/recruitment.models";
+import { ApplicatorService } from "../services/applicator-api.service";
 
 @Component({
 	selector: "recruitment-application-form",
@@ -8,9 +9,9 @@ import { ApplicationForm } from "../models/recruitment.models";
 	styleUrls: ["./application-form.component.scss"],
 })
 export class ApplicationFormComponent implements OnInit {
-	@Input() jobId: string;
-	@Output() applicationFormEvent: EventEmitter<ApplicationForm> = new EventEmitter<ApplicationForm>();
-
+    @Input()
+    jobId: string;
+    
 	applicationFormGroup: FormGroup = new FormGroup({
 		fullName: new FormControl(""),
 		gpa: new FormControl(""),
@@ -18,7 +19,7 @@ export class ApplicationFormComponent implements OnInit {
 		letter: new FormControl(""),
 	});
 
-	constructor() {}
+	constructor(private applicatorService: ApplicatorService) {}
 
 	ngOnInit(): void {}
 
@@ -28,8 +29,8 @@ export class ApplicationFormComponent implements OnInit {
 			gpa: this.applicationFormGroup.value.gpa,
 			major: this.applicationFormGroup.value.major,
 			letter: this.applicationFormGroup.value.major,
-		};
+        };
 
-		this.applicationFormEvent.emit(applicationForm);
+        this.applicatorService.sendApplicationForm(applicationForm, this.jobId).subscribe();
 	}
 }
