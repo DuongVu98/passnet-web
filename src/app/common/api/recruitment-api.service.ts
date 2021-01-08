@@ -9,7 +9,7 @@ import { ApplicationFormDto } from "../models/recruitment.models";
 	providedIn: "root",
 })
 export class RecruitmentApiService {
-	private recruitementApiServer = environment.recruitmentApi;
+	private recruitmentApiServer = environment.recruitmentApi;
 
 	constructor(private httpClient: HttpClient) {
 		this.getAllJobs();
@@ -17,7 +17,7 @@ export class RecruitmentApiService {
 
 	postJob(jobFormDto: JobFormDto, teacherId: string): Observable<any> {
 		return this.httpClient.post<JobFormDto>(
-			`${this.recruitementApiServer}/command/recruiter/post-job`,
+			`${this.recruitmentApiServer}/command/recruiter/post-job`,
 			jobFormDto,
 			{
 				params: {
@@ -28,11 +28,11 @@ export class RecruitmentApiService {
 	}
 
 	getAllJobs(): Observable<any> {
-		return this.httpClient.get<any>(`${this.recruitementApiServer}/query/posted-jobs`);
+		return this.httpClient.get<any>(`${this.recruitmentApiServer}/query/posted-jobs`);
 	}
 
 	getJobDetail(jobId: string): Observable<any> {
-		return this.httpClient.get<any>(`${this.recruitementApiServer}/query/job-view`, {
+		return this.httpClient.get<any>(`${this.recruitmentApiServer}/query/job-view`, {
 			params: {
 				jobId,
 			},
@@ -40,7 +40,7 @@ export class RecruitmentApiService {
 	}
 
 	applyJob(applicationForm: ApplicationFormDto, jobId: string, studentId: string): Observable<any> {
-		return this.httpClient.post<ApplicationFormDto>(`${this.recruitementApiServer}/command/applicator/apply-job`, applicationForm, {
+		return this.httpClient.post<ApplicationFormDto>(`${this.recruitmentApiServer}/command/applicator/apply-job`, applicationForm, {
 			params: {
 				jobId,
 				studentId,
