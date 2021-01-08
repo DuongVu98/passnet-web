@@ -22,12 +22,12 @@ export class ApplicationFormComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	send() {
-		let applicationForm: ApplicationForm = {
+	send(): void {
+		const applicationForm: ApplicationForm = {
 			fullName: this.applicationFormGroup.value.fullName,
 			gpa: this.applicationFormGroup.value.gpa,
 			major: this.applicationFormGroup.value.major,
-			letter: this.applicationFormGroup.value.major,
+			letter: this.applicationFormGroup.value.letter,
 		};
 
 		this.applicationFormEvent.emit(applicationForm);
