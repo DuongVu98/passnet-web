@@ -48,6 +48,6 @@ export class JobDetailComponent implements OnInit {
 	}
 
 	sendApplicationForm(applicationForm: ApplicationForm) {
-        console.log(JSON.stringify(applicationForm));
+		console.log(JSON.stringify(applicationForm));
 	}
 }

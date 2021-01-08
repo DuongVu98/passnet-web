@@ -6,7 +6,7 @@ import { RecruitmentPageComponent } from "./recruitment-page/recruitment-page.co
 import { RecruiterApiService } from "./services/recruiter-api.service";
 import { ApplicatorService } from "./services/applicator-api.service";
 import { JobDetailComponent } from "./job-detail/job-detail.component";
-import { ApplicationFormComponent } from './application-form/application-form.component';
+import { ApplicationFormComponent } from "./application-form/application-form.component";
 
 @NgModule({
 	declarations: [RecruitmentPageComponent, JobDetailComponent, ApplicationFormComponent],

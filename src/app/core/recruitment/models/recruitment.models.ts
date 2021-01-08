@@ -8,8 +8,8 @@ export interface JobDetail {
 }
 
 export class ApplicationForm {
-    fullName: string;
-    gpa: string;
-    major: string;
-    letter: string;
+	fullName: string;
+	gpa: string;
+	major: string;
+	letter: string;
 }
