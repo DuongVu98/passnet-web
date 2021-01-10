@@ -27,6 +27,10 @@ export class RecruitmentApiService {
 		return this.httpClient.get<any>(`${this.recruitmentApiServer}/query/posted-jobs`);
 	}
 
+	getOwnedJobs(userId: string): Observable<any> {
+		return this.httpClient.get<any>(`${this.recruitmentApiServer}/query/owned-jobs`);
+	}
+
 	getJobDetail(jobId: string): Observable<any> {
 		return this.httpClient.get<any>(`${this.recruitmentApiServer}/query/job-view`, {
 			params: {

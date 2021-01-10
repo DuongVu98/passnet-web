@@ -13,14 +13,16 @@ export class RecruiterService {
 	@Select(AuthState.getLoggedUser)
 	loggedUser$: Observable<LoggedUserStateSelection>;
 
-	constructor(private recruitmentApiService: RecruitmentApiService) {}
+	recruiterId: string;
+
+	constructor(private recruitmentApiService: RecruitmentApiService) {
+		this.loggedUser$.subscribe((loggedUser) => {
+			this.recruiterId = loggedUser.user.uid;
+		});
+	}
 
 	// Add new job method
 	addNewJob(jobFormModel: JobFormModel): void {
-		let uid: string;
-		this.loggedUser$.subscribe((loggedUser) => {
-			uid = loggedUser.user.uid;
-		});
 		this.recruitmentApiService
 			.postJob(
 				new JobFormDto()
@@ -29,8 +31,12 @@ export class RecruiterService {
 					.withContent(jobFormModel.content)
 					.withRequirement(jobFormModel.requirement)
 					.withSemester(jobFormModel.semester),
-				uid
+				this.recruiterId
 			)
 			.subscribe();
+	}
+
+	getOwnPostedJobs(): Observable<any> {
+		return this.recruitmentApiService.getOwnedJobs(this.recruiterId);
 	}
 }
