@@ -16,15 +16,11 @@ export class RecruitmentApiService {
 	}
 
 	postJob(jobFormDto: JobFormDto, teacherId: string): Observable<any> {
-		return this.httpClient.post<JobFormDto>(
-			`${this.recruitmentApiServer}/command/recruiter/post-job`,
-			jobFormDto,
-			{
-				params: {
-					teacherId,
-				},
-			}
-		);
+		return this.httpClient.post<JobFormDto>(`${this.recruitmentApiServer}/command/recruiter/post-job`, jobFormDto, {
+			params: {
+				teacherId,
+			},
+		});
 	}
 
 	getAllJobs(): Observable<any> {
@@ -40,11 +36,15 @@ export class RecruitmentApiService {
 	}
 
 	applyJob(applicationForm: ApplicationFormDto, jobId: string, studentId: string): Observable<any> {
-		return this.httpClient.post<ApplicationFormDto>(`${this.recruitmentApiServer}/command/applicator/apply-job`, applicationForm, {
-			params: {
-				jobId,
-				studentId,
-			},
-		});
+		return this.httpClient.post<ApplicationFormDto>(
+			`${this.recruitmentApiServer}/command/applicator/apply-job`,
+			applicationForm,
+			{
+				params: {
+					jobId,
+					studentId,
+				},
+			}
+		);
 	}
 }
