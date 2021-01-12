@@ -13,9 +13,6 @@ export class PostedJobListComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.fetchData();
-		setInterval(() => {
-			console.log(JSON.stringify(this.ownedPostedJobsView));
-		}, 1000);
 	}
 
 	fetchData(): void {
