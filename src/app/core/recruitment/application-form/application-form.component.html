@@ -1,21 +1,27 @@
 <div>
-    <div class="application-form">
-        <form [formGroup]="applicationFormGroup">
-            <div class="p-inputgroup field-input">
-                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                <input type="text" pInputText placeholder="Full Name" formControlName="fullName">
-            </div>
-            <div class="p-inputgroup field-input">
-                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                <input type="text" pInputText placeholder="GPA" formControlName="gpa">
-            </div>
-            <div class="p-inputgroup field-input">
-                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                <input type="text" pInputText placeholder="Major" formControlName="major">
-            </div>
-            <p-editor [style]="{'height':'250px'}" formControlName="letter"></p-editor>
+	<div class="application-form">
+		<form [formGroup]="applicationFormGroup">
+			<div class="p-inputgroup field-input">
+				<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+				<input type="text" pInputText placeholder="Full Name" formControlName="fullName" />
+			</div>
+			<div class="p-inputgroup field-input">
+				<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+				<input type="text" pInputText placeholder="GPA" formControlName="gpa" />
+			</div>
+			<div class="p-inputgroup field-input">
+				<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+				<input type="text" pInputText placeholder="Major" formControlName="major" />
+			</div>
+			<p-editor [style]="{ height: '250px' }" formControlName="letter"></p-editor>
 
-            <button pButton type="button" label="Send" class="p-button-raised p-button-rounded" (click)="send()"></button>
-        </form>
-    </div>
+			<button
+				pButton
+				type="button"
+				label="Send"
+				class="p-button-raised p-button-rounded"
+				(click)="send()"
+			></button>
+		</form>
+	</div>
 </div>
