@@ -9,9 +9,9 @@ import { ApplicatorService } from "../services/applicator-api.service";
 	styleUrls: ["./application-form.component.scss"],
 })
 export class ApplicationFormComponent implements OnInit {
-    @Input()
-    jobId: string;
-    
+	@Input()
+	jobId: string;
+
 	applicationFormGroup: FormGroup = new FormGroup({
 		fullName: new FormControl(""),
 		gpa: new FormControl(""),
@@ -31,6 +31,6 @@ export class ApplicationFormComponent implements OnInit {
 			letter: this.applicationFormGroup.value.letter,
 		};
 
-        this.applicatorService.sendApplicationForm(applicationForm, this.jobId).subscribe();
+		this.applicatorService.sendApplicationForm(applicationForm, this.jobId).subscribe();
 	}
 }
