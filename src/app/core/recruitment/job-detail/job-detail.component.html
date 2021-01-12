@@ -21,11 +21,8 @@
 	<p-dialog modal="true" [(visible)]="applicationFormDialog" styleClass="open-dialog">
 		<p-header> Application form </p-header>
 
-		<recruitment-application-form
-			[jobId]="jobId"
-			(applicationFormEvent)="sendApplicationForm($event)"
-		></recruitment-application-form>
-	</p-dialog>
+        <recruitment-application-form [jobId]="jobId"></recruitment-application-form>
+    </p-dialog>
 </ng-template>
 
 <ng-template #elseBlock>Content to render when condition is false.</ng-template>
