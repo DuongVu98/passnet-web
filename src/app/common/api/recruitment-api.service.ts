@@ -55,4 +55,12 @@ export class RecruitmentApiService {
 			}
 		);
 	}
+
+	getAllJobApplicationList(jobId: string): Observable<any> {
+		return this.httpClient.get<any>(`${this.recruitmentApiServer}/query/job-application-list-view`, {
+			params: {
+				jobId: jobId,
+			},
+		});
+	}
 }

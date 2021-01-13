@@ -39,4 +39,9 @@ export class RecruiterService {
 	getOwnPostedJobs(): Observable<any> {
 		return this.recruitmentApiService.getOwnedJobs(this.recruiterId);
 	}
+
+	// todo: get job application list from specific job
+	getJobApplicationList(jobId: string): Observable<any> {
+		return this.recruitmentApiService.getAllJobApplicationList(jobId);
+	}
 }
