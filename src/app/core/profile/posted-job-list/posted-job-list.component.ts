@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { RecruiterService } from "../services/recruiter.service";
 
 @Component({
@@ -9,7 +10,7 @@ import { RecruiterService } from "../services/recruiter.service";
 export class PostedJobListComponent implements OnInit {
 	ownedPostedJobsView: any[];
 
-	constructor(private recruiterService: RecruiterService) {}
+	constructor(private recruiterService: RecruiterService, private router: Router) {}
 
 	ngOnInit(): void {
 		this.fetchData();
@@ -19,5 +20,9 @@ export class PostedJobListComponent implements OnInit {
 		this.recruiterService.getOwnPostedJobs().subscribe((result) => {
 			this.ownedPostedJobsView = result.litePostedJobs;
 		});
+	}
+
+	openJobApplicationList(jobId: string): void {
+		this.router.navigate(["/profile/job-application-list"], { queryParams: { jobId: jobId } });
 	}
 }

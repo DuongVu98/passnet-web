@@ -1,0 +1,17 @@
+<div>
+	<div *ngFor="let jobApplication of jobApplicationList">
+		<div class="">
+			<p-card [style]="{ width: '360px' }" styleClass="p-card-shadow">
+				<p-header>
+					<h2>{{ jobApplication.studentId }}</h2>
+				</p-header>
+				<p>{{ jobApplication.letter }}</p>
+				<p>{{ jobApplication.content }}</p>
+
+				<ng-template pTemplate="footer">
+					<p-button label="Accept"></p-button>
+				</ng-template>
+			</p-card>
+		</div>
+	</div>
+</div>
