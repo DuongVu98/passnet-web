@@ -1,17 +1,17 @@
 <div>
-    <div *ngFor="let job of ownedPostedJobsView">
-        <div class="single-job-card">
-            <p-card [style]="{ width: '360px' }" styleClass="p-card-shadow">
-                <p-header>
-                    <h2>{{ job.jobTitle }}</h2>
-                </p-header>
-                <p>{{ job.courseName }}</p>
-                <p>{{ job.appliedAmount }}</p>
+	<div *ngFor="let job of ownedPostedJobsView">
+		<div class="single-job-card">
+			<p-card [style]="{ width: '360px' }" styleClass="p-card-shadow">
+				<p-header>
+					<h2>{{ job.jobTitle }}</h2>
+				</p-header>
+				<p>{{ job.courseName }}</p>
+				<p>{{ job.appliedAmount }}</p>
 
-                <ng-template pTemplate="footer">
+				<ng-template pTemplate="footer">
 					<p-button label="Open application forms"></p-button>
 				</ng-template>
-            </p-card>
-        </div>
-    </div>
+			</p-card>
+		</div>
+	</div>
 </div>

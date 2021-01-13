@@ -17,8 +17,8 @@ const routes: Routes = [
 	},
 	{
 		path: "profile",
-        component: ProfilePageComponent,
-        children: profileRoutes
+		component: ProfilePageComponent,
+		children: profileRoutes,
 	},
 	{
 		path: "job-detail",
