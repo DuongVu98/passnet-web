@@ -1,0 +1,22 @@
+.p-scrollpanel {
+	&.scroll-custom {
+		.p-scrollpanel-wrapper {
+			border-right: 9px solid var(--layer-1);
+		}
+
+		.p-scrollpanel-bar {
+			background-color: var(--primary-color);
+			opacity: 1;
+			transition: background-color 0.2s;
+
+			&:hover {
+				background-color: #007ad9;
+			}
+		}
+	}
+}
+
+.application-list, .application-detail {
+    width: 100%;
+    height: 100%;
+}

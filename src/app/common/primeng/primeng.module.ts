@@ -5,8 +5,9 @@ import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
 import { EditorModule } from "primeng/editor";
 import { InputTextModule } from "primeng/inputtext";
+import { ScrollPanelModule } from "primeng/scrollpanel";
 
-const primengComponents = [CardModule, ButtonModule, DialogModule, EditorModule, InputTextModule];
+const primengComponents = [CardModule, ButtonModule, DialogModule, EditorModule, InputTextModule, ScrollPanelModule];
 
 @NgModule({
 	declarations: [],

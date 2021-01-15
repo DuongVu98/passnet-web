@@ -63,4 +63,17 @@ export class RecruitmentApiService {
 			},
 		});
 	}
+
+	acceptApplicationForm(applicationId: string, jobId: string): Observable<any> {
+		return this.httpClient.post<any>(
+			`${this.recruitmentApiServer}/command/recruiter/accept-application`,
+			{},
+			{
+				params: {
+					jobApplicationId: applicationId,
+					jobId: jobId,
+				},
+			}
+		);
+	}
 }
