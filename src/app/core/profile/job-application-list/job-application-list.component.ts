@@ -16,7 +16,7 @@ class JobApplicationView {
 	styleUrls: ["./job-application-list.component.scss"],
 })
 export class JobApplicationListComponent implements OnInit {
-    jobId: string
+	jobId: string;
 	jobApplicationList: JobApplicationView[];
 	selectedJobApplication: JobApplicationView = {} as JobApplicationView;
 
@@ -29,7 +29,7 @@ export class JobApplicationListComponent implements OnInit {
 	fetchData(): void {
 		this.route.queryParams.subscribe((params) => {
 			this.recruiterService.getJobApplicationList(params["jobId"]).subscribe((result) => {
-                this.jobId = result.id;
+				this.jobId = result.id;
 				this.jobApplicationList = result.jobApplicationViewList;
 				this.selectedJobApplication = result.jobApplicationViewList[0];
 			});
@@ -37,10 +37,12 @@ export class JobApplicationListComponent implements OnInit {
 	}
 
 	selectJobApplicationDetail(applicationId: string): void {
-        this.selectedJobApplication = this.jobApplicationList.filter(application => application.id === applicationId)[0];
-    }
+		this.selectedJobApplication = this.jobApplicationList.filter(
+			(application) => application.id === applicationId
+		)[0];
+	}
 
-    acceptApplication(applicationId: string): void {
-        this.recruiterService.acceptApplicationForm(applicationId, this.jobId).subscribe();
-    }
+	acceptApplication(applicationId: string): void {
+		this.recruiterService.acceptApplicationForm(applicationId, this.jobId).subscribe();
+	}
 }

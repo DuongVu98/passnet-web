@@ -42,9 +42,9 @@ export class RecruiterService {
 
 	getJobApplicationList(jobId: string): Observable<any> {
 		return this.recruitmentApiService.getAllJobApplicationList(jobId);
-    }
-    
-    acceptApplicationForm(applicationId: string, jobId: string): Observable<any> {
-        return this.recruitmentApiService.acceptApplicationForm(applicationId, jobId);
-    }
+	}
+
+	acceptApplicationForm(applicationId: string, jobId: string): Observable<any> {
+		return this.recruitmentApiService.acceptApplicationForm(applicationId, jobId);
+	}
 }
