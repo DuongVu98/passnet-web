@@ -7,6 +7,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSelectModule } from "@angular/material/select";
 import { MatGridListModule } from "@angular/material/grid-list";
+import { MatCardModule } from "@angular/material/card";
+import { MatRippleModule } from "@angular/material/core";
 
 @NgModule({
 	declarations: [],
@@ -19,6 +21,8 @@ import { MatGridListModule } from "@angular/material/grid-list";
 		MatIconModule,
 		MatSelectModule,
 		MatGridListModule,
+		MatCardModule,
+		MatRippleModule,
 	],
 })
 export class MaterialModule {}

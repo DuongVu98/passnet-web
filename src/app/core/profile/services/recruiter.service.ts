@@ -40,8 +40,11 @@ export class RecruiterService {
 		return this.recruitmentApiService.getOwnedJobs(this.recruiterId);
 	}
 
-	// todo: get job application list from specific job
 	getJobApplicationList(jobId: string): Observable<any> {
 		return this.recruitmentApiService.getAllJobApplicationList(jobId);
-	}
+    }
+    
+    acceptApplicationForm(applicationId: string, jobId: string): Observable<any> {
+        return this.recruitmentApiService.acceptApplicationForm(applicationId, jobId);
+    }
 }

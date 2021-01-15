@@ -1,17 +1,24 @@
 <div>
-	<div *ngFor="let jobApplication of jobApplicationList">
-		<div class="">
-			<p-card [style]="{ width: '360px' }" styleClass="p-card-shadow">
-				<p-header>
-					<h2>{{ jobApplication.studentId }}</h2>
-				</p-header>
-				<p>{{ jobApplication.letter }}</p>
-				<p>{{ jobApplication.content }}</p>
-
-				<ng-template pTemplate="footer">
-					<p-button label="Accept"></p-button>
-				</ng-template>
-			</p-card>
-		</div>
-	</div>
+    <mat-grid-list cols="5" rowHeight="600px">
+        <mat-grid-tile [colspan]="2">
+            <div class="application-list">
+                <p-scrollPanel [style]="{width: '100%', height: '100%'}" styleClass="scroll-custom">
+                    <div *ngFor="let jobApplication of jobApplicationList">
+                        <mat-card matRipple  (click)="selectJobApplicationDetail(jobApplication.id)">
+                            <h2>{{ jobApplication.studentId }}</h2>
+                            <mat-card-subtitle>{{ jobApplication.state }}</mat-card-subtitle>
+                        </mat-card>
+                    </div>
+                </p-scrollPanel>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3">
+            <div class="application-detail">
+                <h2>{{ selectedJobApplication.studentId }}</h2>
+                <p>{{ selectedJobApplication.letter }}</p>
+                <p>{{ selectedJobApplication.content }}</p>
+                <p-button label="Accept" (click)="acceptApplication(selectedJobApplication.id)"></p-button>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
