@@ -41,7 +41,10 @@
 			</mat-grid-list>
 		</div>
 		<div class="submit-button">
-			<button mat-button mat-dialog-close type="submit">Add</button>
+			<button mat-button mat-dialog-close type="submit">
+				<div *ngIf="!loading">Add</div>
+				<div *ngIf="loading"><mat-progress-spinner></mat-progress-spinner></div>
+			</button>
 		</div>
 	</form>
 </div>
