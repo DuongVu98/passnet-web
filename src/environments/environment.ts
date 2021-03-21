@@ -4,7 +4,7 @@
 
 export const environment = {
 	production: false,
-	recruitmentApi: "http://192.168.99.100:8080",
+	recruitmentApi: "http://localhost:8080",
 	authenticationApi: "http://13.72.86.164:1323",
 };
 
