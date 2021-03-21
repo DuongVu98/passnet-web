@@ -22,8 +22,8 @@ export class RecruiterService {
 	}
 
 	// Add new job method
-	addNewJob(jobFormModel: JobFormModel): void {
-		this.recruitmentApiService
+	addNewJob(jobFormModel: JobFormModel): Observable<any> {
+		return this.recruitmentApiService
 			.postJob(
 				new JobFormDto()
 					.withTitle(jobFormModel.courseName)
@@ -32,8 +32,7 @@ export class RecruiterService {
 					.withRequirement(jobFormModel.requirement)
 					.withSemester(jobFormModel.semester),
 				this.recruiterId
-			)
-			.subscribe();
+			);
 	}
 
 	getOwnPostedJobs(): Observable<any> {

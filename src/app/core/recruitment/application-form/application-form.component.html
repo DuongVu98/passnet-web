@@ -18,10 +18,12 @@
 			<button
 				pButton
 				type="button"
-				label="Send"
 				class="p-button-raised p-button-rounded"
 				(click)="send()"
-			></button>
+			>
+				<div *ngIf="!loading">Send</div>
+				<div *ngIf="loading"><mat-progress-spinner></mat-progress-spinner></div>
+			</button>
 		</form>
 	</div>
 </div>

@@ -34,16 +34,16 @@ export class RecruitmentPageComponent implements OnInit {
 		});
 	}
 
-	goToJobDetail(jobId: string) {
+	goToJobDetail(jobId: string): void {
 		console.log(jobId);
 		this.router.navigate(["/job-detail"], {
 			queryParams: {
-				jobId: jobId,
+				jobId,
 			},
 		});
 	}
 
-	quickApplyJob(jobId: string) {
+	quickApplyJob(jobId: string): void {
 		console.log(jobId);
 	}
 }

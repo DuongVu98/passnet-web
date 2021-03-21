@@ -6,9 +6,11 @@ import { ApplicatorService } from "../services/applicator-api.service";
 @Component({
 	selector: "recruitment-application-form",
 	templateUrl: "./application-form.component.html",
-	styleUrls: ["./application-form.component.scss"],
+	styleUrls: ["./application-form.component.scss"]
 })
 export class ApplicationFormComponent implements OnInit {
+	loading = false;
+
 	@Input()
 	jobId: string;
 
@@ -16,21 +18,26 @@ export class ApplicationFormComponent implements OnInit {
 		fullName: new FormControl(""),
 		gpa: new FormControl(""),
 		major: new FormControl(""),
-		letter: new FormControl(""),
+		letter: new FormControl("")
 	});
 
-	constructor(private applicatorService: ApplicatorService) {}
+	constructor(private applicatorService: ApplicatorService) {
+	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+	}
 
 	send(): void {
+		this.loading = true;
 		const applicationForm: ApplicationForm = {
 			fullName: this.applicationFormGroup.value.fullName,
 			gpa: this.applicationFormGroup.value.gpa,
 			major: this.applicationFormGroup.value.major,
-			letter: this.applicationFormGroup.value.letter,
+			letter: this.applicationFormGroup.value.letter
 		};
 
-		this.applicatorService.sendApplicationForm(applicationForm, this.jobId).subscribe();
+		this.applicatorService.sendApplicationForm(applicationForm, this.jobId).subscribe(() => {
+			this.loading = false;
+		});
 	}
 }

@@ -9,6 +9,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatCardModule } from "@angular/material/card";
 import { MatRippleModule } from "@angular/material/core";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
 	declarations: [],
@@ -23,6 +24,8 @@ import { MatRippleModule } from "@angular/material/core";
 		MatGridListModule,
 		MatCardModule,
 		MatRippleModule,
-	],
+		MatProgressSpinnerModule
+	]
 })
-export class MaterialModule {}
+export class MaterialModule {
+}
