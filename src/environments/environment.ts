@@ -6,6 +6,7 @@ export const environment = {
 	production: false,
 	recruitmentApi: "http://localhost:8080",
 	authenticationApi: "http://13.72.86.164:1323",
+    classroomApi: "http://localhost:3000"
 };
 
 /*
