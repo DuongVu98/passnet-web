@@ -41,6 +41,7 @@
     "apollo-angular-link-http": "^1.11.0",
     "apollo-link": "^1.2.14",
     "apollo-link-context": "^1.0.20",
+    "builder-pattern": "^1.3.0",
     "chart.js": "2.5.0",
     "graphql": "^15.0.0",
     "hammerjs": "^2.0.8",

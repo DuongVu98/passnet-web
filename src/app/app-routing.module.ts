@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "./core/auth/login/login.component";
+import { ClassroomPageComponent } from "./core/classroom/classroom-page/classroom-page.component";
+import { classroomRoutes } from "./core/classroom/classroom.routing";
 import { ProfilePageComponent } from "./core/profile/profile-page/profile-page.component";
 import { profileRoutes } from "./core/profile/profile.routing";
 import { JobDetailComponent } from "./core/recruitment/job-detail/job-detail.component";
@@ -23,6 +25,11 @@ const routes: Routes = [
 	{
 		path: "job-detail",
 		component: JobDetailComponent,
+	},
+	{
+		path: "classrooms",
+		component: ClassroomPageComponent,
+		children: classroomRoutes,
 	},
 ];
 
