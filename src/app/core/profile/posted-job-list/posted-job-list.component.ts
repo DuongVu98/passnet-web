@@ -26,9 +26,16 @@ export class PostedJobListComponent implements OnInit {
 		this.router.navigate(["/profile/job-application-list"], { queryParams: { jobId: jobId } });
 	}
 
-    openClassroomFromJob(jobId: string): void {
-        this.recruiterService.getClassroomFromJob(jobId).subscribe(result => {
-            console.log(`log result ${result}`)
-        })
-    }
+	openClassroomFromJob(jobId: string): void {
+		this.recruiterService.getClassroomFromJob(jobId).subscribe(
+			(result) => {
+				console.log(`log result ${result}`);
+			},
+			(error) => {
+				if (error.status == 404) {
+					console.log(`${JSON.stringify(error)}`);
+				}
+			}
+		);
+	}
 }
