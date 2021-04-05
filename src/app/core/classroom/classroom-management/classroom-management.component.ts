@@ -7,15 +7,15 @@ import { ClassroomMemberTypes } from "../models/classroom.models";
 	styleUrls: ["./classroom-management.component.scss"],
 })
 export class ClassroomManagementComponent implements OnInit {
-    studentType: ClassroomMemberTypes
-    teacherAssistanceType: ClassroomMemberTypes
-    teacherType: ClassroomMemberTypes
+	studentType: ClassroomMemberTypes;
+	teacherAssistanceType: ClassroomMemberTypes;
+	teacherType: ClassroomMemberTypes;
 
 	constructor() {
-        this.studentType = ClassroomMemberTypes.STUDENT
-        this.teacherAssistanceType = ClassroomMemberTypes.TEACHER_ASSISTANCE
-        this.teacherType = ClassroomMemberTypes.TEACHER
-    }
+		this.studentType = ClassroomMemberTypes.STUDENT;
+		this.teacherAssistanceType = ClassroomMemberTypes.TEACHER_ASSISTANCE;
+		this.teacherType = ClassroomMemberTypes.TEACHER;
+	}
 
 	ngOnInit(): void {}
 }

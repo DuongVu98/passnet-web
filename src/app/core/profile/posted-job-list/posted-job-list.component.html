@@ -9,8 +9,18 @@
 				<p>{{ job.appliedAmount }}</p>
 
 				<ng-template pTemplate="footer">
-					<button pButton class="p-button-raised p-button-rounded" label="Open application forms" (click)="openJobApplicationList(job.id)"></button>
-                    <button pButton class="p-button-raised p-button-rounded p-button-danger" label="Go to classroom" (click)="openClassroomFromJob(job.id)"></button>
+					<button
+						pButton
+						class="p-button-raised p-button-rounded"
+						label="Open application forms"
+						(click)="openJobApplicationList(job.id)"
+					></button>
+					<button
+						pButton
+						class="p-button-raised p-button-rounded p-button-danger"
+						label="Go to classroom"
+						(click)="openClassroomFromJob(job.id)"
+					></button>
 				</ng-template>
 			</p-card>
 		</div>

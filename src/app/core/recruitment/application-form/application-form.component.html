@@ -15,12 +15,7 @@
 			</div>
 			<p-editor [style]="{ height: '250px' }" formControlName="letter"></p-editor>
 
-			<button
-				pButton
-				type="button"
-				class="p-button-raised p-button-rounded"
-				(click)="send()"
-			>
+			<button pButton type="button" class="p-button-raised p-button-rounded" (click)="send()">
 				<div *ngIf="!loading">Send</div>
 				<div *ngIf="loading"><mat-progress-spinner></mat-progress-spinner></div>
 			</button>

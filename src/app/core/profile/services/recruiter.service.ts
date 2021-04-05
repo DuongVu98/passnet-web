@@ -16,7 +16,10 @@ export class RecruiterService {
 
 	recruiterId: string;
 
-	constructor(private recruitmentApiService: RecruitmentApiService, private classroomApiService: ClassroomApiService) {
+	constructor(
+		private recruitmentApiService: RecruitmentApiService,
+		private classroomApiService: ClassroomApiService
+	) {
 		this.loggedUser$.subscribe((loggedUser) => {
 			this.recruiterId = loggedUser.user.uid;
 		});
@@ -24,16 +27,15 @@ export class RecruiterService {
 
 	// Add new job method
 	addNewJob(jobFormModel: JobFormModel): Observable<any> {
-		return this.recruitmentApiService
-			.postJob(
-				new JobFormDto()
-					.withTitle(jobFormModel.courseName)
-					.withCourseName(jobFormModel.courseName)
-					.withContent(jobFormModel.content)
-					.withRequirement(jobFormModel.requirement)
-					.withSemester(jobFormModel.semester),
-				this.recruiterId
-			);
+		return this.recruitmentApiService.postJob(
+			new JobFormDto()
+				.withTitle(jobFormModel.courseName)
+				.withCourseName(jobFormModel.courseName)
+				.withContent(jobFormModel.content)
+				.withRequirement(jobFormModel.requirement)
+				.withSemester(jobFormModel.semester),
+			this.recruiterId
+		);
 	}
 
 	getOwnPostedJobs(): Observable<any> {
@@ -48,9 +50,9 @@ export class RecruiterService {
 		return this.recruitmentApiService.acceptApplicationForm(applicationId, jobId);
 	}
 
-    // TODO: call api service
-    // Get classroom from Job ID
-    getClassroomFromJob(jobId: string): Observable<any> {
-        return this.classroomApiService.getClassroomFromJob(jobId);
-    }
+	// TODO: call api service
+	// Get classroom from Job ID
+	getClassroomFromJob(jobId: string): Observable<any> {
+		return this.classroomApiService.getClassroomFromJob(jobId);
+	}
 }

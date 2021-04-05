@@ -14,7 +14,7 @@ import { BaseCommonModule } from "./common/base-common.module";
 import { RecruitmentModule } from "./core/recruitment/recruitment.module";
 import { ProfileModule } from "./core/profile/profile.module";
 import { AuthModule } from "./core/auth/auth.module";
-import {ClassroomModule} from "./core/classroom/classroom.module";
+import { ClassroomModule } from "./core/classroom/classroom.module";
 import { environment } from "src/environments/environment";
 import { GraphQLModule } from "./graphql.module";
 import { HttpClientModule } from "@angular/common/http";
@@ -35,7 +35,7 @@ import { HttpClientModule } from "@angular/common/http";
 		RecruitmentModule,
 		ProfileModule,
 		AuthModule,
-        ClassroomModule,
+		ClassroomModule,
 		// GraphQLModule,
 		HttpClientModule,
 	],

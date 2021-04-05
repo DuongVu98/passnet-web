@@ -22,6 +22,6 @@ export class ClassroomService {
 	}
 
 	getClassroomList(memberType: ClassroomMemberTypes): Observable<ClassroomViewDto[]> {
-		return this.classroomApiService.getClassroomListByMemberType(this.memberId, memberType)
+		return this.classroomApiService.getClassroomListByMemberType(this.memberId, memberType);
 	}
 }
