@@ -8,16 +8,14 @@ import { ClassroomService } from "../services/classroom.service";
 	styleUrls: ["./classroom-list.component.scss"],
 })
 export class ClassroomListComponent implements OnInit {
-
-    displayAddClassroomForm: boolean = false;
+	displayAddClassroomForm: boolean = false;
 
 	@Input()
 	memberType: ClassroomMemberTypes;
 
 	classroomList: { classroomId: string; courseName: string }[];
 
-	constructor(private classroomService: ClassroomService) {
-    }
+	constructor(private classroomService: ClassroomService) {}
 
 	ngOnInit(): void {
 		this.fetchData(this.memberType);
@@ -34,7 +32,7 @@ export class ClassroomListComponent implements OnInit {
 		});
 	}
 
-    openAddClassroomForm() {
-        this.displayAddClassroomForm = true;
-    }
+	openAddClassroomForm() {
+		this.displayAddClassroomForm = true;
+	}
 }

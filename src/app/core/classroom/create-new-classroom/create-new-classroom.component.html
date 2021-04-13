@@ -1,0 +1,17 @@
+<div>
+	<div class="p-col-12 p-md-4">
+		<div class="p-inputgroup">
+			<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+			<input type="text" pInputText placeholder="Course name" />
+
+			<mat-form-field appearance="fill">
+				<mat-label>Favorite food</mat-label>
+				<mat-select [(ngModel)]="selectedValue" name="food">
+					<mat-option *ngFor="let job of ownedPostedJobsView" [value]="job.id">
+						{{ job.jobTitle }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+	</div>
+</div>

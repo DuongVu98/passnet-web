@@ -7,9 +7,15 @@ import { RouterModule } from "@angular/router";
 import { classroomRoutes } from "./classroom.routing";
 import { ClassroomListComponent } from "./classroom-list/classroom-list.component";
 import { ClassroomService } from "./services/classroom.service";
+import { CreateNewClassroomComponent } from "./create-new-classroom/create-new-classroom.component";
 
 @NgModule({
-	declarations: [ClassroomPageComponent, ClassroomManagementComponent, ClassroomListComponent],
+	declarations: [
+		ClassroomPageComponent,
+		ClassroomManagementComponent,
+		ClassroomListComponent,
+		CreateNewClassroomComponent,
+	],
 	imports: [CommonModule, BaseCommonModule, RouterModule.forChild(classroomRoutes)],
 	exports: [ClassroomPageComponent],
 	providers: [ClassroomService],
