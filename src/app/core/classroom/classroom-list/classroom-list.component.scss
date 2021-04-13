@@ -1,0 +1,19 @@
+.box {
+    background-color: #f4f4f4;
+}
+.list-container {
+    margin: 10px;
+    padding: 15px;
+}
+::ng-deep .single-classroom-card {
+    width: 175px;
+    height: 140px;
+    background-color: #af8eb5;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+
+    &:hover {
+        background-color: #c0b3c2;
+    }
+}
