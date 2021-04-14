@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
+import { Builder } from "builder-pattern";
 import { JobFormModel } from "../models/job-form.model";
 import { RecruiterService } from "../services/recruiter.service";
 
@@ -34,13 +35,14 @@ export class AddJobFormComponent implements OnInit {
 		this.loading = true;
 		this.recruiterService
 			.addNewJob(
-				new JobFormModel()
-					.withTitle(this.addJobForm.value.title)
-					.withCourseName(this.addJobForm.value.courseName)
-					.withDepartment(this.addJobForm.value.department)
-					.withRequirement(this.addJobForm.value.requirement)
-					.withContent(this.addJobForm.value.jobDescription)
-					.withSemester(this.addJobForm.value.semester)
+				Builder(JobFormModel)
+					.jobTitle(this.addJobForm.value.title)
+					.content(this.addJobForm.value.jobDescription)
+					.courseName(this.addJobForm.value.courseName)
+					.department(this.addJobForm.value.department)
+					.requirement(this.addJobForm.value.requirement)
+					.semester(this.addJobForm.value.semester)
+					.build()
 			)
 			.subscribe(() => {
 				this.loading = false;

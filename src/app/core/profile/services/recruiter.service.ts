@@ -29,7 +29,7 @@ export class RecruiterService {
 	addNewJob(jobFormModel: JobFormModel): Observable<any> {
 		return this.recruitmentApiService.postJob(
 			new JobFormDto()
-				.withTitle(jobFormModel.courseName)
+				.withTitle(jobFormModel.jobTitle)
 				.withCourseName(jobFormModel.courseName)
 				.withContent(jobFormModel.content)
 				.withRequirement(jobFormModel.requirement)

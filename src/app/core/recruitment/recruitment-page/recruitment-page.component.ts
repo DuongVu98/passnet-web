@@ -29,7 +29,7 @@ export class RecruitmentPageComponent implements OnInit {
 
 	fetchData(): void {
 		this.recruiterApiService.getAllRecruiterPostedJobs().subscribe((result) => {
-			this.postedJobsView.postedJobs = result.litePostedJobs;
+			this.postedJobsView.postedJobs = result;
 			console.log(this.postedJobsView);
 		});
 	}

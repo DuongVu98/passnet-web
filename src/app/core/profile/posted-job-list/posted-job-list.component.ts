@@ -18,7 +18,7 @@ export class PostedJobListComponent implements OnInit {
 
 	fetchData(): void {
 		this.recruiterService.getOwnPostedJobs().subscribe((result) => {
-			this.ownedPostedJobsView = result.litePostedJobs;
+			this.ownedPostedJobsView = result;
 		});
 	}
 

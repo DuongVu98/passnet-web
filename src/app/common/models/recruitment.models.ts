@@ -11,3 +11,15 @@ export class ApplicationFormDto {
 		return this;
 	}
 }
+
+export class JobViewDto {
+	id: string;
+	courseName: string;
+	jobTitle: string;
+	semester: string;
+	department: string;
+	appliedAmount: number;
+}
+export class JobViewListDto {
+	litePostedJobs: JobViewDto[];
+}

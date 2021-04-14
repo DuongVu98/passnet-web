@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
+import { CreateNewClassroomComponent } from "../create-new-classroom/create-new-classroom.component";
 import { ClassroomMemberTypes } from "../models/classroom.models";
 import { ClassroomService } from "../services/classroom.service";
 
@@ -12,6 +13,9 @@ export class ClassroomListComponent implements OnInit {
 
 	@Input()
 	memberType: ClassroomMemberTypes;
+
+	@ViewChild(CreateNewClassroomComponent)
+	createNewClassroomComponent: CreateNewClassroomComponent;
 
 	classroomList: { classroomId: string; courseName: string }[];
 
@@ -34,5 +38,10 @@ export class ClassroomListComponent implements OnInit {
 
 	openAddClassroomForm() {
 		this.displayAddClassroomForm = true;
+	}
+
+	submitAndClose() {
+		this.displayAddClassroomForm = false;
+		this.createNewClassroomComponent.submitCreateClassroomForm();
 	}
 }

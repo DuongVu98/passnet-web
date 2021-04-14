@@ -3,7 +3,7 @@ import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { JobFormDto } from "../models/profile.models";
-import { ApplicationFormDto } from "../models/recruitment.models";
+import { ApplicationFormDto, JobViewDto, JobViewListDto } from "../models/recruitment.models";
 
 @Injectable({
 	providedIn: "root",
@@ -24,11 +24,11 @@ export class RecruitmentApiService {
 		});
 	}
 
-	getAllJobs(): Observable<any> {
+	getAllJobs(): Observable<JobViewDto[]> {
 		return this.httpClient.get<any>(`${this.recruitmentApiServer}/query/posted-jobs`);
 	}
 
-	getOwnedJobs(userId: string): Observable<any> {
+	getOwnedJobs(userId: string): Observable<JobViewDto[]> {
 		return this.httpClient.get<any>(`${this.recruitmentApiServer}/query/owned-jobs`, {
 			params: {
 				teacherId: userId,

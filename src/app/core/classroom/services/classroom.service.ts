@@ -6,6 +6,7 @@ import { ClassroomApiService } from "../../../common/api/classroom-api.service";
 import { Observable } from "rxjs";
 import { ClassroomViewDto } from "src/app/common/models/classroom.models";
 import { RecruitmentApiService } from "src/app/common/api/recruitment-api.service";
+import { JobViewDto, JobViewListDto } from "src/app/common/models/recruitment.models";
 
 @Injectable({
 	providedIn: "root",
@@ -29,7 +30,7 @@ export class ClassroomService {
 		return this.classroomApiService.getClassroomListByMemberType(this.memberId, memberType);
 	}
 
-	getOwnPostedJobs(): Observable<any> {
+	getOwnPostedJobs(): Observable<JobViewDto[]> {
 		return this.recruitmentApiService.getOwnedJobs(this.memberId);
 	}
 }
