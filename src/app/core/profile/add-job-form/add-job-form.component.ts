@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Builder } from "builder-pattern";
-import { JobFormModel } from "../models/job-form.model";
+import { JobFormDto } from "src/app/common/models/profile.models";
 import { RecruiterService } from "../services/recruiter.service";
 
 @Component({
@@ -35,11 +35,10 @@ export class AddJobFormComponent implements OnInit {
 		this.loading = true;
 		this.recruiterService
 			.addNewJob(
-				Builder(JobFormModel)
+				Builder(JobFormDto)
 					.jobTitle(this.addJobForm.value.title)
-					.content(this.addJobForm.value.jobDescription)
 					.courseName(this.addJobForm.value.courseName)
-					.department(this.addJobForm.value.department)
+					.content(this.addJobForm.value.jobDescription)
 					.requirement(this.addJobForm.value.requirement)
 					.semester(this.addJobForm.value.semester)
 					.build()

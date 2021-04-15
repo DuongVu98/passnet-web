@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { RecruitmentApiService } from "../../../common/api/recruitment-api.service";
-import { JobFormModel } from "../models/job-form.model";
 import { Select } from "@ngxs/store";
 import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
 import { Observable } from "rxjs";
@@ -25,17 +24,8 @@ export class RecruiterService {
 		});
 	}
 
-	// Add new job method
-	addNewJob(jobFormModel: JobFormModel): Observable<any> {
-		return this.recruitmentApiService.postJob(
-			new JobFormDto()
-				.withTitle(jobFormModel.jobTitle)
-				.withCourseName(jobFormModel.courseName)
-				.withContent(jobFormModel.content)
-				.withRequirement(jobFormModel.requirement)
-				.withSemester(jobFormModel.semester),
-			this.recruiterId
-		);
+	addNewJob(jobFormDto: JobFormDto): Observable<any> {
+		return this.recruitmentApiService.postJob(jobFormDto, this.recruiterId);
 	}
 
 	getOwnPostedJobs(): Observable<any> {
@@ -49,9 +39,7 @@ export class RecruiterService {
 	acceptApplicationForm(applicationId: string, jobId: string): Observable<any> {
 		return this.recruitmentApiService.acceptApplicationForm(applicationId, jobId);
 	}
-
-	// TODO: call api service
-	// Get classroom from Job ID
+    
 	getClassroomFromJob(jobId: string): Observable<any> {
 		return this.classroomApiService.getClassroomFromJob(jobId);
 	}
