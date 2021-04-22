@@ -23,3 +23,15 @@ export class JobViewDto {
 export class JobViewListDto {
 	litePostedJobs: JobViewDto[];
 }
+
+export class JobApplicationDto {
+	studentId: string;
+	letter: string;
+	content: string;
+	state: string;
+}
+
+export class JobApplicationListDto {
+	jobView: JobViewDto;
+	jobApplicationViewList: JobApplicationDto[];
+}

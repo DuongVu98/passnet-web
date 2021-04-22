@@ -39,7 +39,7 @@ export class RecruiterService {
 	acceptApplicationForm(applicationId: string, jobId: string): Observable<any> {
 		return this.recruitmentApiService.acceptApplicationForm(applicationId, jobId);
 	}
-    
+
 	getClassroomFromJob(jobId: string): Observable<any> {
 		return this.classroomApiService.getClassroomFromJob(jobId);
 	}

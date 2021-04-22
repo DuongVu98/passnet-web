@@ -1,25 +1,48 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ClassroomService } from "../services/classroom.service";
+import { BehaviorSubject, Subscription } from "rxjs";
+
+interface JobView {
+	jobId: string;
+	jobTitle: string;
+	courseName: string;
+}
 
 @Component({
 	selector: "classroom-create-new-classroom",
 	templateUrl: "./create-new-classroom.component.html",
 	styleUrls: ["./create-new-classroom.component.scss"],
 })
-export class CreateNewClassroomComponent implements OnInit {
-	selectedValue: string;
-	ownedPostedJobsView: {
-		jobId: string;
-		jobTitle: string;
-		courseName: string;
-	}[];
+export class CreateNewClassroomComponent implements OnInit, OnDestroy {
+	inputSelectedJob: JobView;
+	ownedPostedJobsView: JobView[];
+	inputCourseName: string;
+	acceptedTeacherAssistents: string[];
+
+	inputSeletedJob$: BehaviorSubject<JobView>;
+	componetSubsription: Subscription;
 
 	constructor(private classroomService: ClassroomService) {
 		this.ownedPostedJobsView = [];
+		this.acceptedTeacherAssistents = [];
+		this.inputSeletedJob$ = new BehaviorSubject({
+			jobId: "",
+			jobTitle: "",
+			courseName: "",
+		});
 	}
 
 	ngOnInit(): void {
+		this.componetSubsription = this.inputSeletedJob$.asObservable().subscribe((selectedJob) => {
+			this.classroomService.getAcceptedTasFromJob(selectedJob.jobId).subscribe((result) => {
+				this.acceptedTeacherAssistents = result;
+			});
+		});
 		this.fetchData();
+	}
+
+	ngOnDestroy(): void {
+		this.componetSubsription.unsubscribe();
 	}
 
 	fetchData(): void {
@@ -34,7 +57,11 @@ export class CreateNewClassroomComponent implements OnInit {
 		});
 	}
 
+	reactiveChange(value: JobView): void {
+		this.inputSeletedJob$.next(value);
+	}
+
 	public submitCreateClassroomForm(): void {
-		console.log(`submit -> ${JSON.stringify(this.selectedValue)}`);
+		console.log(`ta list: ${this.acceptedTeacherAssistents.length}`);
 	}
 }

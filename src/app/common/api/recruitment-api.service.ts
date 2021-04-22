@@ -3,7 +3,13 @@ import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { JobFormDto } from "../models/profile.models";
-import { ApplicationFormDto, JobViewDto, JobViewListDto } from "../models/recruitment.models";
+import {
+	ApplicationFormDto,
+	JobApplicationDto,
+	JobApplicationListDto,
+	JobViewDto,
+	JobViewListDto,
+} from "../models/recruitment.models";
 
 @Injectable({
 	providedIn: "root",
@@ -57,12 +63,15 @@ export class RecruitmentApiService {
 		);
 	}
 
-	getAllJobApplicationList(jobId: string): Observable<any> {
-		return this.httpClient.get<any>(`${this.recruitmentApiServer}/query/job-application-list-view`, {
-			params: {
-				jobId: jobId,
-			},
-		});
+	getAllJobApplicationList(jobId: string): Observable<JobApplicationListDto> {
+		return this.httpClient.get<JobApplicationListDto>(
+			`${this.recruitmentApiServer}/query/job-application-list-view`,
+			{
+				params: {
+					jobId: jobId,
+				},
+			}
+		);
 	}
 
 	acceptApplicationForm(applicationId: string, jobId: string): Observable<any> {

@@ -3,10 +3,11 @@ import { ClassroomMemberTypes } from "../models/classroom.models";
 import { Select } from "@ngxs/store";
 import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
 import { ClassroomApiService } from "../../../common/api/classroom-api.service";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { ClassroomViewDto } from "src/app/common/models/classroom.models";
 import { RecruitmentApiService } from "src/app/common/api/recruitment-api.service";
-import { JobViewDto, JobViewListDto } from "src/app/common/models/recruitment.models";
+import { JobViewDto } from "src/app/common/models/recruitment.models";
+import { map, mergeMap } from "rxjs/operators";
 
 @Injectable({
 	providedIn: "root",
@@ -32,5 +33,16 @@ export class ClassroomService {
 
 	getOwnPostedJobs(): Observable<JobViewDto[]> {
 		return this.recruitmentApiService.getOwnedJobs(this.memberId);
+	}
+
+	getAcceptedTasFromJob(jobId: string): Observable<string[]> {
+		if (jobId === "") {
+			return of([]);
+		} else {
+			return this.recruitmentApiService.getAllJobApplicationList(jobId).pipe(
+				map((list) => list.jobApplicationViewList),
+				map((viewList) => viewList.map((dto) => dto.studentId))
+			);
+		}
 	}
 }
