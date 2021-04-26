@@ -34,4 +34,15 @@ export class ClassroomApiService {
 			memberType: classroomMemberType,
 		});
 	}
+
+	createClassroom(uid: string, courseName: string, taIds: string[], jobId: string): Observable<any> {
+		console.log(`about to create classroom - teacher: ${uid} + jobId: ${jobId}`);
+
+		return this.httpClient.post<any>(`${classroomApiHost}/home/create-classroom`, {
+			teacherId: uid,
+			courseName: courseName,
+			taIds: taIds,
+			jobId: jobId,
+		});
+	}
 }

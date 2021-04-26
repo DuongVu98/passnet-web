@@ -7,7 +7,7 @@ import { Observable, of } from "rxjs";
 import { ClassroomViewDto } from "src/app/common/models/classroom.models";
 import { RecruitmentApiService } from "src/app/common/api/recruitment-api.service";
 import { JobViewDto } from "src/app/common/models/recruitment.models";
-import { map, mergeMap } from "rxjs/operators";
+import { filter, map, mergeMap } from "rxjs/operators";
 
 @Injectable({
 	providedIn: "root",
@@ -41,8 +41,12 @@ export class ClassroomService {
 		} else {
 			return this.recruitmentApiService.getAllJobApplicationList(jobId).pipe(
 				map((list) => list.jobApplicationViewList),
-				map((viewList) => viewList.map((dto) => dto.studentId))
+				map((viewList) => viewList.filter((dto) => dto.state==="ACCEPTED").map((dto) => dto.studentId))
 			);
 		}
 	}
+
+    createClassroom(courseName: string, taIds: string[], jobId: string) {
+		this.classroomApiService.createClassroom(this.memberId, courseName, taIds, jobId).subscribe();
+    }
 }
