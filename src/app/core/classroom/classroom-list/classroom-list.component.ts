@@ -19,7 +19,9 @@ export class ClassroomListComponent implements OnInit {
 
 	classroomList: { classroomId: string; courseName: string }[];
 
-	constructor(private classroomService: ClassroomService) {}
+	constructor(private classroomService: ClassroomService) {
+        this.classroomList = [];
+    }
 
 	ngOnInit(): void {
 		this.fetchData(this.memberType);
