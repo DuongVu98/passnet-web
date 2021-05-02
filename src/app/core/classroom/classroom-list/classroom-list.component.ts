@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from "@angular/core";
+import { CreateClassroomFormComponent } from "src/app/common/components/create-classroom-form/create-classroom-form.component";
 import { CreateNewClassroomComponent } from "../create-new-classroom/create-new-classroom.component";
 import { ClassroomMemberTypes } from "../models/classroom.models";
 import { ClassroomService } from "../services/classroom.service";
@@ -14,8 +15,8 @@ export class ClassroomListComponent implements OnInit {
 	@Input()
 	memberType: ClassroomMemberTypes;
 
-	@ViewChild(CreateNewClassroomComponent)
-	createNewClassroomComponent: CreateNewClassroomComponent;
+	@ViewChild(CreateClassroomFormComponent)
+	createNewClassroomComponent: CreateClassroomFormComponent;
 
 	classroomList: { classroomId: string; courseName: string }[];
 

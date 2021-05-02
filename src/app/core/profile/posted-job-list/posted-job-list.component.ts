@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
-import { CreateNewClassroomComponent } from "../../classroom/create-new-classroom/create-new-classroom.component";
+import { CreateClassroomFormComponent } from "src/app/common/components/create-classroom-form/create-classroom-form.component";
 import { RecruiterService } from "../services/recruiter.service";
 
 @Component({
@@ -12,8 +12,8 @@ export class PostedJobListComponent implements OnInit {
     displayAddClassroomForm: boolean = false;
 	ownedPostedJobsView: any[];
     
-    @ViewChild(CreateNewClassroomComponent)
-	createNewClassroomComponent: CreateNewClassroomComponent;
+    @ViewChild(CreateClassroomFormComponent)
+	createNewClassroomComponent: CreateClassroomFormComponent;
     
 	constructor(private recruiterService: RecruiterService, private router: Router) {}
 

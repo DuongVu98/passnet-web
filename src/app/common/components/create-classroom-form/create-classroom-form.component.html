@@ -1,0 +1,21 @@
+<div>
+	<div class="form-box">
+		<div class="p-fluid p-formgrid p-grid">
+			<div class="p-field p-col-12 p-md-6">
+				<label for="course-name">Course name</label>
+				<input id="course-name" type="text" pInputText [(ngModel)]="inputCourseName" />
+			</div>
+			<div class="p-field p-col-12 p-md-6">
+				<label for="job">Select job</label>
+				<p-dropdown
+					inputId="job"
+					[options]="ownedPostedJobsView"
+					placeholder="Your posted jobs"
+					optionLabel="jobTitle"
+					[(ngModel)]="inputSelectedJob"
+					(ngModelChange)="reactiveChange(inputSelectedJob)"
+				></p-dropdown>
+			</div>
+		</div>
+	</div>
+</div>

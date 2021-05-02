@@ -8,6 +8,7 @@ import { classroomRoutes } from "./classroom.routing";
 import { ClassroomListComponent } from "./classroom-list/classroom-list.component";
 import { ClassroomService } from "./services/classroom.service";
 import { CreateNewClassroomComponent } from "./create-new-classroom/create-new-classroom.component";
+import { ClassroomSpaceComponent } from './classroom-space/classroom-space.component';
 
 @NgModule({
 	declarations: [
@@ -15,6 +16,7 @@ import { CreateNewClassroomComponent } from "./create-new-classroom/create-new-c
 		ClassroomManagementComponent,
 		ClassroomListComponent,
 		CreateNewClassroomComponent,
+		ClassroomSpaceComponent,
 	],
 	imports: [CommonModule, BaseCommonModule, RouterModule.forChild(classroomRoutes)],
 	exports: [ClassroomPageComponent, CreateNewClassroomComponent],

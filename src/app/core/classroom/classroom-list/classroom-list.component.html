@@ -20,8 +20,9 @@
 		[draggable]="false"
 		[resizable]="false"
 	>
-		<classroom-create-new-classroom></classroom-create-new-classroom>
-		<ng-template pTemplate="footer">
+		<!-- <classroom-create-new-classroom></classroom-create-new-classroom> -->
+		<common-create-classroom-form></common-create-classroom-form>
+        <ng-template pTemplate="footer">
 			<p-button icon="pi pi-check" (click)="submitAndClose()" label="Create" styleClass="p-button-text">
 			</p-button>
 		</ng-template>
