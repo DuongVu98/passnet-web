@@ -8,7 +8,9 @@ import { classroomRoutes } from "./classroom.routing";
 import { ClassroomListComponent } from "./classroom-list/classroom-list.component";
 import { ClassroomService } from "./services/classroom.service";
 import { CreateNewClassroomComponent } from "./create-new-classroom/create-new-classroom.component";
-import { ClassroomSpaceComponent } from './classroom-space/classroom-space.component';
+import { ClassroomSpaceComponent } from "./classroom-space/classroom-space.component";
+import { NgxsModule } from "@ngxs/store";
+import { ClassroomState } from "./store/classroom.state";
 
 @NgModule({
 	declarations: [
@@ -18,7 +20,12 @@ import { ClassroomSpaceComponent } from './classroom-space/classroom-space.compo
 		CreateNewClassroomComponent,
 		ClassroomSpaceComponent,
 	],
-	imports: [CommonModule, BaseCommonModule, RouterModule.forChild(classroomRoutes)],
+	imports: [
+		CommonModule,
+		BaseCommonModule,
+		RouterModule.forChild(classroomRoutes),
+		NgxsModule.forFeature([ClassroomState]),
+	],
 	exports: [ClassroomPageComponent, CreateNewClassroomComponent],
 	providers: [ClassroomService],
 })

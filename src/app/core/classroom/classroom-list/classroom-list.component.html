@@ -2,7 +2,7 @@
 	<div class="list-container">
 		<div class="p-d-flex p-flex-column p-flex-md-row">
 			<div *ngFor="let class of classroomList">
-				<p-card styleClass="single-classroom-card p-shadow-6">
+				<p-card styleClass="single-classroom-card p-shadow-6" (click)="goToClassroom(class.classroomId)">
 					{{ class.courseName }}
 				</p-card>
 			</div>
