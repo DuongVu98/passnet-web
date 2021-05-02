@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
+import { CreateNewClassroomComponent } from "../../classroom/create-new-classroom/create-new-classroom.component";
 import { RecruiterService } from "../services/recruiter.service";
 
 @Component({
@@ -8,8 +9,12 @@ import { RecruiterService } from "../services/recruiter.service";
 	styleUrls: ["./posted-job-list.component.scss"],
 })
 export class PostedJobListComponent implements OnInit {
+    displayAddClassroomForm: boolean = false;
 	ownedPostedJobsView: any[];
-
+    
+    @ViewChild(CreateNewClassroomComponent)
+	createNewClassroomComponent: CreateNewClassroomComponent;
+    
 	constructor(private recruiterService: RecruiterService, private router: Router) {}
 
 	ngOnInit(): void {
@@ -34,8 +39,17 @@ export class PostedJobListComponent implements OnInit {
 			(error) => {
 				if (error.status == 404) {
 					console.log(`${JSON.stringify(error)}`);
+                    this.openAddClassroomForm();
 				}
 			}
 		);
+	}
+
+	openAddClassroomForm() {
+		this.displayAddClassroomForm = true;
+	}
+    submitAndClose() {
+		this.displayAddClassroomForm = false;
+		this.createNewClassroomComponent.submitCreateClassroomForm();
 	}
 }

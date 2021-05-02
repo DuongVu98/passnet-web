@@ -17,7 +17,7 @@ import { CreateNewClassroomComponent } from "./create-new-classroom/create-new-c
 		CreateNewClassroomComponent,
 	],
 	imports: [CommonModule, BaseCommonModule, RouterModule.forChild(classroomRoutes)],
-	exports: [ClassroomPageComponent],
+	exports: [ClassroomPageComponent, CreateNewClassroomComponent],
 	providers: [ClassroomService],
 })
 export class ClassroomModule {}
