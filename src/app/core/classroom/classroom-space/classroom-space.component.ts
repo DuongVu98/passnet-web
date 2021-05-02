@@ -7,8 +7,6 @@ import { Component, OnInit } from "@angular/core";
 })
 export class ClassroomSpaceComponent implements OnInit {
 
-    classroom
-
 	constructor() {}
 
 	ngOnInit(): void {}
