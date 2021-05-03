@@ -15,19 +15,18 @@
 .classroom-main-box {
 	margin: 5px;
 
-	.example-container {
+	.sidebar-container {
 		width: 100%;
 		height: 100vh;
 	}
 
-	.example-sidenav-content {
-		display: flex;
+	.sidebar-content {
 		height: 100%;
-		align-items: center;
+		display: flex;
 		justify-content: center;
 	}
 
-	.example-sidenav {
+	.sidebar-main {
 		padding: 20px;
 
 		.sidenav-menu {

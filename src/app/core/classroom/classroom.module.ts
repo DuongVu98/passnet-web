@@ -15,6 +15,7 @@ import { ClassroomDiscussionComponent } from "./classroom-discussion/classroom-d
 import { ClassroomAssignmentComponent } from "./classroom-assignment/classroom-assignment.component";
 import { ClassroomFilesComponent } from "./classroom-files/classroom-files.component";
 import { ClassroomStudentsComponent } from "./classroom-students/classroom-students.component";
+import { ClassroomSpaceService } from "./services/classroom-space.service";
 
 @NgModule({
 	declarations: [
@@ -35,6 +36,6 @@ import { ClassroomStudentsComponent } from "./classroom-students/classroom-stude
 		NgxsModule.forFeature([ClassroomState]),
 	],
 	exports: [ClassroomPageComponent, CreateNewClassroomComponent],
-	providers: [ClassroomService],
+	providers: [ClassroomService, ClassroomSpaceService],
 })
 export class ClassroomModule {}

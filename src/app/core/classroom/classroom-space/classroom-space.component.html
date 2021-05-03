@@ -1,12 +1,12 @@
 <div class="classoom-space-box">
 	<div class="classroom-banner-box p-shadow-8">
 		<mat-card class="classroom-banner-card">
-			<mat-card-title>OOP</mat-card-title>
+			<mat-card-title>{{ courseName }}</mat-card-title>
 		</mat-card>
 	</div>
 	<div class="classroom-main-box">
-		<mat-sidenav-container class="example-container" autosize>
-			<mat-sidenav opened mode="side" class="example-sidenav">
+		<mat-sidenav-container class="sidebar-container" autosize>
+			<mat-sidenav opened mode="side" class="sidebar-main">
 				<div class="sidenav-menu">
 					<mat-action-list>
 						<h3 matSubheader>Navigation</h3>
@@ -20,7 +20,7 @@
 				</div>
 			</mat-sidenav>
 			<mat-sidenav-content>
-				<div class="example-sidenav-content">
+				<div class="sidebar-content">
 					<router-outlet></router-outlet>
 				</div>
 			</mat-sidenav-content>

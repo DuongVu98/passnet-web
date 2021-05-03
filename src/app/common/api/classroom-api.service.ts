@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { ClassroomMemberTypes } from "src/app/core/classroom/models/classroom.models";
-import { ClassroomViewDto } from "../../common/models/classroom.models";
+import { ClassroomViewDto, PostViewDto } from "../../common/models/classroom.models";
 
 const classroomApiHost = environment.classroomApi;
 
@@ -13,7 +13,14 @@ const classroomApiHost = environment.classroomApi;
 export class ClassroomApiService {
 	constructor(private httpClient: HttpClient) {}
 
-	getClassroomFromJob(jobId: string): Observable<any> {
+	getClassroomById(id: string): Observable<ClassroomViewDto> {
+		console.log(`get classroom by id: ${id}`);
+		return this.httpClient.post<ClassroomViewDto>(`${classroomApiHost}/home/classroom-view/classroom-id`, {
+			classroomId: id,
+		});
+	}
+
+	getClassroomByJob(jobId: string): Observable<any> {
 		return this.httpClient.post<any>(`${classroomApiHost}/home/classroom-view/job-id`, {
 			jobId: jobId,
 		});
@@ -25,7 +32,7 @@ export class ClassroomApiService {
 			classroomMemberType = "student";
 		} else if (memberType == ClassroomMemberTypes.TEACHER_ASSISTANCE) {
 			classroomMemberType = "teacherAssistance";
-		} else if ((memberType = ClassroomMemberTypes.TEACHER)) {
+		} else if (memberType == ClassroomMemberTypes.TEACHER) {
 			classroomMemberType = "teacher";
 		}
 
@@ -36,13 +43,15 @@ export class ClassroomApiService {
 	}
 
 	createClassroom(uid: string, courseName: string, taIds: string[], jobId: string): Observable<any> {
-		console.log(`about to create classroom - teacher: ${uid} + jobId: ${jobId}`);
-
 		return this.httpClient.post<any>(`${classroomApiHost}/home/create-classroom`, {
 			teacherId: uid,
 			courseName: courseName,
 			taIds: taIds,
 			jobId: jobId,
 		});
+	}
+
+	getPostsByClassroom(classroomId: string): Observable<PostViewDto[]> {
+		return this.httpClient.post<PostViewDto[]>(`${classroomApiHost}/home/post-list`, { classroomId });
 	}
 }

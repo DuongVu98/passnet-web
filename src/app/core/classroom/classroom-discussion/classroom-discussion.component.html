@@ -1,1 +1,27 @@
-<p>classroom-discussion works!</p>
+<div class="discussion-container">
+	<div *ngFor="let post of posts">
+		<p-card>
+			<div class="post-header">
+				<button mat-fab color="warn" [matMenuTriggerFor]="profileMenu">
+					<mat-icon>home</mat-icon>
+				</button>
+				<mat-menu #profileMenu="matMenu">
+					<button mat-menu-item>View profile</button>
+					<button mat-menu-item>chat</button>
+				</mat-menu>
+			</div>
+			<div class="post-body">{{ post.content }}</div>
+			<mat-divider></mat-divider>
+			<div class="post-comments">
+				<div *ngFor="let cmt of post.comments" class="single-comment">
+					<div class="comment-avatar">
+						<button mat-mini-fab color="warn">
+							<mat-icon>home</mat-icon>
+						</button>
+					</div>
+					<div class="comment-content">{{ cmt.content }}</div>
+				</div>
+			</div>
+		</p-card>
+	</div>
+</div>

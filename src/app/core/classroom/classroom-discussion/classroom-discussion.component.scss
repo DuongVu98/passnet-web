@@ -1,0 +1,27 @@
+.discussion-container {
+	margin-top: 50px;
+	width: 1000px;
+}
+
+.post-header {
+	margin-left: 10px;
+}
+.post-body {
+	margin: 10px;
+}
+.post-comments {
+	width: 100%;
+	background-color: aqua;
+
+	.single-comment {
+		display: inline;
+	}
+	.comment-avatar {
+	}
+	.comment-content {
+		width: 500px;
+		background-color: lightgray;
+		border-radius: 10px;
+		width: 100%;
+	}
+}

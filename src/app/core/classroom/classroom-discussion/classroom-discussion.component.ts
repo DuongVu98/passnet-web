@@ -1,4 +1,16 @@
 import { Component, OnInit } from "@angular/core";
+import { ClassroomSpaceService } from "../services/classroom-space.service";
+
+export interface PostView {
+	postId: string;
+	ownerId: string;
+	content: string;
+	comments: {
+		commentId: string;
+		ownerId: string;
+		content: string;
+	}[];
+}
 
 @Component({
 	selector: "classroom-classroom-discussion",
@@ -6,7 +18,36 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./classroom-discussion.component.scss"],
 })
 export class ClassroomDiscussionComponent implements OnInit {
-	constructor() {}
+	posts: PostView[];
 
-	ngOnInit(): void {}
+	constructor(private spaceService: ClassroomSpaceService) {
+		this.posts = [];
+	}
+
+	ngOnInit(): void {
+		this.fetchData();
+	}
+
+	fetchData() {
+		this.spaceService.getAllPosts().subscribe((allPosts) => {
+			allPosts.forEach((post) => {
+				let postToPush = {
+					postId: post.postId,
+					ownerId: post.postOwner,
+					content: post.content,
+					comments: [],
+				};
+
+				post.comments.forEach((cmt) => {
+					postToPush.comments.push({
+						commentId: cmt.commentId,
+						ownerId: cmt.commentOwner,
+						content: cmt.content,
+					});
+				});
+
+				this.posts.push(postToPush);
+			});
+		});
+	}
 }

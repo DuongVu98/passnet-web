@@ -41,6 +41,6 @@ export class RecruiterService {
 	}
 
 	getClassroomFromJob(jobId: string): Observable<any> {
-		return this.classroomApiService.getClassroomFromJob(jobId);
+		return this.classroomApiService.getClassroomByJob(jobId);
 	}
 }

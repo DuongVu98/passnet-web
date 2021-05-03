@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Select, Store } from "@ngxs/store";
 import { SelectActiveTab } from "../store/classroom.actions";
 import { ActiveTabSelection, ClassroomState } from "../store/classroom.state";
 import { Observable } from "rxjs";
 import { Router } from "@angular/router";
+import { ClassroomSpaceService } from "../services/classroom-space.service";
+
 @Component({
 	selector: "classroom-classroom-space",
 	templateUrl: "./classroom-space.component.html",
@@ -14,8 +16,9 @@ export class ClassroomSpaceComponent implements OnInit {
 	activeTab$: Observable<ActiveTabSelection>;
 
 	readonly navigations: any[];
+	courseName: string;
 
-	constructor(private store: Store, private router: Router) {
+	constructor(private store: Store, private router: Router, private spaceService: ClassroomSpaceService) {
 		this.navigations = [
 			{
 				name: "Discussion",
@@ -43,6 +46,14 @@ export class ClassroomSpaceComponent implements OnInit {
 	ngOnInit() {
 		this.activeTab$.subscribe((activeTab) => {
 			this.router.navigate([`classrooms/space/${activeTab.selectedTab}`]);
+		});
+
+		this.fetchData();
+	}
+
+	fetchData(): void {
+		this.spaceService.getClassroomView().subscribe((classroomView) => {
+			this.courseName = classroomView.courseName;
 		});
 	}
 
