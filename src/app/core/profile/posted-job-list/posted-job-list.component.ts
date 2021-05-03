@@ -9,12 +9,12 @@ import { RecruiterService } from "../services/recruiter.service";
 	styleUrls: ["./posted-job-list.component.scss"],
 })
 export class PostedJobListComponent implements OnInit {
-    displayAddClassroomForm: boolean = false;
+	displayAddClassroomForm: boolean = false;
 	ownedPostedJobsView: any[];
-    
-    @ViewChild(CreateClassroomFormComponent)
+
+	@ViewChild(CreateClassroomFormComponent)
 	createNewClassroomComponent: CreateClassroomFormComponent;
-    
+
 	constructor(private recruiterService: RecruiterService, private router: Router) {}
 
 	ngOnInit(): void {
@@ -39,7 +39,7 @@ export class PostedJobListComponent implements OnInit {
 			(error) => {
 				if (error.status == 404) {
 					console.log(`${JSON.stringify(error)}`);
-                    this.openAddClassroomForm();
+					this.openAddClassroomForm();
 				}
 			}
 		);
@@ -48,7 +48,7 @@ export class PostedJobListComponent implements OnInit {
 	openAddClassroomForm() {
 		this.displayAddClassroomForm = true;
 	}
-    submitAndClose() {
+	submitAndClose() {
 		this.displayAddClassroomForm = false;
 		this.createNewClassroomComponent.submitCreateClassroomForm();
 	}

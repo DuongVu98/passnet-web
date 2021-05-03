@@ -34,7 +34,7 @@ export class CreateNewClassroomComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.componetSubsription = this.inputSeletedJob$.asObservable().subscribe((selectedJob) => {
-            this.inputSelectedJob = selectedJob;
+			this.inputSelectedJob = selectedJob;
 			this.classroomService.getAcceptedTasFromJob(selectedJob.jobId).subscribe((result) => {
 				this.acceptedTeacherAssistents = result;
 			});
@@ -63,6 +63,10 @@ export class CreateNewClassroomComponent implements OnInit, OnDestroy {
 	}
 
 	submitCreateClassroomForm(): void {
-		this.classroomService.createClassroom(this.inputCourseName, this.acceptedTeacherAssistents, this.inputSelectedJob.jobId);
+		this.classroomService.createClassroom(
+			this.inputCourseName,
+			this.acceptedTeacherAssistents,
+			this.inputSelectedJob.jobId
+		);
 	}
 }

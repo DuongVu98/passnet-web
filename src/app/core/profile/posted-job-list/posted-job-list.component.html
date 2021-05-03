@@ -25,7 +25,7 @@
 			</p-card>
 		</div>
 	</div>
-    <p-dialog
+	<p-dialog
 		header="Header"
 		[(visible)]="displayAddClassroomForm"
 		[modal]="true"
@@ -34,7 +34,7 @@
 		[draggable]="false"
 		[resizable]="false"
 	>
-        <common-create-classroom-form></common-create-classroom-form>
+		<common-create-classroom-form></common-create-classroom-form>
 		<ng-template pTemplate="footer">
 			<p-button icon="pi pi-check" (click)="submitAndClose()" label="Create" styleClass="p-button-text">
 			</p-button>

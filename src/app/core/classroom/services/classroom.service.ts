@@ -41,12 +41,12 @@ export class ClassroomService {
 		} else {
 			return this.recruitmentApiService.getAllJobApplicationList(jobId).pipe(
 				map((list) => list.jobApplicationViewList),
-				map((viewList) => viewList.filter((dto) => dto.state==="ACCEPTED").map((dto) => dto.studentId))
+				map((viewList) => viewList.filter((dto) => dto.state === "ACCEPTED").map((dto) => dto.studentId))
 			);
 		}
 	}
 
-    createClassroom(courseName: string, taIds: string[], jobId: string) {
+	createClassroom(courseName: string, taIds: string[], jobId: string) {
 		this.classroomApiService.createClassroom(this.memberId, courseName, taIds, jobId).subscribe();
-    }
+	}
 }

@@ -10,7 +10,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HttpRequestInterceptor } from "./interceptors/http-request.interceptor";
 import { AuthenticationInterceptor } from "./interceptors/authentication.interceptor";
 import { LogoutPublisher } from "./publishers/logout.publisher";
-import { CreateClassroomFormComponent } from './components/create-classroom-form/create-classroom-form.component';
+import { CreateClassroomFormComponent } from "./components/create-classroom-form/create-classroom-form.component";
 
 @NgModule({
 	declarations: [CreateClassroomFormComponent],
@@ -28,6 +28,15 @@ import { CreateClassroomFormComponent } from './components/create-classroom-form
 			multi: true,
 		},
 	],
-	exports: [CommonModule, FormsModule, ReactiveFormsModule, ApiModule, MdbModule, MaterialModule, PrimengModule, CreateClassroomFormComponent],
+	exports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		ApiModule,
+		MdbModule,
+		MaterialModule,
+		PrimengModule,
+		CreateClassroomFormComponent,
+	],
 })
 export class BaseCommonModule {}
