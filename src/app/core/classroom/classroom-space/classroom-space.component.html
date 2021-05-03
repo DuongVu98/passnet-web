@@ -1,12 +1,20 @@
 <mat-sidenav-container class="example-container" autosize>
     <mat-sidenav opened mode="side" class="example-sidenav">
         <div class="sidenav-menu">
-            <p>Auto-resizing sidenav</p>
+            <mat-action-list>
+                <h3 matSubheader>Navigation</h3>
+                <mat-list-item *ngFor="let selection of navigations">
+                    <mat-icon matListIcon>{{selection.icon}}</mat-icon>
+                    <h4 matLine>{{selection.name}}</h4>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <h3 matSubheader>Notes</h3>
+            </mat-action-list>
         </div>
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="example-sidenav-content">
-            Toggle sidenav
+            <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

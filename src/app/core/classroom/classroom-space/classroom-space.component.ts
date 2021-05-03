@@ -7,7 +7,28 @@ import { Component, OnInit } from "@angular/core";
 })
 export class ClassroomSpaceComponent implements OnInit {
 
-	constructor() {}
+    navigations;
 
-	ngOnInit(): void {}
+	constructor() {
+        this.navigations = [
+            {
+                name: "Discussion",
+                link: "/",
+                icon: "groups"
+            },
+            {
+                name: "Assignments",
+                link: "/",
+                icon: "assignment_turned_in"
+            },
+            {
+                name: "Files",
+                link: "/",
+                icon: "description"
+            }
+        ]
+    }
+
+    ngOnInit() {
+    }
 }
