@@ -1,7 +1,7 @@
 import { NgxsDataRepository } from "@ngxs-labs/data/repositories";
 import { StateRepository, Persistence } from "@ngxs-labs/data/decorators";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
-import { GoToClassroom } from "./classroom.actions";
+import { GoToClassroom, SelectActiveTab } from "./classroom.actions";
 
 export class ClassroomStateModel {
 	activeClassroom: {
@@ -11,7 +11,10 @@ export class ClassroomStateModel {
 }
 
 const initState: ClassroomStateModel = {
-	activeClassroom: null,
+	activeClassroom: {
+        classroomId: null,
+        activeTab: "discussion",
+    },
 };
 
 @Persistence()
@@ -33,7 +36,17 @@ export class ClassroomState extends NgxsDataRepository<ClassroomStateModel> {
 		context.setState({
 			activeClassroom: {
 				classroomId: action.payload.classroomId,
-				activeTab: "discussion",
+				activeTab: context.getState().activeClassroom.activeTab,
+			},
+		});
+	}
+
+	@Action(SelectActiveTab)
+	setActiveTab(context: StateContext<ClassroomStateModel>, action: SelectActiveTab) {
+		context.setState({
+			activeClassroom: {
+				classroomId: context.getState().activeClassroom.classroomId,
+				activeTab: action.payload.activeTab,
 			},
 		});
 	}

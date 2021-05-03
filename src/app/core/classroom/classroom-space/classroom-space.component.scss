@@ -1,19 +1,38 @@
-.example-container {
-	width: 100%;
-	height: 100vh;
+.classoom-space-box {
+    margin: 5px;
 }
 
-.example-sidenav-content {
-	display: flex;
-	height: 100%;
-	align-items: center;
-	justify-content: center;
+.classroom-banner-box {
+    margin: 5px;
+
+    .classroom-banner-card {
+        background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+        height: 150px;
+        color: white;
+    }
 }
 
-.example-sidenav {
-	padding: 20px;
+.classroom-main-box{
+    margin: 5px;
 
-	.sidenav-menu {
-		width: 300px;
-	}
+    .example-container {
+        width: 100%;
+        height: 100vh;
+    }
+    
+    .example-sidenav-content {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .example-sidenav {
+        padding: 20px;
+    
+        .sidenav-menu {
+            width: 300px;
+        }
+    }
 }
+
