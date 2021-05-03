@@ -12,9 +12,9 @@ export class ClassroomStateModel {
 
 const initState: ClassroomStateModel = {
 	activeClassroom: {
-        classroomId: null,
-        activeTab: "discussion",
-    },
+		classroomId: null,
+		activeTab: "discussion",
+	},
 };
 
 @Persistence()

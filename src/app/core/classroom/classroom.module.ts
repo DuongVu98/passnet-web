@@ -11,10 +11,10 @@ import { CreateNewClassroomComponent } from "./create-new-classroom/create-new-c
 import { ClassroomSpaceComponent } from "./classroom-space/classroom-space.component";
 import { NgxsModule } from "@ngxs/store";
 import { ClassroomState } from "./store/classroom.state";
-import { ClassroomDiscussionComponent } from './classroom-discussion/classroom-discussion.component';
-import { ClassroomAssignmentComponent } from './classroom-assignment/classroom-assignment.component';
-import { ClassroomFilesComponent } from './classroom-files/classroom-files.component';
-import { ClassroomStudentsComponent } from './classroom-students/classroom-students.component';
+import { ClassroomDiscussionComponent } from "./classroom-discussion/classroom-discussion.component";
+import { ClassroomAssignmentComponent } from "./classroom-assignment/classroom-assignment.component";
+import { ClassroomFilesComponent } from "./classroom-files/classroom-files.component";
+import { ClassroomStudentsComponent } from "./classroom-students/classroom-students.component";
 
 @NgModule({
 	declarations: [
