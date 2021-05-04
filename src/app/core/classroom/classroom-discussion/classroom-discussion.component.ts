@@ -19,9 +19,11 @@ export interface PostView {
 })
 export class ClassroomDiscussionComponent implements OnInit {
 	posts: PostView[];
+    commentContent: string;
 
 	constructor(private spaceService: ClassroomSpaceService) {
 		this.posts = [];
+        this.commentContent = "";
 	}
 
 	ngOnInit(): void {
@@ -50,4 +52,9 @@ export class ClassroomDiscussionComponent implements OnInit {
 			});
 		});
 	}
+
+    addComment(postId: string): void {
+        this.spaceService.addCommentToPost(postId, this.commentContent);
+        this.commentContent = "";
+    }
 }

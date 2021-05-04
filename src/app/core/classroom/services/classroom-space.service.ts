@@ -27,4 +27,8 @@ export class ClassroomSpaceService {
 	getAllPosts(): Observable<PostViewDto[]> {
 		return this.classroomApiService.getPostsByClassroom(this.classroomSpaceId);
 	}
+
+    addCommentToPost(postId: string, commentContent: string) {
+        console.log(`post: ${postId}\n${commentContent}`);
+    }
 }

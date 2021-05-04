@@ -2,33 +2,39 @@
 	margin-top: 50px;
 	width: 1000px;
 }
-
-.post-header {
-	margin-left: 10px;
-}
 .post-body {
 	margin: 10px;
 }
 
-.comments {
-    display: flex;
-    justify-content: right;
+.post-card {
+	margin-bottom: 30px;
 }
 .post-comments {
-	width: 98%;
-    margin-top: 10px;
+	display: flex;
+	justify-content: right;
+}
+.comment-list {
+	width: 100%;
+	margin-top: 10px;
 
-	.single-comment {
-	}
 	.comment-avatar {
 		width: 100%;
-        display: flex;
-        justify-content: center;
+		display: flex;
+		justify-content: center;
 	}
 	.comment-content {
 		width: auto;
 		background-color: lightgray;
 		border-radius: 20px;
-        padding: 15px;
+		padding: 15px;
+	}
+}
+
+.input-box {
+	position: relative;
+	.send-button {
+		position: absolute;
+        bottom: 1px;
+        right: 1px;
 	}
 }
