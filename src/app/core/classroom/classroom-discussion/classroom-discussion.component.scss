@@ -9,19 +9,26 @@
 .post-body {
 	margin: 10px;
 }
+
+.comments {
+    display: flex;
+    justify-content: right;
+}
 .post-comments {
-	width: 100%;
-	background-color: aqua;
+	width: 98%;
+    margin-top: 10px;
 
 	.single-comment {
-		display: inline;
 	}
 	.comment-avatar {
+		width: 100%;
+        display: flex;
+        justify-content: center;
 	}
 	.comment-content {
-		width: 500px;
+		width: auto;
 		background-color: lightgray;
-		border-radius: 10px;
-		width: 100%;
+		border-radius: 20px;
+        padding: 15px;
 	}
 }
