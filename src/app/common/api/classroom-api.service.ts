@@ -54,4 +54,10 @@ export class ClassroomApiService {
 	getPostsByClassroom(classroomId: string): Observable<PostViewDto[]> {
 		return this.httpClient.post<PostViewDto[]>(`${classroomApiHost}/home/post-list`, { classroomId });
 	}
+
+    addCommentToPost(ownerId: string, postId: string, content: string, classroomId: string): Observable<any> {
+        return this.httpClient.post<any>(`${classroomApiHost}/home/add-comment`, {
+            ownerId, postId, content, classroomId 
+        })
+    }
 }

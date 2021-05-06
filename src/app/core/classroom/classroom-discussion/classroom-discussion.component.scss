@@ -38,3 +38,11 @@
         right: 1px;
 	}
 }
+
+.create-post-form {
+    &:hover {
+        mat-card {
+            background-color: aqua;
+        }
+    }
+}
