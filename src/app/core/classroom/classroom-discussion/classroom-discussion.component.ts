@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Subscription } from "rxjs";
+import { ClassroomCreateNewPostComponent } from "../classroom-create-new-post/classroom-create-new-post.component";
 import { ClassroomSpaceService } from "../services/classroom-space.service";
 
 export interface PostView {
@@ -17,21 +19,32 @@ export interface PostView {
 	templateUrl: "./classroom-discussion.component.html",
 	styleUrls: ["./classroom-discussion.component.scss"],
 })
-export class ClassroomDiscussionComponent implements OnInit {
+export class ClassroomDiscussionComponent implements OnInit, OnDestroy {
 	posts: PostView[];
 	commentContent: string;
+	displayCreatePostForm: boolean;
+
+	@ViewChild(ClassroomCreateNewPostComponent)
+	classroomCreateNewPostComponent: ClassroomCreateNewPostComponent;
+
+	dataSubscription: Subscription;
 
 	constructor(private spaceService: ClassroomSpaceService) {
 		this.posts = [];
 		this.commentContent = "";
+		this.displayCreatePostForm = false;
 	}
 
 	ngOnInit(): void {
 		this.fetchData();
 	}
 
+	ngOnDestroy(): void {
+		this.dataSubscription.unsubscribe();
+	}
+
 	fetchData() {
-		this.spaceService.getAllPosts().subscribe((allPosts) => {
+		this.dataSubscription = this.spaceService.getAllPosts().subscribe((allPosts) => {
 			allPosts.forEach((post) => {
 				let postToPush = {
 					postId: post.postId,
@@ -50,6 +63,18 @@ export class ClassroomDiscussionComponent implements OnInit {
 
 				this.posts.push(postToPush);
 			});
+		});
+	}
+
+	openCreatePostForm() {
+		this.displayCreatePostForm = true;
+	}
+
+	submitAndClose() {
+		this.classroomCreateNewPostComponent.submitForm().subscribe(() => {
+			this.displayCreatePostForm = false;
+			this.posts = [];
+			this.fetchData();
 		});
 	}
 

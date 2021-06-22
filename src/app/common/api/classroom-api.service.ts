@@ -55,9 +55,20 @@ export class ClassroomApiService {
 		return this.httpClient.post<PostViewDto[]>(`${classroomApiHost}/home/post-list`, { classroomId });
 	}
 
-    addCommentToPost(ownerId: string, postId: string, content: string, classroomId: string): Observable<any> {
-        return this.httpClient.post<any>(`${classroomApiHost}/home/add-comment`, {
-            ownerId, postId, content, classroomId 
-        })
-    }
+	createNewPostToClassroom(content: string, classroomId: string, postOwnerId: string) {
+		return this.httpClient.post<any>(`${classroomApiHost}/home/create-post`, {
+			content,
+			classroomId,
+			postOwnerId,
+		});
+	}
+
+	addCommentToPost(ownerId: string, postId: string, content: string, classroomId: string): Observable<any> {
+		return this.httpClient.post<any>(`${classroomApiHost}/home/add-comment`, {
+			ownerId,
+			postId,
+			content,
+			classroomId,
+		});
+	}
 }

@@ -42,7 +42,8 @@
 .create-post-form {
     &:hover {
         mat-card {
-            background-color: aqua;
+            background-color: lightgray;
+            cursor: pointer;
         }
     }
 }

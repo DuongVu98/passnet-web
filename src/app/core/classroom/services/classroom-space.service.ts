@@ -10,13 +10,12 @@ import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state
 	providedIn: "root",
 })
 export class ClassroomSpaceService {
-    
 	@Select(AuthState.getLoggedUser)
 	loggedUser$: Observable<LoggedUserStateSelection>;
 
 	@Select(ClassroomState.getActiveClassroom)
 	activeClassroom$: Observable<ActiveClassroomSelection>;
-    
+
 	classroomSpaceId: string;
 	memberId: string;
 
@@ -24,9 +23,9 @@ export class ClassroomSpaceService {
 		this.activeClassroom$.subscribe((classroom) => {
 			this.classroomSpaceId = classroom.classroomId;
 		});
-        this.loggedUser$.subscribe((loggedUser) => {
-            this.memberId = loggedUser.user.uid;
-        })
+		this.loggedUser$.subscribe((loggedUser) => {
+			this.memberId = loggedUser.user.uid;
+		});
 	}
 
 	getClassroomView(): Observable<ClassroomViewDto> {
@@ -37,9 +36,13 @@ export class ClassroomSpaceService {
 		return this.classroomApiService.getPostsByClassroom(this.classroomSpaceId);
 	}
 
-    addCommentToPost(postId: string, commentContent: string): Observable<any> {
-        console.log(`post: ${postId}\n${commentContent}`);
+	createNewPost(postContent: string): Observable<any> {
+		return this.classroomApiService.createNewPostToClassroom(postContent, this.classroomSpaceId, this.memberId);
+	}
 
-        return this.classroomApiService.addCommentToPost(this.memberId, postId, commentContent, this.classroomSpaceId);
-    }
+	addCommentToPost(postId: string, commentContent: string): Observable<any> {
+		console.log(`post: ${postId}\n${commentContent}`);
+
+		return this.classroomApiService.addCommentToPost(this.memberId, postId, commentContent, this.classroomSpaceId);
+	}
 }
