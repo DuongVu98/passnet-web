@@ -16,8 +16,8 @@ import { ProfileModule } from "./core/profile/profile.module";
 import { AuthModule } from "./core/auth/auth.module";
 import { ClassroomModule } from "./core/classroom/classroom.module";
 import { environment } from "src/environments/environment";
-import { GraphQLModule } from "./graphql.module";
 import { HttpClientModule } from "@angular/common/http";
+import { OktaAuthModule, OKTA_CONFIG } from "@okta/okta-angular";
 
 @NgModule({
 	declarations: [AppComponent],
@@ -36,10 +36,20 @@ import { HttpClientModule } from "@angular/common/http";
 		ProfileModule,
 		AuthModule,
 		ClassroomModule,
-		// GraphQLModule,
 		HttpClientModule,
+		OktaAuthModule,
 	],
-	providers: [],
+	providers: [
+		{
+			provide: OKTA_CONFIG,
+			useValue: {
+				issuer: "https://dev-96211074.okta.com/oauth2/default",
+				redirectUri: window.location.origin + "/login/callback",
+				clientId: "0oa126nrgljPb0QHO5d7",
+				pkce: true,
+			},
+		},
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

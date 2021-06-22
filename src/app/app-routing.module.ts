@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { Routes, RouterModule, Router } from "@angular/router";
+import { OktaAuthGuard, OktaCallbackComponent } from "@okta/okta-angular";
 import { LoginComponent } from "./core/auth/login/login.component";
 import { ClassroomPageComponent } from "./core/classroom/classroom-page/classroom-page.component";
 import { classroomRoutes } from "./core/classroom/classroom.routing";
@@ -8,10 +9,25 @@ import { profileRoutes } from "./core/profile/profile.routing";
 import { JobDetailComponent } from "./core/recruitment/job-detail/job-detail.component";
 import { RecruitmentPageComponent } from "./core/recruitment/recruitment-page/recruitment-page.component";
 
+export function onAuthRequired(oktaAuth, injector) {
+	const router = injector.get(Router);
+
+	// Redirect the user to your custom login page
+	router.navigate(["/login"]);
+}
+
 const routes: Routes = [
+	{
+		path: "login/callback",
+		component: OktaCallbackComponent,
+	},
 	{
 		path: "",
 		component: RecruitmentPageComponent,
+		canActivate: [OktaAuthGuard],
+		data: {
+			onAuthRequired,
+		},
 	},
 	{
 		path: "login",
@@ -20,15 +36,27 @@ const routes: Routes = [
 	{
 		path: "profile",
 		component: ProfilePageComponent,
+		canActivate: [OktaAuthGuard],
+		data: {
+			onAuthRequired,
+		},
 		children: profileRoutes,
 	},
 	{
 		path: "job-detail",
 		component: JobDetailComponent,
+		canActivate: [OktaAuthGuard],
+		data: {
+			onAuthRequired,
+		},
 	},
 	{
 		path: "classrooms",
 		component: ClassroomPageComponent,
+		canActivate: [OktaAuthGuard],
+		data: {
+			onAuthRequired,
+		},
 		children: classroomRoutes,
 	},
 ];

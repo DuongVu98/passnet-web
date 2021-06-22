@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { OktaAuthService } from "@okta/okta-angular";
 import { LogoutPublisher } from "./common/publishers/logout.publisher";
 
 @Component({
@@ -8,9 +10,28 @@ import { LogoutPublisher } from "./common/publishers/logout.publisher";
 })
 export class AppComponent {
 	title = "passnet-web";
-	constructor(private logoutPublisher: LogoutPublisher) {}
+	isAuthenticated: boolean;
 
-	logout(): void {
-		this.logoutPublisher.send("logout");
+	constructor(public oktaAuth: OktaAuthService, public router: Router) {
+		this.oktaAuth.$authenticationState.subscribe(
+			(isAuthenticated: boolean) => (this.isAuthenticated = isAuthenticated)
+		);
+	}
+
+	async ngOnInit() {
+		this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+        console.log(`isAuthenticated: ${this.isAuthenticated}`)
+	}
+
+	login() {
+		this.oktaAuth.signInWithRedirect({
+			originalUri: "/",
+		});
+        console.log("logged from app")
+	}
+
+	async logout() {
+		await this.oktaAuth.signOut();
+		this.router.navigateByUrl("/");
 	}
 }

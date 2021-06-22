@@ -34,6 +34,8 @@
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@ngxs-labs/data": "^4.1.1",
     "@ngxs/store": "^3.7.0",
+    "@okta/okta-angular": "^3.1.0",
+    "@okta/okta-signin-widget": "^5.7.3",
     "@types/chart.js": "^2.9.24",
     "angular-bootstrap-md": "^9.4.0",
     "animate.css": "^4.1.1",
