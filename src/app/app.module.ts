@@ -43,9 +43,9 @@ import { OktaAuthModule, OKTA_CONFIG } from "@okta/okta-angular";
 		{
 			provide: OKTA_CONFIG,
 			useValue: {
-				issuer: "https://dev-96211074.okta.com/oauth2/default",
+				issuer: `https://${environment.okta.domain}/oauth2/default`,
 				redirectUri: window.location.origin + "/login/callback",
-				clientId: "0oa126nrgljPb0QHO5d7",
+				clientId: environment.okta.clientId,
 				pkce: true,
 			},
 		},
