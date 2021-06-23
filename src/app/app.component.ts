@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { Store } from "@ngxs/store";
 import { OktaAuthService } from "@okta/okta-angular";
 import { Builder } from "builder-pattern";
-import { LogoutPublisher } from "./common/publishers/logout.publisher";
 import { UserModel } from "./core/auth/models/auth.models";
 import { SetLoggedUserAction } from "./core/auth/store/auth.actions";
 
@@ -35,13 +34,6 @@ export class AppComponent implements OnInit {
 	async ngOnInit() {
 		this.isAuthenticated = await this.oktaAuth.isAuthenticated();
 		console.log(`isAuthenticated: ${this.isAuthenticated}`);
-	}
-
-	login() {
-		this.oktaAuth.signInWithRedirect({
-			originalUri: "/",
-		});
-		console.log("logged from app");
 	}
 
 	async logout() {
