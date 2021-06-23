@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { NavigationStart, Router } from "@angular/router";
+import { OktaAuthService } from "@okta/okta-angular";
 
-import { LoginService } from "../services/login.service";
+import * as OktaSignIn from "@okta/okta-signin-widget";
+import { environment } from "src/environments/environment";
 
 @Component({
 	selector: "auth-login",
@@ -9,26 +11,43 @@ import { LoginService } from "../services/login.service";
 	styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-	email: string;
-	password: string;
+	authService;
+	widget = new OktaSignIn({
+		el: "#okta-signin-container",
+		baseUrl: `https://${environment.okta.domain}`,
+		authParams: {
+			pkce: true,
+		},
+		clientId: environment.okta.clientId,
+		redirectUri: environment.okta.redirectUri,
+	});
 
-	constructor(private loginService: LoginService, private router: Router) {}
+	constructor(private oktaAuth: OktaAuthService, private router: Router) {
+		this.authService = oktaAuth;
 
-	ngOnInit(): void {}
-
-	login(): void {
-		console.log(`email: ${this.email} - password: ${this.password}`);
-		this.loginService.login(this.email, this.password);
-		this.router.navigate(["/"]);
+		router.events.forEach((event) => {
+			if (event instanceof NavigationStart) {
+				switch (event.url) {
+					case "/login":
+						console.log("logged in");
+						break;
+					case "/classrooms":
+						break;
+					case "/profile":
+						break;
+					case "/":
+						break;
+					default:
+						this.widget.remove();
+						break;
+				}
+			}
+		});
 	}
 
-	googleLogin(): void {
-		this.loginService.loginWithGoogle();
-		this.router.navigate(["/"]);
-	}
-
-	logout(): void {
-		this.loginService.logout();
-		this.router.navigate(["/"]);
+	ngOnInit() {
+		this.widget.showSignInAndRedirect().catch((err) => {
+			throw err;
+		});
 	}
 }
