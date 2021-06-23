@@ -34,16 +34,16 @@
 	position: relative;
 	.send-button {
 		position: absolute;
-        bottom: 1px;
-        right: 1px;
+		bottom: 1px;
+		right: 1px;
 	}
 }
 
 .create-post-form {
-    &:hover {
-        mat-card {
-            background-color: lightgray;
-            cursor: pointer;
-        }
-    }
+	&:hover {
+		mat-card {
+			background-color: lightgray;
+			cursor: pointer;
+		}
+	}
 }

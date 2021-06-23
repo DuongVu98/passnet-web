@@ -8,15 +8,15 @@ import { Observable } from "rxjs";
 	styleUrls: ["./classroom-create-new-post.component.scss"],
 })
 export class ClassroomCreateNewPostComponent implements OnInit {
-    postContent: string;
+	postContent: string;
 
 	constructor(private spaceService: ClassroomSpaceService) {
-        this.postContent = "";
-    }
+		this.postContent = "";
+	}
 
 	ngOnInit(): void {}
 
-    submitForm(): Observable<any> {
-        return this.spaceService.createNewPost(this.postContent);
-    }
+	submitForm(): Observable<any> {
+		return this.spaceService.createNewPost(this.postContent);
+	}
 }

@@ -16,7 +16,7 @@ import { ClassroomAssignmentComponent } from "./classroom-assignment/classroom-a
 import { ClassroomFilesComponent } from "./classroom-files/classroom-files.component";
 import { ClassroomStudentsComponent } from "./classroom-students/classroom-students.component";
 import { ClassroomSpaceService } from "./services/classroom-space.service";
-import { ClassroomCreateNewPostComponent } from './classroom-create-new-post/classroom-create-new-post.component';
+import { ClassroomCreateNewPostComponent } from "./classroom-create-new-post/classroom-create-new-post.component";
 
 @NgModule({
 	declarations: [
