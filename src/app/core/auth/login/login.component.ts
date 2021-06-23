@@ -23,8 +23,7 @@ export class LoginComponent implements OnInit {
 
 	constructor(private oktaAuth: OktaAuthService, private router: Router) {
 		this.authService = oktaAuth;
-
-		// Show the widget when prompted, otherwise remove it from the DOM.
+        
 		router.events.forEach((event) => {
 			if (event instanceof NavigationStart) {
 				switch (event.url) {
