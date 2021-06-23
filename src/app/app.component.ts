@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { OktaAuthService } from "@okta/okta-angular";
 import { LogoutPublisher } from "./common/publishers/logout.publisher";
@@ -8,7 +8,7 @@ import { LogoutPublisher } from "./common/publishers/logout.publisher";
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.scss"],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 	title = "passnet-web";
 	isAuthenticated: boolean;
 

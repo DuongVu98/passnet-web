@@ -6,13 +6,13 @@
 		<links>
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active waves-light" mdbWavesEffect>
-					<a class="nav-link" [routerLink]="['/']">Recruitment <span class="sr-only">(current)</span></a>
+					<a class="nav-link" routerLink="/">Recruitment <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item waves-light" mdbWavesEffect>
-					<a class="nav-link" [routerLink]="['/freelance']">Freelance</a>
+					<a class="nav-link" routerLink="/freelance">Freelance</a>
 				</li>
 				<li class="nav-item waves-light" mdbWavesEffect>
-					<a class="nav-link" [routerLink]="['/classrooms']">Classrooms</a>
+					<a class="nav-link" routerLink="/classrooms">Classrooms</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav nav-flex-icons">
@@ -36,12 +36,12 @@
 						<i class="fas fa-user"></i>
 					</button>
 					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" [routerLink]="['/profile']">Profile</a>
+						<a class="dropdown-item" routerLink="/profile">Profile</a>
 						<a class="dropdown-item" href="#">Another action</a>
 						<a class="dropdown-item" href="#">Something else here</a>
 						<div class="divider dropdown-divider"></div>
-						<a class="dropdown-item" [routerLink]="['/login']">Login</a>
-						<a class="dropdown-item" (click)="logout()">Logout</a>
+						<a *ngIf="!isAuthenticated" class="dropdown-item" routerLink="/login">Login</a>
+						<a *ngIf="isAuthenticated" class="dropdown-item" (click)="logout()">Logout</a>
 					</div>
 				</div>
 			</ul>

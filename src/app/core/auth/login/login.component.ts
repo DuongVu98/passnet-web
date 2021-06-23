@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 		redirectUri: "http://localhost:4200/login/callback",
 	});
 
-	constructor(oktaAuth: OktaAuthService, router: Router) {
+	constructor(private oktaAuth: OktaAuthService, private router: Router) {
 		this.authService = oktaAuth;
 
 		// Show the widget when prompted, otherwise remove it from the DOM.
@@ -33,9 +33,9 @@ export class LoginComponent implements OnInit {
 						break;
 					case "/classrooms":
 						break;
-					case "/recruitment":
-						break;
 					case "/profile":
+						break;
+					case "/":
 						break;
 					default:
 						this.widget.remove();

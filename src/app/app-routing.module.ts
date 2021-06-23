@@ -8,11 +8,10 @@ import { ProfilePageComponent } from "./core/profile/profile-page/profile-page.c
 import { profileRoutes } from "./core/profile/profile.routing";
 import { JobDetailComponent } from "./core/recruitment/job-detail/job-detail.component";
 import { RecruitmentPageComponent } from "./core/recruitment/recruitment-page/recruitment-page.component";
+import { TaBrowserComponent } from "./core/freelance/ta-browser/ta-browser.component";
 
 export function onAuthRequired(oktaAuth, injector) {
 	const router = injector.get(Router);
-
-	// Redirect the user to your custom login page
 	router.navigate(["/login"]);
 }
 
@@ -22,6 +21,10 @@ const routes: Routes = [
 		component: OktaCallbackComponent,
 	},
 	{
+		path: "login",
+		component: LoginComponent,
+	},
+	{
 		path: "",
 		component: RecruitmentPageComponent,
 		canActivate: [OktaAuthGuard],
@@ -29,9 +32,21 @@ const routes: Routes = [
 			onAuthRequired,
 		},
 	},
+    {
+		path: "recruitment",
+		component: RecruitmentPageComponent,
+		canActivate: [OktaAuthGuard],
+		data: {
+			onAuthRequired,
+		},
+	},
 	{
-		path: "login",
-		component: LoginComponent,
+		path: "freelance",
+		component: TaBrowserComponent,
+		canActivate: [OktaAuthGuard],
+		data: {
+			onAuthRequired,
+		},
 	},
 	{
 		path: "profile",
@@ -62,7 +77,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { useHash: true })],
+	imports: [RouterModule.forRoot(routes, { useHash: false })],
 	exports: [RouterModule],
 })
 export class AppRoutingModule {}
