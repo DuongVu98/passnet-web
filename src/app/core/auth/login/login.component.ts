@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
 	constructor(private oktaAuth: OktaAuthService, private router: Router) {
 		this.authService = oktaAuth;
-        
+
 		router.events.forEach((event) => {
 			if (event instanceof NavigationStart) {
 				switch (event.url) {

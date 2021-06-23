@@ -32,7 +32,7 @@ const routes: Routes = [
 			onAuthRequired,
 		},
 	},
-    {
+	{
 		path: "recruitment",
 		component: RecruitmentPageComponent,
 		canActivate: [OktaAuthGuard],
