@@ -4,9 +4,10 @@
 
 export const environment = {
 	production: false,
-	recruitmentApi: "http://localhost:8080",
-	authenticationApi: "http://13.72.86.164:1323",
-	classroomApi: "http://localhost:3000",
+	authenticationApi: "http://localhost:8080",
+	profileApi: "http://localhost:8081",
+	recruitmentApi: "http://localhost:8082",
+	classroomApi: "http://localhost:8083",
 	okta: {
 		domain: "dev-96211074.okta.com",
 		clientId: "0oa126nrgljPb0QHO5d7",
