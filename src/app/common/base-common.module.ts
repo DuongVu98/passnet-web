@@ -6,14 +6,26 @@ import { MdbModule } from "./mdb/mdb.module";
 import { MaterialModule } from "./material/material.module";
 import { PrimengModule } from "./primeng/primeng.module";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { HttpRequestInterceptor } from "./interceptors/http-request.interceptor";
 import { AuthenticationInterceptor } from "./interceptors/authentication.interceptor";
 import { CreateClassroomFormComponent } from "./components/create-classroom-form/create-classroom-form.component";
 
 @NgModule({
 	declarations: [CreateClassroomFormComponent],
-	imports: [CommonModule, FormsModule, ReactiveFormsModule, ApiModule, MdbModule, MaterialModule, PrimengModule],
+	imports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		ApiModule,
+		MdbModule,
+		MaterialModule,
+		PrimengModule,
+		FlexLayoutModule.withConfig({
+			useColumnBasisZero: false,
+			printWithBreakpoints: ["md", "lt-lg", "lt-xl", "gt-sm", "gt-xs"],
+		}),
+	],
 	providers: [
 		{
 			provide: HTTP_INTERCEPTORS,
@@ -35,6 +47,7 @@ import { CreateClassroomFormComponent } from "./components/create-classroom-form
 		MaterialModule,
 		PrimengModule,
 		CreateClassroomFormComponent,
+		FlexLayoutModule,
 	],
 })
 export class BaseCommonModule {}

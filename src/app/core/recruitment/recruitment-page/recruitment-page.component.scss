@@ -6,21 +6,27 @@
 	padding-top: 50px;
 	padding-right: 100px;
 	padding-left: 100px;
-	height: 100vh;
 
 	.jobs-browser {
 		margin: 10px;
-		width: 100%;
-		height: 100%;
+		overflow: auto;
+		height: 100vh;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none;
 	}
-	.personal-info-box {
+	.personal-info {
 		margin: 10px;
 		width: 100%;
-		height: 100%;
-		position: relative;
+		height: 100vh;
 
-		.personal-info {
+		.personal-info-box {
 			position: sticky;
+			position: -webkit-sticky;
+			align-self: flex-start;
 		}
 	}
 }

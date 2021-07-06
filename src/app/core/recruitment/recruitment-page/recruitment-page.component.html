@@ -1,21 +1,18 @@
 <div>
     <div class="main-box">
-
-        <mat-grid-list cols="5" rowHeight="100%">
-            <mat-grid-tile [colspan]="4">
+        <div class="main-box-inner" gdAreas="jb jb jb jb pi">
+            <div gdArea="jb">
                 <div class="jobs-browser">
                     <recruitment-jobs-browser></recruitment-jobs-browser>
                 </div>
-            </mat-grid-tile>
-
-            <mat-grid-tile [colspan]="1">
-                <div class="personal-info-box">
-
-                    <div class="personal-info">
+            </div>
+            <div gdArea="pi">
+                <div class="personal-info">
+                    <div class="personal-info-box">
                         <recruitment-personal-info></recruitment-personal-info>
                     </div>
                 </div>
-            </mat-grid-tile>
-        </mat-grid-list>
+            </div>
+        </div>
     </div>
 </div>
