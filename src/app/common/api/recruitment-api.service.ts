@@ -23,7 +23,7 @@ export class RecruitmentApiService {
 
 	postJob(jobFormDto: JobFormDto, teacherId: string): Observable<any> {
 		console.log(`teacherId --> ${teacherId}`);
-		return this.httpClient.post<JobFormDto>(`${this.recruitmentApiServer}/command/recruiter/post-job`, jobFormDto, {
+		return this.httpClient.post<JobFormDto>(`${this.recruitmentApiServer}/jobs/post-job`, jobFormDto, {
 			params: {
 				teacherId,
 			},
@@ -52,7 +52,7 @@ export class RecruitmentApiService {
 
 	applyJob(applicationForm: ApplicationFormDto, jobId: string, studentId: string): Observable<any> {
 		return this.httpClient.post<ApplicationFormDto>(
-			`${this.recruitmentApiServer}/command/applicator/apply-job`,
+			`${this.recruitmentApiServer}/jobs/apply-job`,
 			applicationForm,
 			{
 				params: {
@@ -76,7 +76,7 @@ export class RecruitmentApiService {
 
 	acceptApplicationForm(applicationId: string, jobId: string): Observable<any> {
 		return this.httpClient.put<any>(
-			`${this.recruitmentApiServer}/command/recruiter/accept-application`,
+			`${this.recruitmentApiServer}/jobs/accept-application`,
 			{},
 			{
 				params: {
