@@ -8,9 +8,9 @@
 	padding-left: 100px;
 
 	.jobs-browser {
-		margin: 10px;
+		margin: 20px;
+		height: 90vh;
 		overflow: auto;
-		height: 100vh;
 
 		&::-webkit-scrollbar {
 			display: none;
@@ -19,14 +19,7 @@
 		scrollbar-width: none;
 	}
 	.personal-info {
-		margin: 10px;
+		margin: 20px;
 		width: 100%;
-		height: 100vh;
-
-		.personal-info-box {
-			position: sticky;
-			position: -webkit-sticky;
-			align-self: flex-start;
-		}
 	}
 }
