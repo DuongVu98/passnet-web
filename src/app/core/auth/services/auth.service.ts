@@ -10,6 +10,6 @@ export class AuthService {
 	constructor(private profileApiService: ProfileApiService) {}
 
 	getProfileId(uid: string): Observable<string> {
-		return this.profileApiService.getProfileIdByUserId(uid).pipe(map((profileDto) => profileDto.profileId));
+		return this.profileApiService.getProfileByUserId(uid).pipe(map((profileDto) => profileDto.profileId));
 	}
 }

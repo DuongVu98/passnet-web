@@ -12,7 +12,11 @@ export class ProfileApiService {
 
 	constructor(private httpClient: HttpClient) {}
 
-	getProfileIdByUserId(uid: string): Observable<ProfileDto> {
+	getProfile(profileId: string): Observable<ProfileDto> {
+		return this.httpClient.get<ProfileDto>(`${this.profileApiServer}/api/query/profiles/${profileId}`, {});
+	}
+
+	getProfileByUserId(uid: string): Observable<ProfileDto> {
 		return this.httpClient.get<ProfileDto>(`${this.profileApiServer}/api/query/profile`, {
 			params: {
 				uid: uid,
