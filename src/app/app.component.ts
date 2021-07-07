@@ -5,6 +5,7 @@ import { OktaAuthService } from "@okta/okta-angular";
 import { Builder } from "builder-pattern";
 import { UserModel } from "./core/auth/models/auth.models";
 import { SetLoggedUserAction } from "./core/auth/store/auth.actions";
+import { AuthService } from "./core/auth/services/auth.service";
 
 @Component({
 	selector: "app-root",
@@ -15,18 +16,31 @@ export class AppComponent implements OnInit {
 	title = "passnet-web";
 	isAuthenticated: boolean;
 
-	constructor(public oktaAuth: OktaAuthService, public router: Router, private store: Store) {
+	constructor(
+		public oktaAuth: OktaAuthService,
+		public router: Router,
+		private store: Store,
+		private authService: AuthService
+	) {
 		this.oktaAuth.$authenticationState.subscribe(async (isAuthenticated: boolean) => {
 			this.isAuthenticated = isAuthenticated;
 
 			if (isAuthenticated == true) {
 				let user = await oktaAuth.getUser();
-				this.store.dispatch(
-					new SetLoggedUserAction({
-						user: Builder(UserModel).uid(user.sub).email(user.email).displayname(user.name).build(),
-						token: oktaAuth.getAccessToken(),
-					})
-				);
+
+				this.authService.getProfileId(user.sub).subscribe((profileId) => {
+					this.store.dispatch(
+						new SetLoggedUserAction({
+							user: Builder(UserModel)
+								.uid(user.sub)
+								.profileId(profileId)
+								.email(user.email)
+								.displayname(user.name)
+								.build(),
+							token: oktaAuth.getAccessToken(),
+						})
+					);
+				});
 			}
 		});
 	}
