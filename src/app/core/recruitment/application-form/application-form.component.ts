@@ -3,6 +3,11 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { ApplicationForm } from "../models/recruitment.models";
 import { ApplicatorService } from "../services/applicator-api.service";
 
+interface DepartmentOption {
+	name: string;
+	id: string;
+}
+
 @Component({
 	selector: "recruitment-application-form",
 	templateUrl: "./application-form.component.html",
@@ -10,6 +15,13 @@ import { ApplicatorService } from "../services/applicator-api.service";
 })
 export class ApplicationFormComponent implements OnInit {
 	loading = false;
+	departments: DepartmentOption[] = [
+		{ name: "Computer Science", id: "dep1" },
+		{ name: "Computer Science", id: "dep1" },
+		{ name: "Computer Science", id: "dep1" },
+		{ name: "Computer Science", id: "dep1" },
+	];
+	selectedDepartment: DepartmentOption;
 
 	@Input()
 	jobId: string;
@@ -19,6 +31,7 @@ export class ApplicationFormComponent implements OnInit {
 		gpa: new FormControl(""),
 		major: new FormControl(""),
 		letter: new FormControl(""),
+		selectedDepartment: new FormControl({ name: "", id: "" }),
 	});
 
 	constructor(private applicatorService: ApplicatorService) {}
