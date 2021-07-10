@@ -14,27 +14,30 @@ interface DepartmentOption {
 	styleUrls: ["./application-form.component.scss"],
 })
 export class ApplicationFormComponent implements OnInit {
-	loading = false;
-	departments: DepartmentOption[] = [
-		{ name: "Computer Science", id: "dep1" },
-		{ name: "Computer Science", id: "dep1" },
-		{ name: "Computer Science", id: "dep1" },
-		{ name: "Computer Science", id: "dep1" },
-	];
-	selectedDepartment: DepartmentOption;
-
 	@Input()
 	jobId: string;
 
-	applicationFormGroup: FormGroup = new FormGroup({
-		fullName: new FormControl(""),
-		gpa: new FormControl(""),
-		major: new FormControl(""),
-		letter: new FormControl(""),
-		selectedDepartment: new FormControl({ name: "", id: "" }),
-	});
+	loading = false;
+	departments: DepartmentOption[];
+	selectedDepartment: DepartmentOption;
+	applicationFormGroup: FormGroup;
 
-	constructor(private applicatorService: ApplicatorService) {}
+	constructor(private applicatorService: ApplicatorService) {
+		this.loading = false;
+		this.departments = [
+			{ name: "Computer Science", id: "dep1" },
+			{ name: "Biotechnology", id: "dep2" },
+			{ name: "Business Administrator", id: "dep2" },
+			{ name: "Civil Engineering", id: "dep3" },
+		];
+		this.applicationFormGroup = new FormGroup({
+			fullName: new FormControl(""),
+			gpa: new FormControl(""),
+			major: new FormControl(""),
+			letter: new FormControl(""),
+			selectedDepartment: new FormControl({ name: "", id: "" }),
+		});
+	}
 
 	ngOnInit(): void {}
 
