@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
+import { ApplicationFormComponent } from "../application-form/application-form.component";
 import { ApplicatorService } from "../services/applicator-api.service";
 import { RecruiterApiService } from "../services/recruiter-api.service";
 
@@ -12,11 +13,18 @@ export class JobsBrowserComponent implements OnInit {
 	postedJobsView: {
 		postedJobs: any[];
 	};
+	applicationFormDialog: boolean;
+	jobIdToApply: string;
+
+	@ViewChild(ApplicationFormComponent)
+	recruitmentApplicationForm: ApplicationFormComponent;
 
 	constructor(private recruiterApiService: RecruiterApiService, private router: Router) {
 		this.postedJobsView = {
 			postedJobs: [],
 		};
+		this.applicationFormDialog = false;
+		this.jobIdToApply = "";
 	}
 
 	ngOnInit(): void {
@@ -32,7 +40,7 @@ export class JobsBrowserComponent implements OnInit {
 
 	goToJobDetail(jobId: string): void {
 		console.log(jobId);
-		this.router.navigate(["/job-detail"], {
+		this.router.navigate(["/recruitment/job-detail"], {
 			queryParams: {
 				jobId,
 			},
@@ -40,6 +48,12 @@ export class JobsBrowserComponent implements OnInit {
 	}
 
 	quickApplyJob(jobId: string): void {
-		console.log(jobId);
+		this.jobIdToApply = jobId;
+		this.applicationFormDialog = true;
+	}
+
+	send() {
+		this.applicationFormDialog = false;
+		this.recruitmentApplicationForm.send();
 	}
 }

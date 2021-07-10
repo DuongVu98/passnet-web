@@ -9,6 +9,8 @@ import { JobDetailComponent } from "./job-detail/job-detail.component";
 import { ApplicationFormComponent } from "./application-form/application-form.component";
 import { JobsBrowserComponent } from "./jobs-browser/jobs-browser.component";
 import { PersonalInfoComponent } from "./personal-info/personal-info.component";
+import { RouterModule } from "@angular/router";
+import { recruitmentRoutes } from "./recruitment.routes";
 
 @NgModule({
 	declarations: [
@@ -18,7 +20,7 @@ import { PersonalInfoComponent } from "./personal-info/personal-info.component";
 		JobsBrowserComponent,
 		PersonalInfoComponent,
 	],
-	imports: [CommonModule, BaseCommonModule],
+	imports: [CommonModule, BaseCommonModule, RouterModule.forChild(recruitmentRoutes)],
 	exports: [RecruitmentPageComponent, JobDetailComponent],
 	providers: [RecruiterApiService, ApplicatorService],
 })

@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ApplicatorService } from "../services/applicator-api.service";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { ApplicationForm, JobDetail } from "../models/recruitment.models";
+import { ApplicationFormComponent } from "../application-form/application-form.component";
 
 @Component({
 	selector: "recruitment-job-detail",
@@ -14,6 +15,9 @@ export class JobDetailComponent implements OnInit {
 	isLoading: boolean;
 
 	applicationFormDialog: boolean;
+
+	@ViewChild(ApplicationFormComponent)
+	recruitmentApplicationForm: ApplicationFormComponent;
 
 	constructor(private route: ActivatedRoute, private applicatorApiService: ApplicatorService) {
 		this.isLoading = true;
@@ -47,8 +51,7 @@ export class JobDetailComponent implements OnInit {
 		this.applicationFormDialog = true;
 	}
 
-	sendApplicationForm(applicationForm: ApplicationForm): void {
-		console.log(JSON.stringify(applicationForm));
-		this.applicatorApiService.sendApplicationForm(applicationForm, this.jobId).subscribe();
+	send(): void {
+		this.recruitmentApplicationForm.send();
 	}
 }

@@ -9,6 +9,7 @@ import { profileRoutes } from "./core/profile/profile.routing";
 import { JobDetailComponent } from "./core/recruitment/job-detail/job-detail.component";
 import { RecruitmentPageComponent } from "./core/recruitment/recruitment-page/recruitment-page.component";
 import { TaBrowserComponent } from "./core/freelance/ta-browser/ta-browser.component";
+import { recruitmentRoutes } from "./core/recruitment/recruitment.routes";
 
 export function onAuthRequired(oktaAuth, injector) {
 	const router = injector.get(Router);
@@ -26,11 +27,8 @@ const routes: Routes = [
 	},
 	{
 		path: "",
-		component: RecruitmentPageComponent,
-		canActivate: [OktaAuthGuard],
-		data: {
-			onAuthRequired,
-		},
+		redirectTo: "recruitment",
+		pathMatch: "full",
 	},
 	{
 		path: "recruitment",
@@ -39,6 +37,7 @@ const routes: Routes = [
 		data: {
 			onAuthRequired,
 		},
+		children: recruitmentRoutes,
 	},
 	{
 		path: "freelance",
@@ -57,14 +56,14 @@ const routes: Routes = [
 		},
 		children: profileRoutes,
 	},
-	{
-		path: "job-detail",
-		component: JobDetailComponent,
-		canActivate: [OktaAuthGuard],
-		data: {
-			onAuthRequired,
-		},
-	},
+	// {
+	// 	path: "job-detail",
+	// 	component: JobDetailComponent,
+	// 	canActivate: [OktaAuthGuard],
+	// 	data: {
+	// 		onAuthRequired,
+	// 	},
+	// },
 	{
 		path: "classrooms",
 		component: ClassroomPageComponent,
