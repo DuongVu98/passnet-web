@@ -18,18 +18,24 @@
                         <mat-card-content>
                             <p-tabView>
                                 <p-tabPanel header="Profile">
-                                    <profile-personal-info></profile-personal-info>
+                                    <div class="tab-content">
+                                        <profile-personal-info></profile-personal-info>
+                                    </div>
                                 </p-tabPanel>
                                 <p-tabPanel header="Jobs">
-                                    <div>User: {{ userProfile.email }}</div>
-                                    <button (click)="openAddJobFormModal()">Add job</button>
+                                    <div class="tab-content">
+                                        <div>User: {{ userProfile.email }}</div>
+                                        <button (click)="openAddJobFormModal()">Add job</button>
 
-                                    <div class="job-management">
-                                        <profile-job-management></profile-job-management>
+                                        <div class="job-management">
+                                            <profile-job-management></profile-job-management>
+                                        </div>
                                     </div>
                                 </p-tabPanel>
                                 <p-tabPanel header="Classrooms">
-                                    Classrooms
+                                    <div class="tab-content">
+                                        Classrooms
+                                    </div>
                                 </p-tabPanel>
                             </p-tabView>
                         </mat-card-content>
