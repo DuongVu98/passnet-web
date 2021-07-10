@@ -9,6 +9,7 @@ import { RouterModule } from "@angular/router";
 
 import { profileRoutes } from "./profile.routing";
 import { JobApplicationListComponent } from "./job-application-list/job-application-list.component";
+import { PersonalInfoComponent } from "./personal-info/personal-info.component";
 
 @NgModule({
 	declarations: [
@@ -17,6 +18,7 @@ import { JobApplicationListComponent } from "./job-application-list/job-applicat
 		PostedJobListComponent,
 		JobManagementComponent,
 		JobApplicationListComponent,
+		PersonalInfoComponent,
 	],
 	imports: [CommonModule, BaseCommonModule, RouterModule.forChild(profileRoutes)],
 	exports: [ProfilePageComponent, AddJobFormComponent],

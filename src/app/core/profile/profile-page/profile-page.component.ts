@@ -11,7 +11,8 @@ import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
 	styleUrls: ["./profile-page.component.scss"],
 })
 export class ProfilePageComponent implements OnInit {
-	@Select(AuthState.getLoggedUser) loggedUser$: Observable<LoggedUserStateSelection>;
+	@Select(AuthState.getLoggedUser)
+	loggedUser$: Observable<LoggedUserStateSelection>;
 
 	userProfile;
 
