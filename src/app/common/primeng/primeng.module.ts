@@ -9,6 +9,7 @@ import { ScrollPanelModule } from "primeng/scrollpanel";
 import { DropdownModule } from "primeng/dropdown";
 import { MenuModule } from "primeng/menu";
 import { InputTextareaModule } from "primeng/inputtextarea";
+import { TabViewModule } from "primeng/tabview";
 
 const primengComponents = [
 	CardModule,
@@ -20,6 +21,7 @@ const primengComponents = [
 	DropdownModule,
 	MenuModule,
 	InputTextareaModule,
+	TabViewModule,
 ];
 
 @NgModule({

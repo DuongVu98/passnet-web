@@ -1,35 +1,44 @@
 <div>
-    <div *ngFor="let job of postedJobsView.postedJobs">
-        <div class="single-job-card">
-            <mat-card>
-                <mat-card-title>
-                    <p>{{ job.jobTitle }}</p>
-                </mat-card-title>
-                <mat-card-content>
-                    <p>{{ job.courseName }}</p>
-                    <p>{{ job.semester }}</p>
-                    <p>{{ job.department }}</p>
-                    <p>Applied: {{ job.appliedAmount }}</p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <div class="buttons-area">
-                        <p-button class="right-align" label="Quick apply" icon="pi pi-check"
-                            (click)="quickApplyJob(job.id)">
-                        </p-button>
-                        <p-button class="right-align" label="Details" icon="pi pi-times" styleClass="p-button-secondary"
-                            [style]="{ 'margin-left': '.5em' }" (click)="goToJobDetail(job.id)"></p-button>
-                    </div>
-                </mat-card-actions>
-            </mat-card>
-        </div>
-    </div>
-    <p-dialog modal="true" [(visible)]="applicationFormDialog" styleClass="open-dialog">
-        <p-header> Application form </p-header>
+	<div *ngFor="let job of postedJobsView.postedJobs">
+		<div class="single-job-card">
+			<mat-card>
+				<mat-card-title>
+					<p>{{ job.jobTitle }}</p>
+				</mat-card-title>
+				<mat-card-content>
+					<p>{{ job.courseName }}</p>
+					<p>{{ job.semester }}</p>
+					<p>{{ job.department }}</p>
+					<p>Applied: {{ job.appliedAmount }}</p>
+				</mat-card-content>
+				<mat-card-actions>
+					<div class="buttons-area">
+						<p-button
+							class="right-align"
+							label="Quick apply"
+							icon="pi pi-check"
+							(click)="quickApplyJob(job.id)"
+						>
+						</p-button>
+						<p-button
+							class="right-align"
+							label="Details"
+							icon="pi pi-times"
+							styleClass="p-button-secondary"
+							[style]="{ 'margin-left': '.5em' }"
+							(click)="goToJobDetail(job.id)"
+						></p-button>
+					</div>
+				</mat-card-actions>
+			</mat-card>
+		</div>
+	</div>
+	<p-dialog modal="true" [(visible)]="applicationFormDialog" styleClass="open-dialog">
+		<p-header> Application form </p-header>
 
-        <recruitment-application-form [jobId]="jobIdToApply"></recruitment-application-form>
-        <ng-template pTemplate="footer">
-            <p-button icon="pi pi-check" (click)="send()" label="Send" styleClass="p-button-text">
-            </p-button>
-        </ng-template>
-    </p-dialog>
+		<recruitment-application-form [jobId]="jobIdToApply"></recruitment-application-form>
+		<ng-template pTemplate="footer">
+			<p-button icon="pi pi-check" (click)="send()" label="Send" styleClass="p-button-text"> </p-button>
+		</ng-template>
+	</p-dialog>
 </div>
