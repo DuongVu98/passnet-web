@@ -1,4 +1,31 @@
 <div>
-	<p>name: {{ personalInfo.fullName }}</p>
-	<p>email: {{ personalInfo.email }}</p>
+    <mat-list>
+        <div mat-subheader>Basic</div>
+        <div class="basic-info">
+            <mat-list-item>
+                <mat-icon mat-list-icon>perm_identity</mat-icon>
+                <div mat-line>{{personalInfo.fullName}}</div>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon>mail</mat-icon>
+                <div mat-line>{{personalInfo.email}}</div>
+            </mat-list-item>
+        </div>
+        <mat-divider></mat-divider>
+        <div mat-subheader>Experiences</div>
+        <div class="experience-list">
+            <mat-accordion class="example-headers-align" multi>
+                <mat-expansion-panel *ngFor="let ex of personalInfo.experiences">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title style="color: #2286c3;">{{ex.course}}</mat-panel-title>
+                        <mat-panel-description style="color: #2286c3;">
+                            {{ex.semester}}
+                            <mat-icon>account_circle</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div mat-line>{{ex.description}}</div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </mat-list>
 </div>

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Select } from "@ngxs/store";
 import { Observable } from "rxjs";
 import { ProfileApiService } from "src/app/common/api/profile-api.service";
-import { ProfileDto } from "src/app/common/models/profile.models";
+import { ExperienceDto, ProfileDto } from "src/app/common/models/profile.models";
 import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
 
 @Injectable({
@@ -22,5 +22,9 @@ export class ProfileService {
 
 	getPersonalInfo(): Observable<ProfileDto> {
 		return this.profileApiService.getProfile(this.profileId);
+	}
+
+	getExperiencesByProfile(): Observable<ExperienceDto[]> {
+		return this.profileApiService.getExperienceByProfile(this.profileId);
 	}
 }
