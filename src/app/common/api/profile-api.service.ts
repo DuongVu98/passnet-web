@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { ProfileDto } from "../models/profile.models";
+import { ExperienceDto, ProfileDto } from "../models/profile.models";
 
 @Injectable({
 	providedIn: "root",
@@ -20,6 +20,14 @@ export class ProfileApiService {
 		return this.httpClient.get<ProfileDto>(`${this.profileApiServer}/api/query/profile`, {
 			params: {
 				uid: uid,
+			},
+		});
+	}
+
+	getExperienceByProfile(profileId: string): Observable<ExperienceDto[]> {
+		return this.httpClient.get<ExperienceDto[]>(`${this.profileApiServer}/api/query/experiences`, {
+			params: {
+				profileId: profileId,
 			},
 		});
 	}

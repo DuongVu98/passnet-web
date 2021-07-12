@@ -1,54 +1,50 @@
 $background-picture-height: 250px;
 $avatar-picture-height: 200px;
 
+.main-page {
+	background-color: #f4f4f4;
+	height: 100vh;
+}
+
 .job-management {
 	width: 75%;
 	margin-left: auto;
 	margin-right: auto;
 }
-.profile-sidenav {
-	height: 100vh;
 
-	mat-drawer {
-		.side-menu {
-			width: 400px;
-		}
-	}
-	mat-drawer-content {
-		.profile-content {
-			width: 100%;
-			height: 100%;
-			display: flex;
-			justify-content: center;
-			padding-top: 30px;
-			.profile-card {
-				width: 90%;
+.profile-content {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	padding-top: 30px;
+	.profile-card {
+		width: 70%;
 
-				.profile-representation {
-					.profile-background {
-						height: $background-picture-height;
-						object-fit: cover;
-						object-position: 0% 0%;
-					}
-					.white-space {
-						height: $avatar-picture-height / 2;
-					}
-					.profile-avatar {
-						width: $avatar-picture-height;
-						height: $avatar-picture-height;
-						border-radius: 50%;
-						position: absolute;
-						top: $background-picture-height - ($avatar-picture-height / 2);
-						left: 100px;
-					}
-				}
+		.profile-representation {
+			.profile-background {
+				height: $background-picture-height;
+				object-fit: cover;
+				object-position: 0% 0%;
+			}
+			.white-space {
+				height: $avatar-picture-height / 2;
+			}
+			.profile-avatar {
+				width: $avatar-picture-height;
+				height: $avatar-picture-height;
+				border-radius: 50%;
+				position: absolute;
+				top: $background-picture-height - ($avatar-picture-height / 2);
+				left: 100px;
+				border: 10px solid #fff;
 			}
 		}
 	}
+}
 
-	.tab-content {
-		padding-top: 20px;
-		padding-left: 90px;
-		padding-right: 90px;
-	}
+.tab-content {
+	padding-top: 20px;
+	padding-left: 90px;
+	padding-right: 90px;
 }

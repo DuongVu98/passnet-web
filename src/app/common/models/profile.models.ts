@@ -17,3 +17,13 @@ export class ProfileDto {
 	classroomIds: string[];
 	experienceIds: string[];
 }
+
+export class ExperienceDto {
+	profile: {
+		profileId: string;
+		email: string;
+	};
+	course: string;
+	semester: string;
+	description: string;
+}

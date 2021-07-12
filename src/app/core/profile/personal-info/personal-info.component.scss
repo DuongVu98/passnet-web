@@ -1,0 +1,14 @@
+.experience-list {
+	mat-expansion-panel {
+		background-color: #9be7ff;
+		color: #2286c3;
+	}
+	.example-headers-align .mat-expansion-panel-header-description {
+		right: 40px;
+		position: absolute;
+
+		mat-icon {
+			margin-left: 15px;
+		}
+	}
+}
