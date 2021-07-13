@@ -1,15 +1,11 @@
 $background-picture-height: 250px;
 $avatar-picture-height: 200px;
+$avatar-picture-width: 200px;
+$avatar-picture-left: 100px;
 
 .main-page {
 	background-color: #f4f4f4;
 	height: 100vh;
-}
-
-.job-management {
-	width: 75%;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .profile-content {
@@ -31,13 +27,17 @@ $avatar-picture-height: 200px;
 				height: $avatar-picture-height / 2;
 			}
 			.profile-avatar {
-				width: $avatar-picture-height;
+				width: $avatar-picture-width;
 				height: $avatar-picture-height;
 				border-radius: 50%;
 				position: absolute;
 				top: $background-picture-height - ($avatar-picture-height / 2);
-				left: 100px;
+				left: $avatar-picture-left;
 				border: 10px solid #fff;
+			}
+			.profile-name {
+				position: absolute;
+				left: $avatar-picture-left + $avatar-picture-width;
 			}
 		}
 	}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
 
 @Component({
 	selector: "profile-job-management",
@@ -6,7 +8,13 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./job-management.component.scss"],
 })
 export class JobManagementComponent implements OnInit {
-	constructor() {}
+	constructor(private matDialog: MatDialog) {}
 
 	ngOnInit(): void {}
+
+	openAddJobFormModal(): void {
+		const dialogRef = this.matDialog.open(AddJobFormComponent, {
+			width: "60%",
+		});
+	}
 }
