@@ -1,17 +1,33 @@
-import { Component, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
-import { Select } from "@ngxs/store";
-import { Observable } from "rxjs";
-import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
-import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
+import { ProfileService } from "../services/profile.service";
 
 @Component({
 	selector: "profile-profile-page",
 	templateUrl: "./profile-page.component.html",
 	styleUrls: ["./profile-page.component.scss"],
 })
-export class ProfilePageComponent implements OnInit {
-	constructor() {}
+export class ProfilePageComponent implements OnInit, OnDestroy {
+	fullName: string;
 
-	ngOnInit(): void {}
+	subscriptions: Subscription[];
+
+	constructor(private profileService: ProfileService) {
+		this.fullName = "";
+		this.subscriptions = [];
+	}
+
+	ngOnInit(): void {
+		this.subscriptions.push(
+			this.profileService.getPersonalInfo().subscribe((result) => {
+				this.fullName = result.fullName;
+			})
+		);
+	}
+
+	ngOnDestroy(): void {
+		this.subscriptions.forEach((sub) => {
+			sub.unsubscribe();
+		});
+	}
 }
