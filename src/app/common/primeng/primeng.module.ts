@@ -10,6 +10,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { MenuModule } from "primeng/menu";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { TabViewModule } from "primeng/tabview";
+import { AccordionModule } from "primeng/accordion";
 
 const primengComponents = [
 	CardModule,
@@ -22,6 +23,7 @@ const primengComponents = [
 	MenuModule,
 	InputTextareaModule,
 	TabViewModule,
+	AccordionModule,
 ];
 
 @NgModule({

@@ -1,35 +1,44 @@
 <div>
-	<div *ngFor="let job of ownedPostedJobsView">
-		<div class="single-job-card">
-			<p-card [style]="{ width: '360px' }" styleClass="p-shadow-5">
-				<p-header>
-					<h2>{{ job.jobTitle }}</h2>
-				</p-header>
-				<p>{{ job.courseName }}</p>
-				<p>{{ job.appliedAmount }}</p>
-
-				<ng-template pTemplate="footer">
+	<p-accordion>
+		<p-accordionTab header="{{ job.jobTitle }}" *ngFor="let job of ownedPostedJobsView">
+			<div>
+				<p>Course: {{ job.courseName }}</p>
+				<p>Applications: {{ job.appliedAmount }}</p>
+			</div>
+			<div class="action-buttons">
+				<span class="p-buttonset">
 					<button
 						pButton
-						class="p-button-raised p-button-rounded"
-						label="Open application forms"
+						type="button"
+						icon="pi pi-folder-open"
+						label="Open forms"
 						(click)="openJobApplicationList(job.id)"
 					></button>
 					<button
 						pButton
-						class="p-button-raised p-button-rounded p-button-danger"
-						label="Go to classroom"
+						type="button"
+						icon="pi pi-arrow-circle-right"
+						label="Go to class"
+						class="p-button-success"
 						(click)="openClassroomFromJob(job.id)"
 					></button>
-				</ng-template>
-			</p-card>
-		</div>
-	</div>
+					<button pButton class="p-button-warning" type="button" icon="pi pi-pencil" iconPos="left"></button>
+					<button
+						pButton
+						class="p-button-danger"
+						type="button"
+						icon="pi pi-times-circle"
+						iconPos="left"
+					></button>
+				</span>
+			</div>
+		</p-accordionTab>
+	</p-accordion>
 	<p-dialog
 		header="Header"
 		[(visible)]="displayAddClassroomForm"
 		[modal]="true"
-		[style]="{ width: '50vw' }"
+		[style]="{ width: '70vw' }"
 		[baseZIndex]="10000"
 		[draggable]="false"
 		[resizable]="false"

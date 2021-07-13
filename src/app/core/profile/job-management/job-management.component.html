@@ -1,2 +1,11 @@
-<p>job-management</p>
-<router-outlet></router-outlet>
+<div>
+	<div class="job-mana-field action-buttons">
+		<button mat-raised-button color="primary" (click)="openAddJobFormModal()">
+			Add
+			<mat-icon>add_task</mat-icon>
+		</button>
+	</div>
+	<div class="job-mana-field job-mana-content">
+		<router-outlet></router-outlet>
+	</div>
+</div>

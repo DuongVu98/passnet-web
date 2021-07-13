@@ -20,7 +20,7 @@ export class RecruiterService {
 		private classroomApiService: ClassroomApiService
 	) {
 		this.loggedUser$.subscribe((loggedUser) => {
-			this.recruiterId = loggedUser.user.uid;
+			this.recruiterId = loggedUser.user.profileId;
 		});
 	}
 
