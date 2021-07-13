@@ -9,31 +9,16 @@
 				<p>{{ job.appliedAmount }}</p>
 
 				<ng-template pTemplate="footer">
-					<button
-						pButton
-						class="p-button-raised p-button-rounded"
-						label="Open application forms"
-						(click)="openJobApplicationList(job.id)"
-					></button>
-					<button
-						pButton
-						class="p-button-raised p-button-rounded p-button-danger"
-						label="Go to classroom"
-						(click)="openClassroomFromJob(job.id)"
-					></button>
+					<button pButton class="p-button-raised p-button-rounded" label="Open application forms"
+						(click)="openJobApplicationList(job.id)"></button>
+					<button pButton class="p-button-raised p-button-rounded p-button-danger" label="Go to classroom"
+						(click)="openClassroomFromJob(job.id)"></button>
 				</ng-template>
 			</p-card>
 		</div>
 	</div>
-	<p-dialog
-		header="Header"
-		[(visible)]="displayAddClassroomForm"
-		[modal]="true"
-		[style]="{ width: '50vw' }"
-		[baseZIndex]="10000"
-		[draggable]="false"
-		[resizable]="false"
-	>
+	<p-dialog header="Header" [(visible)]="displayAddClassroomForm" [modal]="true" [style]="{ width: '70vh' }"
+		[baseZIndex]="10000" [draggable]="false" [resizable]="false">
 		<common-create-classroom-form></common-create-classroom-form>
 		<ng-template pTemplate="footer">
 			<p-button icon="pi pi-check" (click)="submitAndClose()" label="Create" styleClass="p-button-text">

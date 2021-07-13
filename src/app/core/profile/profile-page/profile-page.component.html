@@ -1,40 +1,37 @@
 <div class="main-page">
-    <div class="profile-content">
-        <div class="profile-card">
-            <mat-card>
-                <div class="profile-representation">
-                    <img class="profile-background" mat-card-image src="https://images7.alphacoders.com/110/1102604.jpg"
-                        alt="Photo of a Shiba Inu">
-                    <img class="profile-avatar" mat-card-image
-                        src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"
-                        alt="Photo of a Shiba Inu">
-                    <div class="white-space"></div>
-                </div>
-                <mat-card-content>
-                    <p-tabView>
-                        <p-tabPanel header="Profile">
-                            <div class="tab-content">
-                                <profile-personal-info></profile-personal-info>
-                            </div>
-                        </p-tabPanel>
-                        <p-tabPanel header="Jobs">
-                            <div class="tab-content">
-                                <div>User: {{ userProfile.email }}</div>
-                                <button (click)="openAddJobFormModal()">Add job</button>
-
-                                <div class="job-management">
-                                    <profile-job-management></profile-job-management>
-                                </div>
-                            </div>
-                        </p-tabPanel>
-                        <p-tabPanel header="Classrooms">
-                            <div class="tab-content">
-                                Classrooms
-                            </div>
-                        </p-tabPanel>
-                    </p-tabView>
-                </mat-card-content>
-            </mat-card>
-        </div>
-    </div>
+	<div class="profile-content">
+		<div class="profile-card">
+			<mat-card>
+				<div class="profile-representation">
+					<img class="profile-background" mat-card-image src="https://images7.alphacoders.com/110/1102604.jpg"
+						alt="Photo of a Shiba Inu">
+					<img class="profile-avatar" mat-card-image
+						src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"
+						alt="Photo of a Shiba Inu">
+					<div class="white-space"></div>
+				</div>
+				<mat-card-content>
+					<p-tabView>
+						<p-tabPanel header="Profile">
+							<div class="tab-content">
+								<profile-personal-info></profile-personal-info>
+							</div>
+						</p-tabPanel>
+						<p-tabPanel header="Jobs">
+							<div class="tab-content">
+								<div class="job-management">
+									<profile-job-management></profile-job-management>
+								</div>
+							</div>
+						</p-tabPanel>
+						<p-tabPanel header="Classrooms">
+							<div class="tab-content">
+								Classrooms
+							</div>
+						</p-tabPanel>
+					</p-tabView>
+				</mat-card-content>
+			</mat-card>
+		</div>
+	</div>
 </div>

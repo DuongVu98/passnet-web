@@ -4,6 +4,11 @@ import { Builder } from "builder-pattern";
 import { JobFormDto } from "src/app/common/models/profile.models";
 import { RecruiterService } from "../services/recruiter.service";
 
+interface DepartmentOption {
+	name: string;
+	id: string;
+}
+
 @Component({
 	selector: "profile-add-job-form",
 	templateUrl: "./add-job-form.component.html",
@@ -11,23 +16,26 @@ import { RecruiterService } from "../services/recruiter.service";
 })
 export class AddJobFormComponent implements OnInit {
 	loading = false;
-	departmentSelectInput: string;
-	departmentsList = [
-		"Computer Science",
-		"Biotechlogy",
-		"Business Administration",
-		"Industial Engineer and Management",
-	];
-	addJobForm: FormGroup = new FormGroup({
-		title: new FormControl(""),
-		courseName: new FormControl(""),
-		department: new FormControl(""),
-		jobDescription: new FormControl(""),
-		requirement: new FormControl(""),
-		semester: new FormControl(""),
-	});
+	departments: DepartmentOption[];
+	addJobForm: FormGroup;
 
-	constructor(private recruiterService: RecruiterService) {}
+	constructor(private recruiterService: RecruiterService) {
+		this.departments = [
+			{ name: "Computer Science", id: "dep1" },
+			{ name: "Biotechnology", id: "dep2" },
+			{ name: "Business Administrator", id: "dep2" },
+			{ name: "Civil Engineering", id: "dep3" },
+			{ name: "Industial Engineer and Management", id: "dep4" },
+		];
+		this.addJobForm = new FormGroup({
+			title: new FormControl(""),
+			courseName: new FormControl(""),
+			department: new FormControl({ name: "", id: "" }),
+			jobDescription: new FormControl(""),
+			requirement: new FormControl(""),
+			semester: new FormControl(""),
+		});
+	}
 
 	ngOnInit(): void {}
 

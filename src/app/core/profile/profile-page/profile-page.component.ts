@@ -11,24 +11,7 @@ import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
 	styleUrls: ["./profile-page.component.scss"],
 })
 export class ProfilePageComponent implements OnInit {
-	@Select(AuthState.getLoggedUser)
-	loggedUser$: Observable<LoggedUserStateSelection>;
+	constructor() {}
 
-	userProfile;
-
-	constructor(private matDialog: MatDialog) {}
-
-	ngOnInit(): void {
-		this.fetchData();
-	}
-
-	fetchData(): void {
-		this.loggedUser$.subscribe((loggedUser) => {
-			this.userProfile = loggedUser.user;
-		});
-	}
-
-	openAddJobFormModal(): void {
-		this.matDialog.open(AddJobFormComponent);
-	}
+	ngOnInit(): void {}
 }
