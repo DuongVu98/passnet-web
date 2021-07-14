@@ -52,12 +52,11 @@ export class RecruitmentApiService {
 
 	applyJob(applicationForm: ApplicationFormDto, jobId: string, studentId: string): Observable<any> {
 		return this.httpClient.post<ApplicationFormDto>(
-			`${this.recruitmentApiServer}/jobs/apply-job`,
+			`${this.recruitmentApiServer}/jobs/${jobId}/apply-job`,
 			applicationForm,
 			{
 				params: {
-					jobId,
-					studentId,
+					studentId: studentId,
 				},
 			}
 		);

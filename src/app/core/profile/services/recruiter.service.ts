@@ -5,6 +5,7 @@ import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state
 import { Observable } from "rxjs";
 import { JobFormDto } from "src/app/common/models/profile.models";
 import { ClassroomApiService } from "src/app/common/api/classroom-api.service";
+import { JobApplicationListDto } from "src/app/common/models/recruitment.models";
 
 @Injectable({
 	providedIn: "root",
@@ -32,7 +33,7 @@ export class RecruiterService {
 		return this.recruitmentApiService.getOwnedJobs(this.recruiterId);
 	}
 
-	getJobApplicationList(jobId: string): Observable<any> {
+	getJobApplicationList(jobId: string): Observable<JobApplicationListDto> {
 		return this.recruitmentApiService.getAllJobApplicationList(jobId);
 	}
 
