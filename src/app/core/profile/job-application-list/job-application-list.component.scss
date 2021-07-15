@@ -1,19 +1,24 @@
 $list-border: 15px;
-$box-backround-color: #f4f4f4;
+$box-backround-color: #ecf0f1;
 
 .parent-box {
-	padding: 10px;
-
 	.application-list {
 		background-color: $box-backround-color;
 		border-radius: $list-border;
 		padding: $list-border;
 
+		mat-toolbar {
+			background-color: $box-backround-color;
+		}
 		.spacer {
 			flex: 1 1 auto;
 		}
 		.single-application {
 			margin-top: 10px;
+
+			.state-tag {
+				font-style: italic;
+			}
 		}
 		.footer-pending {
 			background-color: #007ad9;
