@@ -1,26 +1,55 @@
 <div>
 	<p-accordion>
-		<p-accordionTab header="{{job.jobTitle}}" *ngFor="let job of ownedPostedJobsView">
+		<p-accordionTab header="{{ job.jobTitle }}" *ngFor="let job of ownedPostedJobsView">
 			<div>
 				<p>Course: {{ job.courseName }}</p>
 				<p>Applications: {{ job.appliedAmount }}</p>
 			</div>
 			<div class="action-buttons">
 				<span class="p-buttonset">
-					<button class="p-button-raised p-button-rounded" pButton type="button" icon="pi pi-folder-open"
-						label="Open forms" (click)="openJobApplicationList(job.id)"></button>
-					<button pButton type="button" icon="pi pi-arrow-circle-right" label="Go to class"
-						class="p-button-success p-button-raised" (click)="openClassroomFromJob(job.id)"></button>
-					<button pButton class="p-button-warning p-button-raised" type="button" icon="pi pi-pencil"
-						iconPos="left"></button>
-					<button pButton class="p-button-danger p-button-raised p-button-rounded" type="button"
-						icon="pi pi-times-circle" iconPos="left"></button>
+					<button
+						class="p-button-raised p-button-rounded"
+						pButton
+						type="button"
+						icon="pi pi-folder-open"
+						label="Open forms"
+						(click)="openJobApplicationList(job.id)"
+					></button>
+					<button
+						pButton
+						type="button"
+						icon="pi pi-arrow-circle-right"
+						label="Go to class"
+						class="p-button-success p-button-raised"
+						(click)="openClassroomFromJob(job.id)"
+					></button>
+					<button
+						pButton
+						class="p-button-warning p-button-raised"
+						type="button"
+						icon="pi pi-pencil"
+						iconPos="left"
+					></button>
+					<button
+						pButton
+						class="p-button-danger p-button-raised p-button-rounded"
+						type="button"
+						icon="pi pi-times-circle"
+						iconPos="left"
+					></button>
 				</span>
 			</div>
 		</p-accordionTab>
 	</p-accordion>
-	<p-dialog header="Header" [(visible)]="displayAddClassroomForm" [modal]="true" [style]="{ width: '70vw' }"
-		[baseZIndex]="10000" [draggable]="false" [resizable]="false">
+	<p-dialog
+		header="Header"
+		[(visible)]="displayAddClassroomForm"
+		[modal]="true"
+		[style]="{ width: '70vw' }"
+		[baseZIndex]="10000"
+		[draggable]="false"
+		[resizable]="false"
+	>
 		<common-create-classroom-form></common-create-classroom-form>
 		<ng-template pTemplate="footer">
 			<p-button icon="pi pi-check" (click)="submitAndClose()" label="Create" styleClass="p-button-text">
