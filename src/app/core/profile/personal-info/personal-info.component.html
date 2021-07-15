@@ -1,7 +1,8 @@
 <div>
 	<mat-list>
 		<div mat-subheader>Basic</div>
-		<div class="basic-info">
+		<p-contextMenu [target]="basicInfo" [model]="menuItems"></p-contextMenu>
+		<div #basicInfo matRipple class="basic-info">
 			<mat-list-item>
 				<mat-icon mat-list-icon>perm_identity</mat-icon>
 				<div mat-line>{{personalInfo.fullName}}</div>
