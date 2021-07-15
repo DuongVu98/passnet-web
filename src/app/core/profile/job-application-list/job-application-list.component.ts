@@ -1,12 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
+import { ProfileService } from "../services/profile.service";
 import { RecruiterService } from "../services/recruiter.service";
 
-class JobApplicationView {
+interface JobApplicationView {
 	id: string;
 	studentId: string;
+	candidateName: string;
 	letter: string;
-	content: string;
 	state: string;
 }
 
@@ -18,20 +20,41 @@ class JobApplicationView {
 export class JobApplicationListComponent implements OnInit {
 	jobId: string;
 	jobApplicationList: JobApplicationView[];
-	selectedJobApplication: JobApplicationView = {} as JobApplicationView;
+	selectedJobApplication: JobApplicationView;
+	noApplicationSelected: boolean;
 
-	constructor(private recruiterService: RecruiterService, private route: ActivatedRoute) {}
-
-	ngOnInit(): void {
-		this.fetchData();
+	constructor(
+		private recruiterService: RecruiterService,
+		private profileService: ProfileService,
+		private route: ActivatedRoute
+	) {
+		this.jobId = "";
+		this.jobApplicationList = [];
+		this.noApplicationSelected = true;
+		this.selectedJobApplication = {
+			id: "",
+			studentId: "",
+			candidateName: "",
+			letter: "",
+			state: "",
+		};
 	}
 
-	fetchData(): void {
+	ngOnInit(): void {
 		this.route.queryParams.subscribe((params) => {
 			this.recruiterService.getJobApplicationList(params["jobId"]).subscribe((result) => {
-				this.jobId = result.id;
-				this.jobApplicationList = result.jobApplicationViewList;
-				this.selectedJobApplication = result.jobApplicationViewList[0];
+				this.jobId = result.jobView.id;
+				result.jobApplicationViewList.map((application) => {
+					this.profileService.getPersonalInfoById(application.studentId).subscribe((candidateInfo) => {
+						this.jobApplicationList.push({
+							id: "",
+							studentId: application.studentId,
+							candidateName: candidateInfo.fullName,
+							letter: application.letter,
+							state: application.state,
+						});
+					});
+				});
 			});
 		});
 	}
@@ -40,9 +63,14 @@ export class JobApplicationListComponent implements OnInit {
 		this.selectedJobApplication = this.jobApplicationList.filter(
 			(application) => application.id === applicationId
 		)[0];
+		this.setNoApplicationSeleted();
 	}
 
 	acceptApplication(applicationId: string): void {
 		this.recruiterService.acceptApplicationForm(applicationId, this.jobId).subscribe();
+	}
+
+	setNoApplicationSeleted() {
+		this.noApplicationSelected = this.selectedJobApplication.id === "" ? false : true;
 	}
 }

@@ -12,11 +12,11 @@ import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state
 export class ApplicatorService {
 	@Select(AuthState.getLoggedUser)
 	loggedUser$: Observable<LoggedUserStateSelection>;
-	userId;
+	profileId;
 
 	constructor(private recruitmentApiService: RecruitmentApiService) {
 		this.loggedUser$.subscribe((loggedUser) => {
-			this.userId = loggedUser.user.uid;
+			this.profileId = loggedUser.user.profileId;
 		});
 	}
 
@@ -32,7 +32,7 @@ export class ApplicatorService {
 		return this.recruitmentApiService.applyJob(
 			new ApplicationFormDto().withLetter(applicationForm.letter).withContent(applicationForm.letter),
 			jobId,
-			this.userId
+			this.profileId
 		);
 	}
 }
