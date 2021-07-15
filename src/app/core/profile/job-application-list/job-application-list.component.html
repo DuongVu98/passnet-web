@@ -14,6 +14,9 @@
 						<mat-card matRipple (click)="selectJobApplicationDetail(jobApplication.id)">
 							<h2>{{ jobApplication.candidateName }}</h2>
 							<mat-card-subtitle>{{ jobApplication.state }}</mat-card-subtitle>
+							<mat-card-footer
+								[ngClass]="{'footer-height': true, 'footer-pending': jobApplication.state==='PENDING', 'foot-accepted':jobApplication.state==='ACCEPTED'}">
+							</mat-card-footer>
 						</mat-card>
 					</div>
 				</p-scrollPanel>
