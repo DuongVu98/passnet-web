@@ -17,7 +17,12 @@
 								<div class="state-tag">{{ jobApplication.state }}</div>
 							</mat-card-subtitle>
 							<mat-card-footer
-								[ngClass]="{'footer-height': true, 'footer-pending': jobApplication.state==='PENDING', 'foot-accepted':jobApplication.state==='ACCEPTED'}">
+								[ngClass]="{
+									'footer-height': true,
+									'footer-pending': jobApplication.state === 'PENDING',
+									'foot-accepted': jobApplication.state === 'ACCEPTED'
+								}"
+							>
 							</mat-card-footer>
 						</mat-card>
 					</div>

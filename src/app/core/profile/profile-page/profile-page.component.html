@@ -21,7 +21,7 @@
 				</div>
 				<mat-card-content>
 					<p-tabView (onChange)="handleChange($event)">
-						<p-tabPanel [selected]="tabViewIndex==0">
+						<p-tabPanel [selected]="tabViewIndex == 0">
 							<ng-template pTemplate="header">
 								<i class="pi pi-user tab-icon"></i>
 								<span>Profile</span>
@@ -30,7 +30,7 @@
 								<profile-personal-info></profile-personal-info>
 							</div>
 						</p-tabPanel>
-						<p-tabPanel [selected]="tabViewIndex==1">
+						<p-tabPanel [selected]="tabViewIndex == 1">
 							<ng-template pTemplate="header">
 								<i class="pi pi-briefcase tab-icon"></i>
 								<span>Jobs</span>
@@ -41,14 +41,12 @@
 								</div>
 							</div>
 						</p-tabPanel>
-						<p-tabPanel [selected]="tabViewIndex==2">
+						<p-tabPanel [selected]="tabViewIndex == 2">
 							<ng-template pTemplate="header">
 								<i class="pi pi-users tab-icon"></i>
 								<span>Classrooms</span>
 							</ng-template>
-							<div class="tab-content">
-								Classrooms
-							</div>
+							<div class="tab-content">Classrooms</div>
 						</p-tabPanel>
 					</p-tabView>
 				</mat-card-content>
