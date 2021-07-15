@@ -6,10 +6,11 @@ import { AddJobFormComponent } from "./add-job-form/add-job-form.component";
 import { PostedJobListComponent } from "./posted-job-list/posted-job-list.component";
 import { JobManagementComponent } from "./job-management/job-management.component";
 import { RouterModule } from "@angular/router";
-
 import { profileRoutes } from "./profile.routing";
 import { JobApplicationListComponent } from "./job-application-list/job-application-list.component";
 import { PersonalInfoComponent } from "./personal-info/personal-info.component";
+import { NgxsModule } from "@ngxs/store";
+import { ProfileState } from "./store/profile.state";
 
 @NgModule({
 	declarations: [
@@ -20,7 +21,12 @@ import { PersonalInfoComponent } from "./personal-info/personal-info.component";
 		JobApplicationListComponent,
 		PersonalInfoComponent,
 	],
-	imports: [CommonModule, BaseCommonModule, RouterModule.forChild(profileRoutes)],
+	imports: [
+		CommonModule,
+		BaseCommonModule,
+		RouterModule.forChild(profileRoutes),
+		NgxsModule.forFeature([ProfileState]),
+	],
 	exports: [ProfilePageComponent, AddJobFormComponent],
 })
 export class ProfileModule {}

@@ -24,6 +24,10 @@ export class ProfileService {
 		return this.profileApiService.getProfile(this.profileId);
 	}
 
+	getPersonalInfoById(profileId: string): Observable<ProfileDto> {
+		return this.profileApiService.getProfile(profileId);
+	}
+
 	getExperiencesByProfile(): Observable<ExperienceDto[]> {
 		return this.profileApiService.getExperienceByProfile(this.profileId);
 	}

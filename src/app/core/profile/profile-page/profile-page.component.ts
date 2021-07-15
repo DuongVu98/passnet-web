@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Select, Store } from "@ngxs/store";
+import { Observable, Subscription } from "rxjs";
 import { ProfileService } from "../services/profile.service";
+import { ChangeTabViewAction } from "../store/profile.action";
+import { ProfileState, TabViewSelection } from "../store/profile.state";
 
 @Component({
 	selector: "profile-profile-page",
@@ -9,12 +12,16 @@ import { ProfileService } from "../services/profile.service";
 })
 export class ProfilePageComponent implements OnInit, OnDestroy {
 	fullName: string;
-
+	tabViewIndex: number;
 	subscriptions: Subscription[];
 
-	constructor(private profileService: ProfileService) {
+	@Select(ProfileState.getTabViewIndex)
+	tabView$: Observable<TabViewSelection>;
+
+	constructor(private profileService: ProfileService, private store: Store) {
 		this.fullName = "";
 		this.subscriptions = [];
+		this.tabViewIndex = 0;
 	}
 
 	ngOnInit(): void {
@@ -23,11 +30,18 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 				this.fullName = result.fullName;
 			})
 		);
+		this.tabView$.subscribe((tabview) => {
+			this.tabViewIndex = tabview.tabIndex;
+		});
 	}
 
 	ngOnDestroy(): void {
 		this.subscriptions.forEach((sub) => {
 			sub.unsubscribe();
 		});
+	}
+
+	handleChange(event): void {
+		this.store.dispatch(new ChangeTabViewAction({ tabIndex: event.index }));
 	}
 }

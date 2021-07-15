@@ -8,6 +8,7 @@
 			<div class="action-buttons">
 				<span class="p-buttonset">
 					<button
+						class="p-button-raised p-button-rounded"
 						pButton
 						type="button"
 						icon="pi pi-folder-open"
@@ -19,13 +20,19 @@
 						type="button"
 						icon="pi pi-arrow-circle-right"
 						label="Go to class"
-						class="p-button-success"
+						class="p-button-success p-button-raised"
 						(click)="openClassroomFromJob(job.id)"
 					></button>
-					<button pButton class="p-button-warning" type="button" icon="pi pi-pencil" iconPos="left"></button>
 					<button
 						pButton
-						class="p-button-danger"
+						class="p-button-warning p-button-raised"
+						type="button"
+						icon="pi pi-pencil"
+						iconPos="left"
+					></button>
+					<button
+						pButton
+						class="p-button-danger p-button-raised p-button-rounded"
 						type="button"
 						icon="pi pi-times-circle"
 						iconPos="left"

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ProfileService } from "../services/profile.service";
+import { MenuItem } from "primeng/api";
 
 interface PersonalInfo {
 	fullName: string;
@@ -26,6 +27,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 	personalInfo: PersonalInfo;
 
 	subscriptions: Subscription[];
+	menuItems: MenuItem[];
 	constructor(private profileService: ProfileService) {
 		this.personalInfo = {
 			fullName: "",
@@ -35,6 +37,13 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 			cardId: "",
 			experiences: [],
 		};
+		this.menuItems = [
+			{
+				label: "Edit",
+				icon: "pi pi-fw pi-pencil",
+				command: () => this.openProfileEditForm(),
+			},
+		];
 		this.subscriptions = [];
 	}
 	ngOnDestroy(): void {
@@ -60,5 +69,9 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 				});
 			})
 		);
+	}
+
+	openProfileEditForm(): void {
+		console.log("hello");
 	}
 }
