@@ -1,10 +1,13 @@
+$list-border: 15px;
+$box-backround-color: #f4f4f4;
+
 .parent-box {
 	padding: 10px;
 
 	.application-list {
-		background-color: #f4f4f4;
-		border-radius: 10px;
-		padding: 10px;
+		background-color: $box-backround-color;
+		border-radius: $list-border;
+		padding: $list-border;
 
 		.spacer {
 			flex: 1 1 auto;
@@ -12,6 +15,12 @@
 		.single-application {
 			margin-top: 10px;
 		}
+	}
+
+	.application-detail {
+		background-color: $box-backround-color;
+		border-radius: $list-border;
+		padding: $list-border;
 	}
 }
 
