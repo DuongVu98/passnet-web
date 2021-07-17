@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { RecruiterApiService } from "../services/recruiter-api.service";
 
 interface OwnedJobView {
+	id: string;
 	title: string;
 	courseName: string;
 	semester: string;
@@ -25,6 +26,7 @@ export class OwnedJobsComponent implements OnInit {
 		this.recruiterService.getOwnedPostedJobs().subscribe((result) => {
 			result.forEach((jobView) => {
 				this.ownedJobList.push({
+					id: jobView.id,
 					title: jobView.jobTitle,
 					courseName: jobView.courseName,
 					semester: jobView.semester,

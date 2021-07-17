@@ -1,12 +1,15 @@
 $list-border: 15px;
-$box-backround-color: #ecf0f1;
+$box-backround-color: #cae6fc;
+$box-radius: 10px;
 
 .parent-box {
-	.application-list {
+	.single-box {
+		margin: 10px;
 		background-color: $box-backround-color;
-		border-radius: $list-border;
+		border-radius: $box-radius;
 		padding: $list-border;
-
+	}
+	.application-list {
 		mat-toolbar {
 			background-color: $box-backround-color;
 		}
@@ -30,17 +33,10 @@ $box-backround-color: #ecf0f1;
 			height: 5px;
 		}
 	}
-
-	.application-detail {
-		background-color: $box-backround-color;
-		border-radius: $list-border;
-		padding: $list-border;
-	}
 }
 
 .application-list,
 .application-detail {
-	width: 100%;
 	height: 100%;
 }
 .p-scrollpanel {

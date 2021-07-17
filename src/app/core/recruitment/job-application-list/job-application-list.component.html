@@ -1,7 +1,13 @@
 <div class="parent-box">
+	<div class="single-box job-detail-box p-shadow-3">
+		<h1>{{jobDetail.jobTitle}}</h1>
+		<p>{{jobDetail.courseName}}</p>
+		<p>{{jobDetail.requirement}}</p>
+		<p>{{jobDetail.semester}}</p>
+	</div>
 	<div class="p-grid">
 		<div class="p-col-5">
-			<div class="application-list">
+			<div class="single-box application-list p-shadow-3">
 				<mat-toolbar>
 					<span>Application list</span>
 					<span class="spacer"></span>
@@ -28,7 +34,7 @@
 			</div>
 		</div>
 		<div class="p-col-7">
-			<div class="application-detail" [hidden]="noApplicationSelected">
+			<div class="single-box application-detail p-shadow-3" [hidden]="noApplicationSelected">
 				<h2>{{ selectedJobApplication.candidateName }}</h2>
 				<p>{{ selectedJobApplication.letter }}</p>
 				<p-button label="Accept" (click)="acceptApplication(selectedJobApplication.id)"></p-button>

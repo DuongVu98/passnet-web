@@ -20,6 +20,16 @@ export class JobViewDto {
 	department: string;
 	appliedAmount: number;
 }
+
+export class JobDetailViewDto {
+	jobTitle: string;
+	teacherId: string;
+	courseName: string;
+	content: string;
+	requirement: string;
+	semester: string;
+}
+
 export class JobViewListDto {
 	litePostedJobs: JobViewDto[];
 }
