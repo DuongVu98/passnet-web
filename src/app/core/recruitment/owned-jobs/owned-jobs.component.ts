@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { RecruiterApiService } from "../services/recruiter-api.service";
 
 interface OwnedJobView {
@@ -16,7 +17,7 @@ interface OwnedJobView {
 })
 export class OwnedJobsComponent implements OnInit {
 	ownedJobList: OwnedJobView[];
-	constructor(private recruiterService: RecruiterApiService) {
+	constructor(private recruiterService: RecruiterApiService, private router: Router) {
 		this.ownedJobList = [];
 	}
 
@@ -33,4 +34,10 @@ export class OwnedJobsComponent implements OnInit {
 			});
 		});
 	}
+
+	openJobApplicationList(jobId: string): void {
+		this.router.navigate(["/recruitment/applications-list"], { queryParams: { jobId: jobId } });
+	}
+
+	openClassroomFromJob(jobId: string): void {}
 }

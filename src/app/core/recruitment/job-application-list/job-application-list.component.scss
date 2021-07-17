@@ -1,0 +1,62 @@
+$list-border: 15px;
+$box-backround-color: #ecf0f1;
+
+.parent-box {
+	.application-list {
+		background-color: $box-backround-color;
+		border-radius: $list-border;
+		padding: $list-border;
+
+		mat-toolbar {
+			background-color: $box-backround-color;
+		}
+		.spacer {
+			flex: 1 1 auto;
+		}
+		.single-application {
+			margin-top: 10px;
+
+			.state-tag {
+				font-style: italic;
+			}
+		}
+		.footer-pending {
+			background-color: #007ad9;
+		}
+		.footer-accepted {
+			background-color: #2ecc71;
+		}
+		.footer-height {
+			height: 5px;
+		}
+	}
+
+	.application-detail {
+		background-color: $box-backround-color;
+		border-radius: $list-border;
+		padding: $list-border;
+	}
+}
+
+.application-list,
+.application-detail {
+	width: 100%;
+	height: 100%;
+}
+.p-scrollpanel {
+	&.scroll-custom {
+		.p-scrollpanel-wrapper {
+			border-right: 9px solid var(--layer-1);
+		}
+
+		.p-scrollpanel-bar {
+			background-color: var(--primary-color);
+			opacity: 1;
+			transition: background-color 0.2s;
+
+			&:hover {
+				background-color: #007ad9;
+			}
+		}
+	}
+}

@@ -14,6 +14,7 @@ import { recruitmentRoutes } from "./recruitment.routes";
 import { OwnedJobsComponent } from "./owned-jobs/owned-jobs.component";
 import { NgxsModule } from "@ngxs/store";
 import { RecruitmentState } from "./store/recruitment.state";
+import { JobApplicationListComponent } from './job-application-list/job-application-list.component';
 
 @NgModule({
 	declarations: [
@@ -23,6 +24,7 @@ import { RecruitmentState } from "./store/recruitment.state";
 		JobsBrowserComponent,
 		PersonalInfoComponent,
 		OwnedJobsComponent,
+		JobApplicationListComponent,
 	],
 	imports: [
 		CommonModule,
