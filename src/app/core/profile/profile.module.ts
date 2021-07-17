@@ -13,6 +13,7 @@ import { NgxsModule } from "@ngxs/store";
 import { ProfileState } from "./store/profile.state";
 import { BasicEditComponent } from "./basic-edit/basic-edit.component";
 import { AddExpFormComponent } from './add-exp-form/add-exp-form.component';
+import { EditExpFormComponent } from './edit-exp-form/edit-exp-form.component';
 
 @NgModule({
 	declarations: [
@@ -24,6 +25,7 @@ import { AddExpFormComponent } from './add-exp-form/add-exp-form.component';
 		PersonalInfoComponent,
 		BasicEditComponent,
 		AddExpFormComponent,
+		EditExpFormComponent,
 	],
 	imports: [
 		CommonModule,

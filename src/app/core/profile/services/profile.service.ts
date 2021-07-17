@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { ProfileApiService } from "src/app/common/api/profile-api.service";
 import {
 	AddExperienceRequest,
+	EditExperienceRequest,
 	ExperienceDto,
 	ProfileDto,
 	UpdateBasicInfoRequest,
@@ -37,11 +38,19 @@ export class ProfileService {
 		return this.profileApiService.getExperienceByProfile(this.profileId);
 	}
 
+	getExperienceById(expId: string): Observable<ExperienceDto> {
+		return this.profileApiService.getExperienceById(expId, this.profileId);
+	}
+
 	updateBasicInfo(updateRequest: UpdateBasicInfoRequest): void {
 		this.profileApiService.updateProfileBasicInfo(updateRequest, this.profileId).subscribe();
 	}
 
 	addExperience(addExperienceForm: AddExperienceRequest): Observable<any> {
 		return this.profileApiService.addExperience(addExperienceForm, this.profileId);
+	}
+
+	editExperience(editExpForm: EditExperienceRequest): Observable<any> {
+		return this.profileApiService.editExperience(editExpForm, this.profileId);
 	}
 }

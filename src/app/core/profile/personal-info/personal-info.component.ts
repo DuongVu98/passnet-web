@@ -6,6 +6,9 @@ import { BasicEditComponent } from "../basic-edit/basic-edit.component";
 import { Store } from "@ngxs/store";
 import { SetStudentProfileAction, SetTeacherProfileAction } from "../store/profile.action";
 import { AddExpFormComponent } from "../add-exp-form/add-exp-form.component";
+import { EditExpFormComponent } from "../edit-exp-form/edit-exp-form.component";
+import { MatDialog } from "@angular/material/dialog";
+
 interface PersonalInfo {
 	fullName: string;
 	username: string;
@@ -34,15 +37,20 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 	subscriptions: Subscription[];
 	menuItems: MenuItem[];
 	editProfileDialog: boolean;
-	addExperienceVisible: boolean;
+	addExpVisible: boolean;
+	editExpVisible: boolean;
+	selectedEditExperienceId: string;
 
 	@ViewChild(BasicEditComponent)
 	profileEditComponent: BasicEditComponent;
 
 	@ViewChild(AddExpFormComponent)
-	addExpForm: AddExpFormComponent;
+	addExpFormCmp: AddExpFormComponent;
 
-	constructor(private profileService: ProfileService, private store: Store) {
+	// @ViewChild(EditExpFormComponent)
+	// editExpFormCmp: EditExpFormComponent;
+
+	constructor(private profileService: ProfileService, private store: Store, private dialog: MatDialog) {
 		this.personalInfo = {
 			fullName: "",
 			username: "",
@@ -60,7 +68,9 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 			},
 		];
 		this.editProfileDialog = false;
-		this.addExperienceVisible = false;
+		this.addExpVisible = false;
+		this.editExpVisible = false;
+		this.selectedEditExperienceId = "";
 		this.subscriptions = [];
 	}
 	ngOnDestroy(): void {
@@ -102,7 +112,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 			this.profileService.getExperiencesByProfile().subscribe((result) => {
 				result.forEach((r) => {
 					this.personalInfo.experiences.push({
-						id: "",
+						id: r.experienceId,
 						course: r.course,
 						semester: r.semester,
 						description: r.description,
@@ -121,12 +131,17 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 		this.profileEditComponent.submitUpdate();
 	}
 	openAddExpForm() {
-		this.addExperienceVisible = true;
+		this.addExpVisible = true;
 	}
 	closeAddExpForm() {
-		this.addExpForm.submit().subscribe(() => {
-			this.addExperienceVisible = false;
+		this.addExpFormCmp.submit().subscribe(() => {
+			this.addExpVisible = false;
 		});
 	}
-	openEditForm(expId: string) {}
+	openEditForm(expId: string) {
+		console.log(`debuf expId in open form -> ${expId}`);
+		this.dialog.open(EditExpFormComponent, {
+			data: { expId: expId },
+		});
+	}
 }
