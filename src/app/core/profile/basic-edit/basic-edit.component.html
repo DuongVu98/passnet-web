@@ -1,0 +1,42 @@
+<div>
+	<form [formGroup]="profileEditForm">
+		<div class="p-grid p-fluid">
+			<div class="p-col-12 p-md-6">
+				<div class="p-inputgroup">
+					<span class="p-inputgroup-addon">
+						<mat-icon>contact_page</mat-icon>
+					</span>
+					<input type="text" pInputText placeholder="Fullname" formControlName="fullName">
+				</div>
+			</div>
+			<div class="p-col-12 p-md-6">
+				<div class="p-inputgroup">
+					<span class="p-inputgroup-addon">
+						<mat-icon>email</mat-icon>
+					</span>
+					<input type="text" pInputText placeholder="Email" formControlName="email">
+				</div>
+			</div>
+			<div class="p-col-12 p-md-6">
+				<div class="p-inputgroup">
+					<span class="p-inputgroup-addon">
+						<mat-icon>phone</mat-icon>
+					</span>
+					<input type="text" pInputText placeholder="Phone" formControlName="phoneNumber">
+				</div>
+			</div>
+			<div class="p-col-12 p-md-6" *ngIf="isStudent()">
+				<div class="p-inputgroup">
+					<span class="p-inputgroup-addon">
+						<mat-icon>badge</mat-icon>
+					</span>
+					<input type="text" pInputText placeholder="Card ID" formControlName="cardId">
+				</div>
+			</div>
+			<div class="p-field p-col-12">
+				<label for="overview">Overview</label>
+				<textarea id="overview" type="text" rows="4" pInputTextarea formControlName="overview"></textarea>
+			</div>
+		</div>
+	</form>
+</div>

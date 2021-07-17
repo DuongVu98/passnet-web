@@ -40,6 +40,14 @@ $avatar-picture-left: 100px;
 				left: $avatar-picture-left + $avatar-picture-width;
 			}
 		}
+
+		.profile-overview {
+			margin-top: 20px;
+			margin-bottom: 20px;
+			display: flex;
+			justify-content: center;
+			font-style: italic;
+		}
 	}
 }
 

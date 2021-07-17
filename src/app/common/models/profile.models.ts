@@ -13,9 +13,13 @@ export class ProfileDto {
 	fullName: string;
 	email: string;
 	phoneNumber: string;
-	overview: string;
 	classroomIds: string[];
-	experienceIds: string[];
+	student?: {
+		overview: string;
+		experienceIds: string[];
+		cardId: string;
+	};
+	teacher?: any;
 }
 
 export class ExperienceDto {
@@ -26,4 +30,12 @@ export class ExperienceDto {
 	course: string;
 	semester: string;
 	description: string;
+}
+
+export class UpdateBasicInfoRequest {
+	fullName: string;
+	email: string;
+	phoneNumber: string;
+	overview: string;
+	cardId?: string;
 }

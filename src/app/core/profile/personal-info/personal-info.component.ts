@@ -1,12 +1,16 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ProfileService } from "../services/profile.service";
 import { MenuItem } from "primeng/api";
+import { BasicEditComponent } from "../basic-edit/basic-edit.component";
+import { Store } from "@ngxs/store";
+import { SetStudentProfileAction, SetTeacherProfileAction } from "../store/profile.action";
 
 interface PersonalInfo {
 	fullName: string;
 	username: string;
 	email: string;
+	phoneNumber: string;
 	univerity: string;
 	cardId: string;
 	experiences: Experience[];
@@ -28,11 +32,17 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 
 	subscriptions: Subscription[];
 	menuItems: MenuItem[];
-	constructor(private profileService: ProfileService) {
+	editProfileDialog: boolean;
+
+	@ViewChild(BasicEditComponent)
+	profileEditComponent: BasicEditComponent;
+
+	constructor(private profileService: ProfileService, private store: Store) {
 		this.personalInfo = {
 			fullName: "",
 			username: "",
 			email: "",
+			phoneNumber: "",
 			univerity: "",
 			cardId: "",
 			experiences: [],
@@ -44,6 +54,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 				command: () => this.openProfileEditForm(),
 			},
 		];
+		this.editProfileDialog = false;
 		this.subscriptions = [];
 	}
 	ngOnDestroy(): void {
@@ -58,6 +69,29 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 				this.personalInfo.fullName = result.fullName;
 				this.personalInfo.username = result.username;
 				this.personalInfo.email = result.email;
+				this.personalInfo.phoneNumber = result.phoneNumber;
+
+				if (result.student != null) {
+					this.personalInfo.cardId = result.student.cardId;
+					this.store.dispatch(
+						new SetStudentProfileAction({
+							fullName: result.fullName,
+							email: result.email,
+							phoneNumber: result.phoneNumber,
+							overview: result.student.overview,
+							cardId: result.student.cardId,
+						})
+					);
+				} else {
+					this.store.dispatch(
+						new SetTeacherProfileAction({
+							fullName: result.fullName,
+							email: result.email,
+							phoneNumber: result.phoneNumber,
+							overview: result.student.overview,
+						})
+					);
+				}
 			}),
 			this.profileService.getExperiencesByProfile().subscribe((result) => {
 				result.forEach((r) => {
@@ -72,6 +106,11 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 	}
 
 	openProfileEditForm(): void {
-		console.log("hello");
+		this.editProfileDialog = true;
+	}
+
+	submitAndCloseDialog(): void {
+		this.editProfileDialog = false;
+		this.profileEditComponent.submitUpdate();
 	}
 }

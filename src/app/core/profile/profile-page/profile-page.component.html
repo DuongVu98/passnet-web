@@ -3,23 +3,16 @@
 		<div class="profile-card">
 			<mat-card>
 				<div class="profile-representation">
-					<img
-						class="profile-background"
-						mat-card-image
-						src="https://images7.alphacoders.com/110/1102604.jpg"
-						alt="Photo of a Shiba Inu"
-					/>
-					<img
-						class="profile-avatar"
-						mat-card-image
-						src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-						alt="Photo of a Shiba Inu"
-						alt="Photo of a Shiba Inu"
-					/>
+					<img class="profile-background" mat-card-image src="https://images7.alphacoders.com/110/1102604.jpg"
+						alt="Photo of a Shiba Inu" />
+					<img class="profile-avatar" mat-card-image
+						src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"
+						alt="Photo of a Shiba Inu" />
 					<h2 class="profile-name">{{ fullName }}</h2>
 					<div class="white-space"></div>
 				</div>
 				<mat-card-content>
+					<div class="profile-overview">{{overview}}</div>
 					<p-tabView (onChange)="handleChange($event)">
 						<p-tabPanel [selected]="tabViewIndex == 0">
 							<ng-template pTemplate="header">
