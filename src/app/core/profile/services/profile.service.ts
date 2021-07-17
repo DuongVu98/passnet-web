@@ -2,7 +2,12 @@ import { Injectable } from "@angular/core";
 import { Select } from "@ngxs/store";
 import { Observable } from "rxjs";
 import { ProfileApiService } from "src/app/common/api/profile-api.service";
-import { ExperienceDto, ProfileDto, UpdateBasicInfoRequest } from "src/app/common/models/profile.models";
+import {
+	AddExperienceRequest,
+	ExperienceDto,
+	ProfileDto,
+	UpdateBasicInfoRequest,
+} from "src/app/common/models/profile.models";
 import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
 
 @Injectable({
@@ -34,5 +39,9 @@ export class ProfileService {
 
 	updateBasicInfo(updateRequest: UpdateBasicInfoRequest): void {
 		this.profileApiService.updateProfileBasicInfo(updateRequest, this.profileId).subscribe();
+	}
+
+	addExperience(addExperienceForm: AddExperienceRequest): Observable<any> {
+		return this.profileApiService.addExperience(addExperienceForm, this.profileId);
 	}
 }

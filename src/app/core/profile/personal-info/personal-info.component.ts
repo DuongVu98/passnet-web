@@ -5,7 +5,7 @@ import { MenuItem } from "primeng/api";
 import { BasicEditComponent } from "../basic-edit/basic-edit.component";
 import { Store } from "@ngxs/store";
 import { SetStudentProfileAction, SetTeacherProfileAction } from "../store/profile.action";
-
+import { AddExpFormComponent } from "../add-exp-form/add-exp-form.component";
 interface PersonalInfo {
 	fullName: string;
 	username: string;
@@ -17,6 +17,7 @@ interface PersonalInfo {
 }
 
 interface Experience {
+	id: string;
 	course: string;
 	semester: string;
 	description: string;
@@ -33,9 +34,13 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 	subscriptions: Subscription[];
 	menuItems: MenuItem[];
 	editProfileDialog: boolean;
+	addExperienceVisible: boolean;
 
 	@ViewChild(BasicEditComponent)
 	profileEditComponent: BasicEditComponent;
+
+	@ViewChild(AddExpFormComponent)
+	addExpForm: AddExpFormComponent;
 
 	constructor(private profileService: ProfileService, private store: Store) {
 		this.personalInfo = {
@@ -55,6 +60,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 			},
 		];
 		this.editProfileDialog = false;
+		this.addExperienceVisible = false;
 		this.subscriptions = [];
 	}
 	ngOnDestroy(): void {
@@ -96,6 +102,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 			this.profileService.getExperiencesByProfile().subscribe((result) => {
 				result.forEach((r) => {
 					this.personalInfo.experiences.push({
+						id: "",
 						course: r.course,
 						semester: r.semester,
 						description: r.description,
@@ -113,4 +120,13 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 		this.editProfileDialog = false;
 		this.profileEditComponent.submitUpdate();
 	}
+	openAddExpForm() {
+		this.addExperienceVisible = true;
+	}
+	closeAddExpForm() {
+		this.addExpForm.submit().subscribe(() => {
+			this.addExperienceVisible = false;
+		});
+	}
+	openEditForm(expId: string) {}
 }

@@ -39,3 +39,9 @@ export class UpdateBasicInfoRequest {
 	overview: string;
 	cardId?: string;
 }
+
+export class AddExperienceRequest {
+	course: string;
+	semester: string;
+	description: string;
+}
