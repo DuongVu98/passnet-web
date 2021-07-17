@@ -11,6 +11,9 @@ import { JobsBrowserComponent } from "./jobs-browser/jobs-browser.component";
 import { PersonalInfoComponent } from "./personal-info/personal-info.component";
 import { RouterModule } from "@angular/router";
 import { recruitmentRoutes } from "./recruitment.routes";
+import { OwnedJobsComponent } from "./owned-jobs/owned-jobs.component";
+import { NgxsModule } from "@ngxs/store";
+import { RecruitmentState } from "./store/recruitment.state";
 
 @NgModule({
 	declarations: [
@@ -19,8 +22,14 @@ import { recruitmentRoutes } from "./recruitment.routes";
 		ApplicationFormComponent,
 		JobsBrowserComponent,
 		PersonalInfoComponent,
+		OwnedJobsComponent,
 	],
-	imports: [CommonModule, BaseCommonModule, RouterModule.forChild(recruitmentRoutes)],
+	imports: [
+		CommonModule,
+		BaseCommonModule,
+		RouterModule.forChild(recruitmentRoutes),
+		NgxsModule.forFeature([RecruitmentState]),
+	],
 	exports: [RecruitmentPageComponent, JobDetailComponent],
 	providers: [RecruiterApiService, ApplicatorService],
 })

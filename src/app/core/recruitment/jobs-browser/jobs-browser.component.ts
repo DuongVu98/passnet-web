@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { ApplicationFormComponent } from "../application-form/application-form.component";
-import { ApplicatorService } from "../services/applicator-api.service";
 import { RecruiterApiService } from "../services/recruiter-api.service";
 
 @Component({

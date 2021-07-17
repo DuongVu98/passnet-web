@@ -1,17 +1,29 @@
 import { Injectable } from "@angular/core";
 import { RecruitmentApiService } from "../../../common/api/recruitment-api.service";
 import { Observable } from "rxjs";
+import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
+import { Select } from "@ngxs/store";
+import { JobViewDto } from "src/app/common/models/recruitment.models";
 
 @Injectable({
 	providedIn: "root",
 })
 export class RecruiterApiService {
-	constructor(private recruitmentApiService: RecruitmentApiService) {}
+	@Select(AuthState.getLoggedUser)
+	loggedUser$: Observable<LoggedUserStateSelection>;
+
+	profileId: string;
+
+	constructor(private recruitmentApiService: RecruitmentApiService) {
+		this.loggedUser$.subscribe((state) => {
+			this.profileId = state.user.profileId;
+		});
+	}
 
 	getAllRecruiterPostedJobs(): Observable<any> {
 		return this.recruitmentApiService.getAllJobs();
 	}
-	getTeacherProfile(teacherId: string): Observable<any> {
-		return null;
+	getOwnedPostedJobs(): Observable<JobViewDto[]> {
+		return this.recruitmentApiService.getOwnedJobs(this.profileId);
 	}
 }

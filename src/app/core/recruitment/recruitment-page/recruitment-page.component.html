@@ -1,7 +1,27 @@
-<div>
+<div class="parent-box">
 	<div class="main-box">
 		<div class="p-grid">
-			<div class="p-col-2">search</div>
+			<div class="p-col-2">
+				<div class="recruitment-menu">
+					<mat-list>
+						<div [ngClass]="{'menu-item': true, 'menu-item-active': activeItem==='browser'}"
+							[routerLink]="['/recruitment/browser']" (click)="setActive('browser')">
+							<mat-list-item>
+								<mat-icon mat-list-icon>folder</mat-icon>
+								<div mat-line>Browser</div>
+							</mat-list-item>
+						</div>
+						<div [ngClass]="{'menu-item': true, 'menu-item-active': activeItem==='owned-jobs'}"
+							[routerLink]="['/recruitment/owned-jobs']" (click)="setActive('owned-jobs')">
+							<mat-list-item mat-list-icon>
+								<mat-icon mat-list-icon>note</mat-icon>
+								<div mat-line>Your jobs</div>
+							</mat-list-item>
+						</div>
+					</mat-list>
+				</div>
+
+			</div>
 
 			<div class="p-col-8">
 				<div class="jobs-browser">

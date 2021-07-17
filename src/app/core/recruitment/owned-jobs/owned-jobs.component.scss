@@ -1,0 +1,15 @@
+.action-buttons {
+	display: flex;
+	justify-content: right;
+}
+.single-job-card {
+	margin-bottom: 40px;
+
+	.buttons-area {
+		height: 40px;
+
+		p-button {
+			padding-right: 5px;
+		}
+	}
+}

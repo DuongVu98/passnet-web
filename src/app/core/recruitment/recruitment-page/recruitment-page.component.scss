@@ -1,4 +1,4 @@
-* {
+.parent-box {
 	background-color: #f4f4f4;
 }
 
@@ -7,6 +7,25 @@
 	padding-right: 100px;
 	padding-left: 100px;
 
+	.recruitment-menu {
+		margin: 20px;
+
+		.menu-item {
+			border-radius: 10px;
+			margin-bottom: 10px;
+			cursor: pointer;
+			transition: 0.3s;
+			&:hover {
+				background-color: #bbdefb;
+			}
+		}
+		.menu-item-active {
+			background-color: #90caf9;
+			&:hover {
+				background-color: #90caf9;
+			}
+		}
+	}
 	.jobs-browser {
 		margin: 20px;
 		height: 90vh;
