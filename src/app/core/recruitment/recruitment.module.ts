@@ -15,7 +15,7 @@ import { OwnedJobsComponent } from "./owned-jobs/owned-jobs.component";
 import { NgxsModule } from "@ngxs/store";
 import { RecruitmentState } from "./store/recruitment.state";
 import { JobApplicationListComponent } from "./job-application-list/job-application-list.component";
-import { AddJobFormComponent } from './add-job-form/add-job-form.component';
+import { AddJobFormComponent } from "./add-job-form/add-job-form.component";
 
 @NgModule({
 	declarations: [
