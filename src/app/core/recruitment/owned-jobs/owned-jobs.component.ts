@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { RecruiterApiService } from "../services/recruiter-api.service";
 
 interface OwnedJobView {
+	id: string;
 	title: string;
 	courseName: string;
 	semester: string;
@@ -16,7 +18,7 @@ interface OwnedJobView {
 })
 export class OwnedJobsComponent implements OnInit {
 	ownedJobList: OwnedJobView[];
-	constructor(private recruiterService: RecruiterApiService) {
+	constructor(private recruiterService: RecruiterApiService, private router: Router) {
 		this.ownedJobList = [];
 	}
 
@@ -24,6 +26,7 @@ export class OwnedJobsComponent implements OnInit {
 		this.recruiterService.getOwnedPostedJobs().subscribe((result) => {
 			result.forEach((jobView) => {
 				this.ownedJobList.push({
+					id: jobView.id,
 					title: jobView.jobTitle,
 					courseName: jobView.courseName,
 					semester: jobView.semester,
@@ -33,4 +36,10 @@ export class OwnedJobsComponent implements OnInit {
 			});
 		});
 	}
+
+	openJobApplicationList(jobId: string): void {
+		this.router.navigate(["/recruitment/applications-list"], { queryParams: { jobId: jobId } });
+	}
+
+	openClassroomFromJob(jobId: string): void {}
 }
