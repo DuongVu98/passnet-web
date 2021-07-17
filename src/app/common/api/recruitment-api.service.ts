@@ -7,6 +7,7 @@ import {
 	ApplicationFormDto,
 	JobApplicationDto,
 	JobApplicationListDto,
+	JobDetailViewDto,
 	JobViewDto,
 	JobViewListDto,
 } from "../models/recruitment.models";
@@ -42,8 +43,8 @@ export class RecruitmentApiService {
 		});
 	}
 
-	getJobDetail(jobId: string): Observable<any> {
-		return this.httpClient.get<any>(`${this.recruitmentApiServer}/query/job-view`, {
+	getJobDetail(jobId: string): Observable<JobDetailViewDto> {
+		return this.httpClient.get<JobDetailViewDto>(`${this.recruitmentApiServer}/query/job-view`, {
 			params: {
 				jobId,
 			},

@@ -10,7 +10,7 @@
 							(click)="setActive('browser')"
 						>
 							<mat-list-item>
-								<mat-icon mat-list-icon>folder</mat-icon>
+								<mat-icon mat-list-icon>web</mat-icon>
 								<div mat-line>Browser</div>
 							</mat-list-item>
 						</div>
@@ -20,8 +20,14 @@
 							(click)="setActive('owned-jobs')"
 						>
 							<mat-list-item mat-list-icon>
-								<mat-icon mat-list-icon>note</mat-icon>
+								<mat-icon mat-list-icon>work_outline</mat-icon>
 								<div mat-line>Your jobs</div>
+							</mat-list-item>
+						</div>
+						<div [ngClass]="{ 'menu-item': true, 'menu-item-active': activeItem === 'saved-jobs' }">
+							<mat-list-item mat-list-icon>
+								<mat-icon mat-list-icon>grade</mat-icon>
+								<div mat-line>Saved jobs</div>
 							</mat-list-item>
 						</div>
 					</mat-list>

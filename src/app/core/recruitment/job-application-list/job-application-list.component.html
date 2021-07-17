@@ -1,0 +1,46 @@
+<div class="parent-box">
+	<div class="single-box job-detail-box p-shadow-3">
+		<h1>{{ jobDetail.jobTitle }}</h1>
+		<p>{{ jobDetail.courseName }}</p>
+		<p>{{ jobDetail.requirement }}</p>
+		<p>{{ jobDetail.semester }}</p>
+	</div>
+	<div class="p-grid">
+		<div class="p-col-5">
+			<div class="single-box application-list p-shadow-3">
+				<mat-toolbar>
+					<span>Application list</span>
+					<span class="spacer"></span>
+					<button mat-icon-button aria-label="Example icon-button with menu icon">
+						<mat-icon>more_horiz</mat-icon>
+					</button>
+				</mat-toolbar>
+				<p-scrollPanel [style]="{ width: '100%', height: '100%' }" styleClass="scroll-custom">
+					<div *ngFor="let jobApplication of jobApplicationList" class="single-application">
+						<mat-card matRipple (click)="selectJobApplicationDetail(jobApplication.id)">
+							<h2>{{ jobApplication.candidateName }}</h2>
+							<mat-card-subtitle>
+								<div class="state-tag">{{ jobApplication.state }}</div>
+							</mat-card-subtitle>
+							<mat-card-footer
+								[ngClass]="{
+									'footer-height': true,
+									'footer-pending': jobApplication.state === 'PENDING',
+									'foot-accepted': jobApplication.state === 'ACCEPTED'
+								}"
+							>
+							</mat-card-footer>
+						</mat-card>
+					</div>
+				</p-scrollPanel>
+			</div>
+		</div>
+		<div class="p-col-7">
+			<div class="single-box application-detail p-shadow-3" [hidden]="noApplicationSelected">
+				<h2>{{ selectedJobApplication.candidateName }}</h2>
+				<p>{{ selectedJobApplication.letter }}</p>
+				<p-button label="Accept" (click)="acceptApplication(selectedJobApplication.id)"></p-button>
+			</div>
+		</div>
+	</div>
+</div>
