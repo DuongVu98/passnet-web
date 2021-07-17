@@ -20,6 +20,7 @@
 					<div class="white-space"></div>
 				</div>
 				<mat-card-content>
+					<div class="profile-overview">{{ overview }}</div>
 					<p-tabView (onChange)="handleChange($event)">
 						<p-tabPanel [selected]="tabViewIndex == 0">
 							<ng-template pTemplate="header">

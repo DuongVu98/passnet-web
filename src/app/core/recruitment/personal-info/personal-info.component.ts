@@ -1,9 +1,14 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Select } from "@ngxs/store";
+import { Observable, Subscription } from "rxjs";
+import { ProfileSelection, ProfileState } from "../../profile/store/profile.state";
 import { PersonalInfoService } from "../services/personal-info.service";
 
 interface ProfileView {
 	fullName: string;
+	univerity: string;
+	cardId?: string;
+	experiences?: number;
 }
 
 @Component({
@@ -13,20 +18,29 @@ interface ProfileView {
 })
 export class PersonalInfoComponent implements OnInit, OnDestroy {
 	profileView: ProfileView;
+	subcriptions: Subscription[];
 
-	subcription: Subscription;
+	@Select(ProfileState.getProfile)
+	profile$: Observable<ProfileSelection>;
 
 	constructor(private personalInfoService: PersonalInfoService) {
-		this.profileView = { fullName: "" };
+		this.profileView = { fullName: "", univerity: "" };
+		this.subcriptions = [];
 	}
 
 	ngOnInit(): void {
-		this.subcription = this.personalInfoService.getPersonalInfo().subscribe((profile) => {
-			this.profileView.fullName = profile.fullName;
-		});
+		this.subcriptions.push(
+			this.profile$.subscribe((state) => {
+				this.profileView.fullName = state.profile.fullName;
+				this.profileView.cardId = state.profile.cardId || "";
+			}),
+			this.personalInfoService.getPersonalInfo().subscribe((result) => {
+				this.profileView.experiences = result.student.experienceIds.length | 0;
+			})
+		);
 	}
 
 	ngOnDestroy(): void {
-		this.subcription.unsubscribe();
+		this.subcriptions.forEach((sub) => sub.unsubscribe());
 	}
 }
