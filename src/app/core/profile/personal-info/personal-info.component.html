@@ -36,18 +36,32 @@
 		<mat-divider></mat-divider>
 		<div mat-subheader>Experiences</div>
 		<div class="experience-list">
+			<div class="add-button">
+				<button mat-flat-button color="accent" (click)="openAddExpForm()">
+					Add <mat-icon>post_add</mat-icon>
+				</button>
+			</div>
 			<mat-accordion class="example-headers-align" multi>
-				<mat-expansion-panel *ngFor="let ex of personalInfo.experiences">
+				<mat-expansion-panel *ngFor="let exp of personalInfo.experiences">
 					<mat-expansion-panel-header>
-						<mat-panel-title style="color: #2286c3">{{ ex.course }}</mat-panel-title>
-						<mat-panel-description style="color: #2286c3">
-							{{ ex.semester }}
+						<mat-panel-title>{{ exp.course }}</mat-panel-title>
+						<mat-panel-description>
+							{{ exp.semester }}
 							<mat-icon>account_circle</mat-icon>
 						</mat-panel-description>
 					</mat-expansion-panel-header>
-					<div mat-line>{{ ex.description }}</div>
+					<div mat-line>{{ exp.description }}</div>
+					<mat-action-row>
+						<button mat-button color="warn" (click)="openEditForm(exp.id)">Edit</button>
+					</mat-action-row>
 				</mat-expansion-panel>
 			</mat-accordion>
+			<p-dialog header="Add experience" [(visible)]="addExpVisible" [baseZIndex]="10000">
+				<profile-add-exp-form></profile-add-exp-form>
+				<ng-template pTemplate="footer">
+					<button mat-flat-button color="accent" (click)="closeAddExpForm()">Submit</button>
+				</ng-template>
+			</p-dialog>
 		</div>
 	</mat-list>
 </div>

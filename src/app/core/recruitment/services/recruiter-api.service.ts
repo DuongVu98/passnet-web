@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
 import { Select } from "@ngxs/store";
 import { JobViewDto } from "src/app/common/models/recruitment.models";
+import { JobFormDto } from "src/app/common/models/profile.models";
 
 @Injectable({
 	providedIn: "root",
@@ -25,5 +26,9 @@ export class RecruiterApiService {
 	}
 	getOwnedPostedJobs(): Observable<JobViewDto[]> {
 		return this.recruitmentApiService.getOwnedJobs(this.profileId);
+	}
+
+	addNewJob(jobFormDto: JobFormDto): Observable<any> {
+		return this.recruitmentApiService.postJob(jobFormDto, this.profileId);
 	}
 }

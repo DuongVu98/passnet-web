@@ -47,7 +47,6 @@ export class AppComponent implements OnInit {
 
 	async ngOnInit() {
 		this.isAuthenticated = await this.oktaAuth.isAuthenticated();
-		console.log(`isAuthenticated: ${this.isAuthenticated}`);
 	}
 
 	async logout() {

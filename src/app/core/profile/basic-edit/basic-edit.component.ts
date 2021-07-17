@@ -38,13 +38,9 @@ export class BasicEditComponent implements OnInit {
 			this.profileEditForm.patchValue({ overview: state.profile.overview });
 			this.profileEditForm.patchValue({ phoneNumber: state.profile.phoneNumber });
 			if (state.profile.type === "STUDENT") {
-				console.log(`this is studentttt -> ${state.profile.cardId}`);
 				this.profileEditForm.patchValue({ cardId: state.profile.cardId });
 			}
 		});
-		setInterval(() => {
-			console.log(this.profileEditForm.value.cardId);
-		}, 500);
 	}
 
 	submitUpdate() {

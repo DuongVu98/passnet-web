@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
 import { RecruiterApiService } from "../services/recruiter-api.service";
 
 interface OwnedJobView {
@@ -18,7 +20,7 @@ interface OwnedJobView {
 })
 export class OwnedJobsComponent implements OnInit {
 	ownedJobList: OwnedJobView[];
-	constructor(private recruiterService: RecruiterApiService, private router: Router) {
+	constructor(private recruiterService: RecruiterApiService, private router: Router, private matDialog: MatDialog) {
 		this.ownedJobList = [];
 	}
 
@@ -34,6 +36,12 @@ export class OwnedJobsComponent implements OnInit {
 					postedDate: "",
 				});
 			});
+		});
+	}
+
+	openAddJobFormModal(): void {
+		const dialogRef = this.matDialog.open(AddJobFormComponent, {
+			width: "60%",
 		});
 	}
 

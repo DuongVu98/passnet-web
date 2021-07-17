@@ -5,9 +5,13 @@
 	border-radius: 20px;
 }
 .experience-list {
+	.add-button {
+		margin-bottom: 15px;
+		display: flex;
+		justify-content: right;
+	}
 	mat-expansion-panel {
-		background-color: #9be7ff;
-		color: #2286c3;
+		background-color: #dfe6e9;
 	}
 	.example-headers-align .mat-expansion-panel-header-description {
 		right: 40px;

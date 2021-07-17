@@ -2,7 +2,13 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { ExperienceDto, ProfileDto, UpdateBasicInfoRequest } from "../models/profile.models";
+import {
+	AddExperienceRequest,
+	EditExperienceRequest,
+	ExperienceDto,
+	ProfileDto,
+	UpdateBasicInfoRequest,
+} from "../models/profile.models";
 
 @Injectable({
 	providedIn: "root",
@@ -32,7 +38,25 @@ export class ProfileApiService {
 		});
 	}
 
+	getExperienceById(expId: string, profileId: string): Observable<ExperienceDto> {
+		return this.httpClient.get<ExperienceDto>(
+			`${this.profileApiServer}/api/query/profiles/${profileId}/experiences/${expId}`,
+			{}
+		);
+	}
+
 	updateProfileBasicInfo(updateRequest: UpdateBasicInfoRequest, profileId: string): Observable<any> {
 		return this.httpClient.put(`${this.profileApiServer}/api/profiles/${profileId}/update-profile`, updateRequest);
+	}
+
+	addExperience(addExperienceForm: AddExperienceRequest, studentId: string): Observable<any> {
+		return this.httpClient.post(
+			`${this.profileApiServer}/api/profiles/${studentId}/add-experience`,
+			addExperienceForm
+		);
+	}
+
+	editExperience(editExpForm: EditExperienceRequest, studentId: string): Observable<any> {
+		return this.httpClient.put(`${this.profileApiServer}/api/profiles/${studentId}/edit-experience`, editExpForm);
 	}
 }

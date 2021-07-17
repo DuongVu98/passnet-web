@@ -1,0 +1,31 @@
+<div>
+	<h2 mat-dialog-title>Edit experience</h2>
+	<mat-dialog-content class="mat-typography">
+		<form [formGroup]="editExpForm">
+			<div class="p-fluid p-formgrid p-grid">
+				<div class="p-field p-col-6">
+					<label for="course">Course name</label>
+					<input id="course" type="text" pInputText formControlName="course" />
+				</div>
+				<div class="p-field p-col-6">
+					<label for="semester">Semester</label>
+					<input id="semester" type="text" pInputText formControlName="semester" />
+				</div>
+				<div class="p-field p-col-12">
+					<label for="description">Description</label>
+					<textarea
+						id="description"
+						type="text"
+						rows="4"
+						pInputTextarea
+						formControlName="description"
+					></textarea>
+				</div>
+			</div>
+		</form>
+	</mat-dialog-content>
+	<mat-dialog-actions align="end">
+		<button mat-flat-button color="accent" (click)="submit()">Submit</button>
+		<button mat-flat-button color="warn" mat-dialog-close>Cancel</button>
+	</mat-dialog-actions>
+</div>

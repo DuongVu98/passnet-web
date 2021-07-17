@@ -27,6 +27,7 @@ export class ExperienceDto {
 		profileId: string;
 		email: string;
 	};
+	experienceId: string;
 	course: string;
 	semester: string;
 	description: string;
@@ -38,4 +39,17 @@ export class UpdateBasicInfoRequest {
 	phoneNumber: string;
 	overview: string;
 	cardId?: string;
+}
+
+export class AddExperienceRequest {
+	course: string;
+	semester: string;
+	description: string;
+}
+
+export class EditExperienceRequest {
+	experienceId: string;
+	course: string;
+	semester: string;
+	description: string;
 }

@@ -1,4 +1,10 @@
 <div>
+	<div class="job-mana-field action-buttons">
+		<button mat-raised-button color="primary" (click)="openAddJobFormModal()">
+			Add
+			<mat-icon>add_task</mat-icon>
+		</button>
+	</div>
 	<div *ngFor="let job of ownedJobList">
 		<div class="single-job-card">
 			<mat-card>

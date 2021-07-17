@@ -1,0 +1,68 @@
+<div>
+	<h1 mat-dialog-title>Add new job</h1>
+	<div mat-dialog-content>
+		<form [formGroup]="addJobForm" (ngSubmit)="onSubmit()">
+			<div class="grid-form">
+				<mat-grid-list cols="2">
+					<mat-grid-tile>
+						<div class="single-grid">
+							<div class="p-fluid p-formgrid p-grid">
+								<div class="p-field p-col-12">
+									<label for="title">Title</label>
+									<input id="title" type="text" formControlName="title" pInputText />
+								</div>
+								<div class="p-field p-col-12 p-md-6">
+									<label for="department">Department</label>
+									<p-dropdown
+										id="department"
+										[options]="departments"
+										formControlName="department"
+										optionLabel="name"
+										optionValue="id"
+									>
+									</p-dropdown>
+								</div>
+								<div class="p-field p-col-12 p-md-6">
+									<label for="course">Course name</label>
+									<input id="course" type="text" formControlName="courseName" pInputText />
+								</div>
+								<div class="p-field p-col-12 p-md-6">
+									<label for="requirement">Requirement</label>
+									<input id="requirement" type="text" formControlName="requirement" pInputText />
+								</div>
+								<div class="p-field p-col-12 p-md-6">
+									<label for="semester">Semester</label>
+									<input id="semester" type="text" formControlName="semester" pInputText />
+								</div>
+							</div>
+						</div>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<div class="single-grid">
+							<div class="p-fluid p-formgrid p-grid">
+								<div class="p-field p-col-12">
+									<label for="description">Description</label>
+									<textarea
+										id="description"
+										type="text"
+										rows="9"
+										formControlName="jobDescription"
+										pInputTextarea
+									></textarea>
+								</div>
+							</div>
+						</div>
+					</mat-grid-tile>
+				</mat-grid-list>
+			</div>
+			<div class="submit-button">
+				<button mat-button mat-dialog-close type="submit">
+					<div *ngIf="!loading">Add</div>
+					<div *ngIf="loading">
+						<mat-progress-spinner></mat-progress-spinner>
+					</div>
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
