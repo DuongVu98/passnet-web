@@ -37,7 +37,8 @@
 		<div mat-subheader>Experiences</div>
 		<div class="experience-list">
 			<div class="add-button">
-				<button mat-flat-button color="accent" (click)="openAddExpForm()">Add <mat-icon>post_add</mat-icon>
+				<button mat-flat-button color="accent" (click)="openAddExpForm()">
+					Add <mat-icon>post_add</mat-icon>
 				</button>
 			</div>
 			<mat-accordion class="example-headers-align" multi>
@@ -58,8 +59,7 @@
 			<p-dialog header="Add experience" [(visible)]="addExpVisible" [baseZIndex]="10000">
 				<profile-add-exp-form></profile-add-exp-form>
 				<ng-template pTemplate="footer">
-					<button mat-flat-button color="accent" (click)="closeAddExpForm()">Submit
-					</button>
+					<button mat-flat-button color="accent" (click)="closeAddExpForm()">Submit</button>
 				</ng-template>
 			</p-dialog>
 		</div>
