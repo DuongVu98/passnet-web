@@ -36,16 +36,22 @@
 		<mat-divider></mat-divider>
 		<div mat-subheader>Experiences</div>
 		<div class="experience-list">
+			<div class="add-button">
+				<button mat-flat-button color="accent">Add <mat-icon>post_add</mat-icon></button>
+			</div>
 			<mat-accordion class="example-headers-align" multi>
 				<mat-expansion-panel *ngFor="let ex of personalInfo.experiences">
 					<mat-expansion-panel-header>
-						<mat-panel-title style="color: #2286c3">{{ ex.course }}</mat-panel-title>
-						<mat-panel-description style="color: #2286c3">
+						<mat-panel-title>{{ ex.course }}</mat-panel-title>
+						<mat-panel-description>
 							{{ ex.semester }}
 							<mat-icon>account_circle</mat-icon>
 						</mat-panel-description>
 					</mat-expansion-panel-header>
 					<div mat-line>{{ ex.description }}</div>
+					<mat-action-row>
+						<button mat-button color="warn" (click)="nextStep()">Edit</button>
+					</mat-action-row>
 				</mat-expansion-panel>
 			</mat-accordion>
 		</div>
