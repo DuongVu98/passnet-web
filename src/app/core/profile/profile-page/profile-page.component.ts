@@ -3,7 +3,7 @@ import { Select, Store } from "@ngxs/store";
 import { Observable, Subscription } from "rxjs";
 import { ProfileService } from "../services/profile.service";
 import { ChangeTabViewAction } from "../store/profile.action";
-import { ProfileState, TabViewSelection } from "../store/profile.state";
+import { ProfileSelection, ProfileState, TabViewSelection } from "../store/profile.state";
 
 @Component({
 	selector: "profile-profile-page",
@@ -12,14 +12,19 @@ import { ProfileState, TabViewSelection } from "../store/profile.state";
 })
 export class ProfilePageComponent implements OnInit, OnDestroy {
 	fullName: string;
+	overview: string;
 	tabViewIndex: number;
 	subscriptions: Subscription[];
 
 	@Select(ProfileState.getTabViewIndex)
 	tabView$: Observable<TabViewSelection>;
 
+	@Select(ProfileState.getProfile)
+	profile$: Observable<ProfileSelection>;
+
 	constructor(private profileService: ProfileService, private store: Store) {
 		this.fullName = "";
+		this.overview = "";
 		this.subscriptions = [];
 		this.tabViewIndex = 0;
 	}
@@ -30,8 +35,11 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 				this.fullName = result.fullName;
 			})
 		);
-		this.tabView$.subscribe((tabview) => {
-			this.tabViewIndex = tabview.tabIndex;
+		this.tabView$.subscribe((state) => {
+			this.tabViewIndex = state.tabIndex;
+		});
+		this.profile$.subscribe((state) => {
+			this.overview = state.profile.overview;
 		});
 	}
 
