@@ -5,9 +5,10 @@ import { BaseCommonModule } from "../../common/base-common.module";
 import { FormsModule } from "@angular/forms";
 import { NgxsModule } from "@ngxs/store";
 import { AuthState } from "./store/auth.state";
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-	declarations: [LoginComponent],
+	declarations: [LoginComponent, RegisterComponent],
 	imports: [CommonModule, BaseCommonModule, FormsModule, NgxsModule.forFeature([AuthState])],
 	providers: [],
 	exports: [LoginComponent],
