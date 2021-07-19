@@ -1,0 +1,21 @@
+.parent-box {
+	padding-top: 50px;
+	display: flex;
+	justify-content: center;
+
+	.register-box {
+		width: 50%;
+	}
+
+	.forms {
+		width: 100%;
+	}
+	.full-width {
+		width: 100%;
+	}
+	.step-actions {
+		button {
+			margin-right: 10px;
+		}
+	}
+}

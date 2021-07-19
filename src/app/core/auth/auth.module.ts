@@ -5,7 +5,7 @@ import { BaseCommonModule } from "../../common/base-common.module";
 import { FormsModule } from "@angular/forms";
 import { NgxsModule } from "@ngxs/store";
 import { AuthState } from "./store/auth.state";
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from "./register/register.component";
 
 @NgModule({
 	declarations: [LoginComponent, RegisterComponent],
