@@ -10,6 +10,7 @@ import { JobDetailComponent } from "./core/recruitment/job-detail/job-detail.com
 import { RecruitmentPageComponent } from "./core/recruitment/recruitment-page/recruitment-page.component";
 import { TaBrowserComponent } from "./core/freelance/ta-browser/ta-browser.component";
 import { recruitmentRoutes } from "./core/recruitment/recruitment.routes";
+import { RegisterComponent } from "./core/auth/register/register.component";
 
 export function onAuthRequired(oktaAuth, injector) {
 	const router = injector.get(Router);
@@ -24,6 +25,10 @@ const routes: Routes = [
 	{
 		path: "login",
 		component: LoginComponent,
+	},
+	{
+		path: "register",
+		component: RegisterComponent,
 	},
 	{
 		path: "",

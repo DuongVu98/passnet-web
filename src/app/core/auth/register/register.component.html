@@ -1,0 +1,152 @@
+<div class="parent-box">
+	<div class="register-box">
+		<div class="box-title">
+			<h1>Register form</h1>
+		</div>
+		<mat-vertical-stepper [linear]="true" #stepper>
+			<mat-step [stepControl]="basicInfoForm">
+				<ng-template matStepLabel>Basic information</ng-template>
+				<form [formGroup]="basicInfoForm" class="forms">
+					<table cellspacing="0">
+						<tr>
+							<td>
+								<mat-form-field class="full-width" appearance="outline">
+									<mat-label>First name</mat-label>
+									<input matInput formControlName="firstName" required />
+								</mat-form-field>
+							</td>
+							<td>
+								<mat-form-field class="full-width" appearance="outline">
+									<mat-label>Last name</mat-label>
+									<input matInput formControlName="lastName" required />
+								</mat-form-field>
+							</td>
+						</tr>
+					</table>
+					<div class="step-actions">
+						<button mat-raised-button matStepperNext color="primary">Next</button>
+					</div>
+				</form>
+			</mat-step>
+			<mat-step [stepControl]="organizationForm">
+				<form [formGroup]="organizationForm">
+					<ng-template matStepLabel>Your University</ng-template>
+					<table cellspacing="0">
+						<tr>
+							<td>
+								<mat-form-field class="full-width" appearance="outline">
+									<mat-label>University</mat-label>
+									<mat-select formControlName="organization" (selectionChange)="onOrgChange($event)">
+										<mat-option *ngFor="let uni of universities" [value]="uni.id">
+											{{ uni.name }}
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</td>
+							<td>
+								<mat-form-field class="full-width" appearance="outline">
+									<mat-label>Role</mat-label>
+									<mat-select formControlName="role" (selectionChange)="onRoleChange($event)">
+										<mat-option *ngFor="let role of roles" [value]="role.data">
+											{{ role.name }}
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<mat-form-field class="full-width" *ngIf="isStudent" appearance="outline">
+									<mat-label>Student ID</mat-label>
+									<input matInput placeholder="Student ID" formControlName="cardId" required />
+								</mat-form-field>
+							</td>
+							<td>
+								<mat-form-field
+									class="full-width"
+									*ngIf="isStudent && isOrgSelected"
+									appearance="outline"
+								>
+									<mat-label>Department</mat-label>
+									<mat-select formControlName="department">
+										<mat-option *ngFor="let dep of departments" [value]="dep.id">
+											{{ dep.name }} ({{ dep.code }})
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</td>
+						</tr>
+					</table>
+					<div class="step-actions">
+						<button mat-raised-button matStepperPrevious color="accent">Back</button>
+						<button mat-raised-button matStepperNext color="primary">Next</button>
+					</div>
+				</form>
+			</mat-step>
+			<mat-step [stepControl]="authenticationForm">
+				<form [formGroup]="authenticationForm">
+					<ng-template matStepLabel>Username and password</ng-template>
+					<table cellspacing="0">
+						<tr>
+							<td>
+								<mat-form-field appearance="outline">
+									<mat-label>Username</mat-label>
+									<input matInput placeholder="Username" formControlName="username" required />
+								</mat-form-field>
+							</td>
+							<td>
+								<mat-form-field appearance="outline">
+									<mat-label>Email</mat-label>
+									<input
+										type="email"
+										matInput
+										placeholder="Ex. pat@example.com"
+										formControlName="email"
+										required
+									/>
+								</mat-form-field>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<mat-form-field appearance="outline">
+									<mat-label>Password</mat-label>
+									<input
+										matInput
+										[type]="hidePassword ? 'password' : 'text'"
+										formControlName="password"
+									/>
+									<button
+										mat-icon-button
+										matSuffix
+										(click)="hidePassword = !hidePassword"
+										[attr.aria-label]="'Hide password'"
+										[attr.aria-pressed]="hidePassword"
+									>
+										<mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
+									</button>
+								</mat-form-field>
+							</td>
+						</tr>
+					</table>
+					<div class="step-actions">
+						<button mat-raised-button matStepperPrevious color="accent">Back</button>
+						<button mat-raised-button matStepperNext color="primary">Next</button>
+					</div>
+				</form>
+			</mat-step>
+			<mat-step>
+				<ng-template matStepLabel>Done</ng-template>
+				<div class="step-actions">
+					<button mat-raised-button matStepperPrevious color="accent">Back</button>
+					<button mat-raised-button (click)="stepper.reset()" color="warn">Reset</button>
+					<button mat-raised-button (click)="submit()" color="primary">Finish</button>
+				</div>
+			</mat-step>
+		</mat-vertical-stepper>
+	</div>
+	<div *ngIf="submitting">
+		<div class="gray-background"></div>
+		<mat-spinner></mat-spinner>
+	</div>
+</div>
