@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatSelectChange } from "@angular/material/select";
+import { Router } from "@angular/router";
 import { Builder } from "builder-pattern";
 import { Subscription } from "rxjs";
+import { RegisterForm } from "src/app/common/models/auth.models";
 import { AuthService } from "../services/auth.service";
 
 interface OrganizationView {
@@ -38,10 +40,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
 	isStudent: boolean;
 	isOrgSelected: boolean;
 	hidePassword: boolean;
+	submitting: boolean;
 
 	subscriptions: Subscription[];
 
-	constructor(private authService: AuthService) {
+	constructor(private authService: AuthService, private router: Router) {
 		this.universities = [];
 		this.departments = [];
 		this.roles = [
@@ -51,6 +54,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 		this.isStudent = false;
 		this.isOrgSelected = false;
 		this.hidePassword = true;
+		this.submitting = false;
 		this.subscriptions = [];
 
 		this.basicInfoForm = new FormGroup({
@@ -110,6 +114,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 	}
 
 	submit(): void {
+		this.submitting = true;
 		const registerForm: RegisterForm = Builder(RegisterForm)
 			.firstName(this.basicInfoForm.value.firstName)
 			.lastName(this.basicInfoForm.value.lastName)
@@ -120,19 +125,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
 			.departmentId(this.organizationForm.value.department)
 			.cardId(this.organizationForm.value.cardId)
 			.build();
-
-		console.log(JSON.stringify(registerForm));
+		this.authService.register(registerForm).subscribe(() => {
+			this.router.navigate(["/login"]);
+		});
 	}
-}
-
-class RegisterForm {
-	username: string;
-	email: string;
-	password: string;
-	firstName: string;
-	lastName: string;
-	organizationId: string;
-	departmentId: string;
-	cardId: string;
-	role: string;
 }

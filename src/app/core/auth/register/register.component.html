@@ -3,7 +3,7 @@
 		<div class="box-title">
 			<h1>Register form</h1>
 		</div>
-		<mat-vertical-stepper [linear]="false" #stepper>
+		<mat-vertical-stepper [linear]="true" #stepper>
 			<mat-step [stepControl]="basicInfoForm">
 				<ng-template matStepLabel>Basic information</ng-template>
 				<form [formGroup]="basicInfoForm" class="forms">
@@ -128,5 +128,9 @@
 				</div>
 			</mat-step>
 		</mat-vertical-stepper>
+	</div>
+	<div *ngIf="submitting">
+		<div class="gray-background"></div>
+		<mat-spinner></mat-spinner>
 	</div>
 </div>
