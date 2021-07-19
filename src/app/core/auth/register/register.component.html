@@ -12,13 +12,13 @@
 							<td>
 								<mat-form-field class="full-width" appearance="outline">
 									<mat-label>First name</mat-label>
-									<input matInput formControlName="firstName" required>
+									<input matInput formControlName="firstName" required />
 								</mat-form-field>
 							</td>
 							<td>
 								<mat-form-field class="full-width" appearance="outline">
 									<mat-label>Last name</mat-label>
-									<input matInput formControlName="lastName" required>
+									<input matInput formControlName="lastName" required />
 								</mat-form-field>
 							</td>
 						</tr>
@@ -38,7 +38,7 @@
 									<mat-label>University</mat-label>
 									<mat-select formControlName="organization" (selectionChange)="onOrgChange($event)">
 										<mat-option *ngFor="let uni of universities" [value]="uni.id">
-											{{uni.name}}
+											{{ uni.name }}
 										</mat-option>
 									</mat-select>
 								</mat-form-field>
@@ -48,7 +48,7 @@
 									<mat-label>Role</mat-label>
 									<mat-select formControlName="role" (selectionChange)="onRoleChange($event)">
 										<mat-option *ngFor="let role of roles" [value]="role.data">
-											{{role.name}}
+											{{ role.name }}
 										</mat-option>
 									</mat-select>
 								</mat-form-field>
@@ -58,16 +58,19 @@
 							<td>
 								<mat-form-field class="full-width" *ngIf="isStudent" appearance="outline">
 									<mat-label>Student ID</mat-label>
-									<input matInput placeholder="Student ID" formControlName="cardId" required>
+									<input matInput placeholder="Student ID" formControlName="cardId" required />
 								</mat-form-field>
 							</td>
 							<td>
-								<mat-form-field class="full-width" *ngIf="isStudent && isOrgSelected"
-									appearance="outline">
+								<mat-form-field
+									class="full-width"
+									*ngIf="isStudent && isOrgSelected"
+									appearance="outline"
+								>
 									<mat-label>Department</mat-label>
 									<mat-select formControlName="department">
 										<mat-option *ngFor="let dep of departments" [value]="dep.id">
-											{{dep.name}} ({{dep.code}})
+											{{ dep.name }} ({{ dep.code }})
 										</mat-option>
 									</mat-select>
 								</mat-form-field>
@@ -88,14 +91,19 @@
 							<td>
 								<mat-form-field appearance="outline">
 									<mat-label>Username</mat-label>
-									<input matInput placeholder="Username" formControlName="username" required>
+									<input matInput placeholder="Username" formControlName="username" required />
 								</mat-form-field>
 							</td>
 							<td>
 								<mat-form-field appearance="outline">
 									<mat-label>Email</mat-label>
-									<input type="email" matInput placeholder="Ex. pat@example.com"
-										formControlName="email" required>
+									<input
+										type="email"
+										matInput
+										placeholder="Ex. pat@example.com"
+										formControlName="email"
+										required
+									/>
 								</mat-form-field>
 							</td>
 						</tr>
@@ -103,11 +111,19 @@
 							<td>
 								<mat-form-field appearance="outline">
 									<mat-label>Password</mat-label>
-									<input matInput [type]="hidePassword ? 'password' : 'text'"
-										formControlName="password">
-									<button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
-										[attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
-										<mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+									<input
+										matInput
+										[type]="hidePassword ? 'password' : 'text'"
+										formControlName="password"
+									/>
+									<button
+										mat-icon-button
+										matSuffix
+										(click)="hidePassword = !hidePassword"
+										[attr.aria-label]="'Hide password'"
+										[attr.aria-pressed]="hidePassword"
+									>
+										<mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
 									</button>
 								</mat-form-field>
 							</td>
