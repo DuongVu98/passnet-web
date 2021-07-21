@@ -14,8 +14,9 @@ interface PersonalInfo {
 	username: string;
 	email: string;
 	phoneNumber: string;
-	univerity: string;
+	university: string;
 	cardId: string;
+	department: string;
 	experiences: Experience[];
 }
 
@@ -53,8 +54,9 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 			username: "",
 			email: "",
 			phoneNumber: "",
-			univerity: "",
+			university: "",
 			cardId: "",
+			department: "",
 			experiences: [],
 		};
 		this.menuItems = [
@@ -78,6 +80,11 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.subscriptions.push(
+			this.profileService.getOrgInfo().subscribe((result) => {
+				this.personalInfo.cardId = result.cardId;
+				this.personalInfo.department = result.department.name;
+				this.personalInfo.university = result.organization.name;
+			}),
 			this.profileService.getPersonalInfo().subscribe((result) => {
 				this.personalInfo.fullName = result.fullName;
 				this.personalInfo.username = result.username;

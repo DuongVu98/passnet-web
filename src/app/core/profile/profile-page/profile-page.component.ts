@@ -3,7 +3,7 @@ import { Select, Store } from "@ngxs/store";
 import { Observable, Subscription } from "rxjs";
 import { ProfileService } from "../services/profile.service";
 import { ChangeTabViewAction } from "../store/profile.action";
-import { ProfileSelection, ProfileState, TabViewSelection } from "../store/profile.state";
+import { ProfileSelection, ProfileState, ProfileTypeSelection, TabViewSelection } from "../store/profile.state";
 
 @Component({
 	selector: "profile-profile-page",
@@ -15,6 +15,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 	overview: string;
 	tabViewIndex: number;
 	subscriptions: Subscription[];
+	profileType: string;
 
 	@Select(ProfileState.getTabViewIndex)
 	tabView$: Observable<TabViewSelection>;
@@ -22,11 +23,15 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 	@Select(ProfileState.getProfile)
 	profile$: Observable<ProfileSelection>;
 
+	@Select(ProfileState.getProfileType)
+	profileType$: Observable<ProfileTypeSelection>;
+
 	constructor(private profileService: ProfileService, private store: Store) {
 		this.fullName = "";
 		this.overview = "";
 		this.subscriptions = [];
 		this.tabViewIndex = 0;
+		this.profileType = "";
 	}
 
 	ngOnInit(): void {
@@ -41,6 +46,9 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 		this.profile$.subscribe((state) => {
 			this.overview = state.profile.overview;
 		});
+		this.profileType$.subscribe((state) => {
+			this.profileType = state.profileType;
+		});
 	}
 
 	ngOnDestroy(): void {
@@ -51,5 +59,9 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
 	handleChange(event): void {
 		this.store.dispatch(new ChangeTabViewAction({ tabIndex: event.index }));
+	}
+
+	isTeacher(): boolean {
+		return this.profileType != "STUDENT";
 	}
 }

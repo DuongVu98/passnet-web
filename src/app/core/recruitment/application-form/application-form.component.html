@@ -1,26 +1,18 @@
 <div>
 	<div class="application-form">
 		<form [formGroup]="applicationFormGroup">
-			<div class="row-input p-inputgroup field-input">
-				<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-				<input type="text" pInputText placeholder="Full Name" formControlName="fullName" />
-			</div>
-
 			<div class="row-input p-fluid p-formgrid p-grid">
+				<div class="p-field p-col-12 p-md-6">
+					<div class="p-inputgroup field-input">
+						<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+						<input type="text" pInputText placeholder="Full Name" formControlName="fullName" />
+					</div>
+				</div>
 				<div class="p-field p-col-12 p-md-6">
 					<div class="p-inputgroup field-input">
 						<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
 						<input type="text" pInputText placeholder="GPA" formControlName="gpa" />
 					</div>
-				</div>
-				<div class="p-field p-col-12 p-md-6">
-					<p-dropdown
-						[options]="departments"
-						formControlName="selectedDepartment"
-						optionLabel="name"
-						optionValue="id"
-					>
-					</p-dropdown>
 				</div>
 			</div>
 			<p-editor [style]="{ height: '250px' }" formControlName="letter"></p-editor>

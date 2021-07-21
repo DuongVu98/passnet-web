@@ -8,7 +8,7 @@
 					<h2>{{ profileView.fullName }}</h2>
 					<h3>{{ profileView.university }}</h3>
 					<h3 *ngIf="isStudent()">{{ profileView.cardId }}</h3>
-					<h3>Experiences: {{ profileView.experiences }}</h3>
+					<h3 *ngIf="isStudent()">Experiences: {{ profileView.experiences }}</h3>
 				</div>
 			</mat-card-content>
 		</mat-card>
