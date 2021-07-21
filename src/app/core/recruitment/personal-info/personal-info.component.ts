@@ -1,7 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Select } from "@ngxs/store";
-import { Observable, Subscription } from "rxjs";
-import { ProfileSelection, ProfileState } from "../../profile/store/profile.state";
+import { Subscription } from "rxjs";
 import { PersonalInfoService } from "../services/personal-info.service";
 
 interface ProfileView {
@@ -18,13 +16,12 @@ interface ProfileView {
 })
 export class PersonalInfoComponent implements OnInit, OnDestroy {
 	profileView: ProfileView;
+	profileType: string;
 	subcriptions: Subscription[];
-
-	@Select(ProfileState.getProfile)
-	profile$: Observable<ProfileSelection>;
 
 	constructor(private personalInfoService: PersonalInfoService) {
 		this.profileView = { fullName: "", university: "" };
+		this.profileType = "";
 		this.subcriptions = [];
 	}
 
@@ -36,9 +33,9 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 
 				this.subcriptions.push(
 					this.personalInfoService.getOrgProfile().subscribe((orgProfile) => {
-						console.log(`university: ${orgProfile.organization.name}`);
 						this.profileView.university = orgProfile.organization.name;
 						this.profileView.cardId = orgProfile.cardId || "";
+						this.profileType = orgProfile.profileType;
 					})
 				);
 			})
@@ -47,5 +44,9 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy(): void {
 		this.subcriptions.forEach((sub) => sub.unsubscribe());
+	}
+
+	isStudent(): boolean {
+		return this.profileType === "STUDENT";
 	}
 }
