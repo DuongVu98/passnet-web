@@ -124,6 +124,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 			.organizationId(this.organizationForm.value.organization)
 			.departmentId(this.organizationForm.value.department)
 			.cardId(this.organizationForm.value.cardId)
+			.role(this.organizationForm.value.role)
 			.build();
 		this.authService.register(registerForm).subscribe(() => {
 			this.router.navigate(["/login"]);
