@@ -6,6 +6,7 @@ import { Builder } from "builder-pattern";
 import { UserModel } from "./core/auth/models/auth.models";
 import { SetLoggedUserAction } from "./core/auth/store/auth.actions";
 import { AuthService } from "./core/auth/services/auth.service";
+import { SetOrganizationForStudentAction, SetOrganizationForTeacherAction } from "./core/profile/store/profile.action";
 
 @Component({
 	selector: "app-root",
@@ -27,6 +28,26 @@ export class AppComponent implements OnInit {
 
 			if (isAuthenticated == true) {
 				let user = await oktaAuth.getUser();
+
+				this.authService.getStudentByUserid(user.sub).subscribe((result) => {
+					if (result.profileType === "STUDENT") {
+						this.store.dispatch(
+							new SetOrganizationForStudentAction({
+								organizationId: result.organization.id,
+								departmentId: result.department.id,
+								cardId: result.cardId,
+								profileType: result.profileType,
+							})
+						);
+					} else {
+						this.store.dispatch(
+							new SetOrganizationForTeacherAction({
+								organizationId: result.organization.id,
+								profileType: result.profileType,
+							})
+						);
+					}
+				});
 
 				this.authService.getProfileId(user.sub).subscribe((profileId) => {
 					this.store.dispatch(

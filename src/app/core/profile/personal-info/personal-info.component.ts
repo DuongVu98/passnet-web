@@ -47,9 +47,6 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 	@ViewChild(AddExpFormComponent)
 	addExpFormCmp: AddExpFormComponent;
 
-	// @ViewChild(EditExpFormComponent)
-	// editExpFormCmp: EditExpFormComponent;
-
 	constructor(private profileService: ProfileService, private store: Store, private dialog: MatDialog) {
 		this.personalInfo = {
 			fullName: "",

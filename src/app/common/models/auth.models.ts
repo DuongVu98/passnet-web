@@ -3,10 +3,16 @@ export class OrganizationLiteDto {
 	name: string;
 	location: string;
 }
-export class DepartmentDto {
+export class DepartmentLiteDto {
 	id: string;
 	name: string;
 	code: string;
+}
+export class OrgMemberDto {
+	organization: OrganizationLiteDto;
+	department?: DepartmentLiteDto;
+	cardId?: string;
+	profileType: string;
 }
 export class RegisterForm {
 	username: string;

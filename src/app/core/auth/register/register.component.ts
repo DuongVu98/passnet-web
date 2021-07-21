@@ -118,7 +118,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 		const registerForm: RegisterForm = Builder(RegisterForm)
 			.firstName(this.basicInfoForm.value.firstName)
 			.lastName(this.basicInfoForm.value.lastName)
-			.username(this.basicInfoForm.value.username)
+			.username(this.authenticationForm.value.username)
 			.email(this.authenticationForm.value.email)
 			.password(this.authenticationForm.value.password)
 			.organizationId(this.organizationForm.value.organization)

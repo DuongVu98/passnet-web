@@ -6,7 +6,7 @@ import { PersonalInfoService } from "../services/personal-info.service";
 
 interface ProfileView {
 	fullName: string;
-	univerity: string;
+	university: string;
 	cardId?: string;
 	experiences?: number;
 }
@@ -24,18 +24,23 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 	profile$: Observable<ProfileSelection>;
 
 	constructor(private personalInfoService: PersonalInfoService) {
-		this.profileView = { fullName: "", univerity: "" };
+		this.profileView = { fullName: "", university: "" };
 		this.subcriptions = [];
 	}
 
 	ngOnInit(): void {
 		this.subcriptions.push(
-			this.profile$.subscribe((state) => {
-				this.profileView.fullName = state.profile.fullName;
-				this.profileView.cardId = state.profile.cardId || "";
-			}),
 			this.personalInfoService.getPersonalInfo().subscribe((result) => {
 				this.profileView.experiences = result.student.experienceIds.length | 0;
+				this.profileView.fullName = result.fullName;
+
+				this.subcriptions.push(
+					this.personalInfoService.getOrgProfile().subscribe((orgProfile) => {
+						console.log(`university: ${orgProfile.organization.name}`);
+						this.profileView.university = orgProfile.organization.name;
+						this.profileView.cardId = orgProfile.cardId || "";
+					})
+				);
 			})
 		);
 	}

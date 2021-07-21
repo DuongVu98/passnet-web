@@ -31,3 +31,25 @@ export class SetTeacherProfileAction {
 		}
 	) {}
 }
+
+export class SetOrganizationForStudentAction {
+	static readonly type = "[Profile] SetOrganization";
+	constructor(
+		public payload: {
+			organizationId: string;
+			departmentId: string;
+			cardId: string;
+			profileType: string;
+		}
+	) {}
+}
+
+export class SetOrganizationForTeacherAction {
+	static readonly type = "[Profile] SetOrganization";
+	constructor(
+		public payload: {
+			organizationId: string;
+			profileType: string;
+		}
+	) {}
+}
