@@ -32,11 +32,11 @@
 								<mat-icon mat-list-icon>school</mat-icon>
 								<div mat-line>{{ personalInfo.university }}</div>
 							</mat-list-item>
-							<mat-list-item>
+							<mat-list-item *ngIf="isStudent()">
 								<mat-icon mat-list-icon>local_fire_department</mat-icon>
 								<div mat-line>{{ personalInfo.department }}</div>
 							</mat-list-item>
-							<mat-list-item>
+							<mat-list-item *ngIf="isStudent()">
 								<mat-icon mat-list-icon>recent_actors</mat-icon>
 								<div mat-line>{{ personalInfo.cardId }}</div>
 							</mat-list-item>

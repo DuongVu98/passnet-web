@@ -28,7 +28,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.subcriptions.push(
 			this.personalInfoService.getPersonalInfo().subscribe((result) => {
-				this.profileView.experiences = result.student.experienceIds.length | 0;
+				this.profileView.experiences = this.isStudent() ? result.student.experienceIds.length : 0;
 				this.profileView.fullName = result.fullName;
 
 				this.subcriptions.push(

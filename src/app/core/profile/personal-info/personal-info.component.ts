@@ -1,13 +1,14 @@
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { ProfileService } from "../services/profile.service";
 import { MenuItem } from "primeng/api";
 import { BasicEditComponent } from "../basic-edit/basic-edit.component";
-import { Store } from "@ngxs/store";
+import { Select, Store } from "@ngxs/store";
 import { SetStudentProfileAction, SetTeacherProfileAction } from "../store/profile.action";
 import { AddExpFormComponent } from "../add-exp-form/add-exp-form.component";
 import { EditExpFormComponent } from "../edit-exp-form/edit-exp-form.component";
 import { MatDialog } from "@angular/material/dialog";
+import { ProfileState, ProfileTypeSelection } from "../store/profile.state";
 
 interface PersonalInfo {
 	fullName: string;
@@ -34,13 +35,16 @@ interface Experience {
 })
 export class PersonalInfoComponent implements OnInit, OnDestroy {
 	personalInfo: PersonalInfo;
-
+	profileType: string;
 	subscriptions: Subscription[];
 	menuItems: MenuItem[];
 	editProfileDialog: boolean;
 	addExpVisible: boolean;
 	editExpVisible: boolean;
 	selectedEditExperienceId: string;
+
+	@Select(ProfileState.getProfileType)
+	profileTypeSelection$: Observable<ProfileTypeSelection>;
 
 	@ViewChild(BasicEditComponent)
 	profileEditComponent: BasicEditComponent;
@@ -80,9 +84,12 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.subscriptions.push(
+			this.profileTypeSelection$.subscribe((state) => {
+				this.profileType = state.profileType;
+			}),
 			this.profileService.getOrgInfo().subscribe((result) => {
-				this.personalInfo.cardId = result.cardId;
-				this.personalInfo.department = result.department.name;
+				this.personalInfo.cardId = result.profileType === "STUDENT" ? result.cardId : "";
+				this.personalInfo.department = result.profileType === "STUDENT" ? result.department.name : "";
 				this.personalInfo.university = result.organization.name;
 			}),
 			this.profileService.getPersonalInfo().subscribe((result) => {
@@ -108,7 +115,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 							fullName: result.fullName,
 							email: result.email,
 							phoneNumber: result.phoneNumber,
-							overview: result.student.overview,
+							overview: "",
 						})
 					);
 				}
@@ -147,5 +154,9 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 		this.dialog.open(EditExpFormComponent, {
 			data: { expId: expId },
 		});
+	}
+
+	isStudent(): boolean {
+		return this.profileType === "STUDENT";
 	}
 }
