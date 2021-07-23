@@ -4,9 +4,9 @@ import { Builder } from "builder-pattern";
 import { JobFormDto } from "src/app/common/models/profile.models";
 import { RecruiterService } from "../services/recruiter.service";
 
-interface DepartmentOption {
-	name: string;
+interface SemesterView {
 	id: string;
+	displayName: string;
 }
 
 @Component({
@@ -16,31 +16,34 @@ interface DepartmentOption {
 })
 export class AddJobFormComponent implements OnInit {
 	loading = false;
-	departments: DepartmentOption[];
 	addJobForm: FormGroup;
+	semesters: SemesterView[];
 
 	constructor(private recruiterService: RecruiterService) {
-		this.departments = [
-			{ name: "Computer Science", id: "dep1" },
-			{ name: "Biotechnology", id: "dep2" },
-			{ name: "Business Administrator", id: "dep2" },
-			{ name: "Civil Engineering", id: "dep3" },
-			{ name: "Industial Engineer and Management", id: "dep4" },
-		];
+		this.semesters = [{ id: "id", displayName: "name" }];
 		this.addJobForm = new FormGroup({
 			title: new FormControl(""),
 			courseName: new FormControl(""),
-			department: new FormControl({ name: "", id: "" }),
 			jobDescription: new FormControl(""),
 			requirement: new FormControl(""),
 			semester: new FormControl(""),
 		});
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.recruiterService.getSemesters().subscribe((result) => {
+			this.semesters = result.map((sem) => {
+				return {
+					id: sem.id,
+					displayName: `${sem.name} (${sem.startMonth} - ${sem.endMonth})`,
+				};
+			});
+		});
+	}
 
 	onSubmit(): void {
 		this.loading = true;
+		console.log(`log sem id: ${this.addJobForm.value.semester.id}`);
 		this.recruiterService
 			.addNewJob(
 				Builder(JobFormDto)
@@ -48,7 +51,8 @@ export class AddJobFormComponent implements OnInit {
 					.courseName(this.addJobForm.value.courseName)
 					.content(this.addJobForm.value.jobDescription)
 					.requirement(this.addJobForm.value.requirement)
-					.semester(this.addJobForm.value.semester)
+					.semester(this.addJobForm.value.semester.id)
+					.organizationId("")
 					.build()
 			)
 			.subscribe(() => {

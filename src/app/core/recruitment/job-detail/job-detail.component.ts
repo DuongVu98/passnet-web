@@ -3,6 +3,7 @@ import { ApplicatorService } from "../services/applicator-api.service";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { ApplicationForm, JobDetail } from "../models/recruitment.models";
 import { ApplicationFormComponent } from "../application-form/application-form.component";
+import { RecruiterApiService } from "../services/recruiter-api.service";
 
 @Component({
 	selector: "recruitment-job-detail",
@@ -19,17 +20,17 @@ export class JobDetailComponent implements OnInit {
 	@ViewChild(ApplicationFormComponent)
 	recruitmentApplicationForm: ApplicationFormComponent;
 
-	constructor(private route: ActivatedRoute, private applicatorApiService: ApplicatorService) {
+	constructor(
+		private route: ActivatedRoute,
+		private applicatorApiService: ApplicatorService,
+		private recruiterApiService: RecruiterApiService
+	) {
 		this.isLoading = true;
 		this.jobDetail = {} as JobDetail;
 		this.applicationFormDialog = false;
 	}
 
 	ngOnInit(): void {
-		this.fetchData();
-	}
-
-	fetchData(): void {
 		this.route.queryParams.subscribe((params) => {
 			this.jobId = params["jobId"];
 
@@ -39,9 +40,14 @@ export class JobDetailComponent implements OnInit {
 				this.jobDetail.jobTitle = res.jobTitle;
 				this.jobDetail.description = res.content;
 				this.jobDetail.requirement = res.requirement;
-				this.jobDetail.semester = res.semester;
 
 				this.isLoading = false;
+				this.recruiterApiService.getProfileView(res.teacherId).subscribe((result) => {
+					this.jobDetail.teacher = result.fullName;
+				});
+				this.recruiterApiService.getSemester(res.semester).subscribe((result) => {
+					this.jobDetail.semester = result.name;
+				});
 			});
 		});
 	}

@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { Observable } from "rxjs";
 import { DepartmentLiteDto, OrganizationLiteDto, OrgMemberDto } from "../models/auth.models";
+import { SemesterDto } from "../models/recruitment.models";
 
 const organizerApiHost = environment.organizerApi;
 
@@ -28,5 +29,13 @@ export class OrganizerApiService {
 				uid: userId,
 			},
 		});
+	}
+
+	getSemestersByOrg(orgId: string): Observable<SemesterDto[]> {
+		return this.httpClient.get<SemesterDto[]>(`${organizerApiHost}/api/query/organizations/${orgId}/semesters`);
+	}
+
+	getSemesterById(semId: string): Observable<SemesterDto> {
+		return this.httpClient.get<SemesterDto>(`${organizerApiHost}/api/query/semesters/${semId}`);
 	}
 }

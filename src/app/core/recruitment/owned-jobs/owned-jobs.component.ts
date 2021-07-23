@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { AddJobFormComponent } from "../add-job-form/add-job-form.component";
+import { AddJobFormComponent } from "../../profile/add-job-form/add-job-form.component";
 import { RecruiterApiService } from "../services/recruiter-api.service";
 
 interface OwnedJobView {
