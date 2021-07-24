@@ -99,12 +99,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
 		this.isOrgSelected = true;
 		this.subscriptions.push(
 			this.authService.getDepartments(event.value).subscribe((result) => {
-				result.forEach((dep) => {
-					this.departments.push({
+				this.departments = result.map((dep) => {
+					return {
 						id: dep.id,
 						name: dep.name,
 						code: dep.code,
-					});
+					};
 				});
 			})
 		);
