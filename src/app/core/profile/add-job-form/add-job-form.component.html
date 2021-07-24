@@ -11,18 +11,7 @@
 									<label for="title">Title</label>
 									<input id="title" type="text" formControlName="title" pInputText />
 								</div>
-								<div class="p-field p-col-12 p-md-6">
-									<label for="department">Department</label>
-									<p-dropdown
-										id="department"
-										[options]="departments"
-										formControlName="department"
-										optionLabel="name"
-										optionValue="id"
-									>
-									</p-dropdown>
-								</div>
-								<div class="p-field p-col-12 p-md-6">
+								<div class="p-field p-col-12">
 									<label for="course">Course name</label>
 									<input id="course" type="text" formControlName="courseName" pInputText />
 								</div>
@@ -32,7 +21,8 @@
 								</div>
 								<div class="p-field p-col-12 p-md-6">
 									<label for="semester">Semester</label>
-									<input id="semester" type="text" formControlName="semester" pInputText />
+									<p-dropdown id="semester" [options]="semesters" formControlName="semester"
+										optionLabel="displayName"></p-dropdown>
 								</div>
 							</div>
 						</div>
@@ -42,13 +32,8 @@
 							<div class="p-fluid p-formgrid p-grid">
 								<div class="p-field p-col-12">
 									<label for="description">Description</label>
-									<textarea
-										id="description"
-										type="text"
-										rows="9"
-										formControlName="jobDescription"
-										pInputTextarea
-									></textarea>
+									<textarea id="description" type="text" rows="9" formControlName="jobDescription"
+										pInputTextarea></textarea>
 								</div>
 							</div>
 						</div>

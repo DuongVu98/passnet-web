@@ -27,13 +27,13 @@ export class JobsBrowserComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.fetchData();
-	}
-
-	fetchData(): void {
 		this.recruiterApiService.getAllRecruiterPostedJobs().subscribe((result) => {
 			this.postedJobsView.postedJobs = result;
-			console.log(this.postedJobsView);
+			result.forEach((job) => {
+				this.recruiterApiService.getSemester(job.semester).subscribe((sem) => {
+					job.semester = sem.name;
+				});
+			});
 		});
 	}
 

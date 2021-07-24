@@ -5,23 +5,31 @@ import { ApplicationForm } from "../models/recruitment.models";
 import { ApplicationFormDto, JobDetailViewDto } from "src/app/common/models/recruitment.models";
 import { Select } from "@ngxs/store";
 import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
+import { ProfileState, StudentOrganizationSelection } from "../../profile/store/profile.state";
 
 @Injectable({
 	providedIn: "root",
 })
 export class ApplicatorService {
+	profileId: string;
+	orgId: string;
+	departmentId: string;
+
 	@Select(AuthState.getLoggedUser)
 	loggedUser$: Observable<LoggedUserStateSelection>;
-	profileId;
+
+	@Select(ProfileState.getStudentOrg)
+	studentOrgSelection$: Observable<StudentOrganizationSelection>;
 
 	constructor(private recruitmentApiService: RecruitmentApiService) {
 		this.loggedUser$.subscribe((loggedUser) => {
 			this.profileId = loggedUser.user.profileId;
 		});
-	}
 
-	getTeacherProfile(teacherId: string): Observable<any> {
-		return null;
+		this.studentOrgSelection$.subscribe((orgState) => {
+			this.orgId = orgState.organization.organizationId;
+			this.departmentId = orgState.organization.departmentId;
+		});
 	}
 
 	getJobDetail(jobId: string): Observable<JobDetailViewDto> {

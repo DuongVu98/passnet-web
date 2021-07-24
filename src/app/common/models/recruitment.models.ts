@@ -45,3 +45,10 @@ export class JobApplicationListDto {
 	jobView: JobViewDto;
 	jobApplicationViewList: JobApplicationDto[];
 }
+
+export class SemesterDto {
+	id: string;
+	name: string;
+	startMonth: string;
+	endMonth: string;
+}

@@ -1,7 +1,13 @@
 import { NgxsDataRepository } from "@ngxs-labs/data/repositories";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { StateRepository, Persistence } from "@ngxs-labs/data/decorators";
-import { ChangeTabViewAction, SetStudentProfileAction, SetTeacherProfileAction } from "./profile.action";
+import {
+	ChangeTabViewAction,
+	SetOrganizationForStudentAction,
+	SetOrganizationForTeacherAction,
+	SetStudentProfileAction,
+	SetTeacherProfileAction,
+} from "./profile.action";
 
 export class ProfileStateModel {
 	profile: {
@@ -10,13 +16,19 @@ export class ProfileStateModel {
 		email: string;
 		phoneNumber: string;
 		overview: string;
+	};
+	organization: {
+		organizationId: string;
+		profileType: string;
 		cardId?: string;
+		departmentId?: string;
 	};
 	tabIndex: number;
 }
 
 const initState: ProfileStateModel = {
 	profile: { type: "", fullName: "", email: "", phoneNumber: "", overview: "" },
+	organization: { organizationId: "", profileType: "" },
 	tabIndex: 0,
 };
 
@@ -28,20 +40,40 @@ const initState: ProfileStateModel = {
 })
 export class ProfileState extends NgxsDataRepository<ProfileStateModel> {
 	@Selector()
+	static getProfileType(state: ProfileStateModel): ProfileTypeSelection {
+		return new ProfileTypeSelection(state.organization.profileType);
+	}
+
+	@Selector()
 	static getProfile(state: ProfileStateModel): ProfileSelection {
 		return new ProfileSelection({
-			type: state.profile.type,
+			type: state.organization.profileType,
 			fullName: state.profile.fullName,
 			email: state.profile.email,
 			phoneNumber: state.profile.phoneNumber,
 			overview: state.profile.overview,
-			cardId: state.profile.cardId,
 		});
 	}
 
 	@Selector()
 	static getTabViewIndex(state: ProfileStateModel): TabViewSelection {
 		return new TabViewSelection(state.tabIndex);
+	}
+
+	@Selector()
+	static getStudentOrg(state: ProfileStateModel): StudentOrganizationSelection {
+		return new StudentOrganizationSelection({
+			organizationId: state.organization.organizationId,
+			departmentId: state.organization.departmentId,
+			cardId: state.organization.cardId,
+		});
+	}
+
+	@Selector()
+	static getTeacherOrg(state: ProfileStateModel): TeacherOrganizationSelection {
+		return new TeacherOrganizationSelection({
+			organizationId: state.organization.organizationId,
+		});
 	}
 
 	@Action(ChangeTabViewAction)
@@ -64,7 +96,6 @@ export class ProfileState extends NgxsDataRepository<ProfileStateModel> {
 				email: action.payload.email,
 				phoneNumber: action.payload.phoneNumber,
 				overview: action.payload.overview,
-				cardId: action.payload.cardId,
 			},
 		});
 	}
@@ -80,6 +111,32 @@ export class ProfileState extends NgxsDataRepository<ProfileStateModel> {
 				email: action.payload.email,
 				phoneNumber: action.payload.phoneNumber,
 				overview: action.payload.overview,
+			},
+		});
+	}
+
+	@Action(SetOrganizationForStudentAction)
+	setOrganizationForStudent(context: StateContext<ProfileStateModel>, action: SetOrganizationForStudentAction): void {
+		const state = context.getState();
+		context.setState({
+			...state,
+			organization: {
+				organizationId: action.payload.organizationId,
+				profileType: action.payload.profileType,
+				departmentId: action.payload.departmentId,
+				cardId: action.payload.cardId,
+			},
+		});
+	}
+
+	@Action(SetOrganizationForTeacherAction)
+	setOrganizationForTeacher(context: StateContext<ProfileStateModel>, action: SetOrganizationForTeacherAction): void {
+		const state = context.getState();
+		context.setState({
+			...state,
+			organization: {
+				organizationId: action.payload.organizationId,
+				profileType: action.payload.profileType,
 			},
 		});
 	}
@@ -100,4 +157,24 @@ export class ProfileSelection {
 			cardId?: string;
 		}
 	) {}
+}
+
+export class StudentOrganizationSelection {
+	constructor(
+		public organization: {
+			organizationId: string;
+			departmentId: string;
+			cardId: string;
+		}
+	) {}
+}
+export class TeacherOrganizationSelection {
+	constructor(
+		public organization: {
+			organizationId: string;
+		}
+	) {}
+}
+export class ProfileTypeSelection {
+	constructor(public profileType: string) {}
 }

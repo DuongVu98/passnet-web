@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { Observable } from "rxjs";
-import { DepartmentDto, OrganizationLiteDto } from "../models/auth.models";
+import { DepartmentLiteDto, OrganizationLiteDto, OrgMemberDto } from "../models/auth.models";
+import { SemesterDto } from "../models/recruitment.models";
 
 const organizerApiHost = environment.organizerApi;
 
@@ -16,7 +17,25 @@ export class OrganizerApiService {
 		return this.httpClient.get<OrganizationLiteDto[]>(`${organizerApiHost}/api/query/organizations`);
 	}
 
-	getDepartments(orgId: string): Observable<DepartmentDto[]> {
-		return this.httpClient.get<DepartmentDto[]>(`${organizerApiHost}/api/query/organizations/${orgId}/departments`);
+	getDepartments(orgId: string): Observable<DepartmentLiteDto[]> {
+		return this.httpClient.get<DepartmentLiteDto[]>(
+			`${organizerApiHost}/api/query/organizations/${orgId}/departments`
+		);
+	}
+
+	getStudentByUid(userId: string): Observable<OrgMemberDto> {
+		return this.httpClient.get<OrgMemberDto>(`${organizerApiHost}/api/query/student`, {
+			params: {
+				uid: userId,
+			},
+		});
+	}
+
+	getSemestersByOrg(orgId: string): Observable<SemesterDto[]> {
+		return this.httpClient.get<SemesterDto[]>(`${organizerApiHost}/api/query/organizations/${orgId}/semesters`);
+	}
+
+	getSemesterById(semId: string): Observable<SemesterDto> {
+		return this.httpClient.get<SemesterDto>(`${organizerApiHost}/api/query/semesters/${semId}`);
 	}
 }

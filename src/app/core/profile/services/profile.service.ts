@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Select } from "@ngxs/store";
 import { Observable } from "rxjs";
+import { OrganizerApiService } from "src/app/common/api/organizer-api.service";
 import { ProfileApiService } from "src/app/common/api/profile-api.service";
+import { OrgMemberDto } from "src/app/common/models/auth.models";
 import {
 	AddExperienceRequest,
 	EditExperienceRequest,
@@ -19,10 +21,12 @@ export class ProfileService {
 	loggedUser$: Observable<LoggedUserStateSelection>;
 
 	profileId: string;
+	userId: string;
 
-	constructor(private profileApiService: ProfileApiService) {
+	constructor(private profileApiService: ProfileApiService, private organizerApiService: OrganizerApiService) {
 		this.loggedUser$.subscribe((loggedUser) => {
 			this.profileId = loggedUser.user.profileId;
+			this.userId = loggedUser.user.uid;
 		});
 	}
 
@@ -32,6 +36,10 @@ export class ProfileService {
 
 	getPersonalInfoById(profileId: string): Observable<ProfileDto> {
 		return this.profileApiService.getProfile(profileId);
+	}
+
+	getOrgInfo(): Observable<OrgMemberDto> {
+		return this.organizerApiService.getStudentByUid(this.userId);
 	}
 
 	getExperiencesByProfile(): Observable<ExperienceDto[]> {

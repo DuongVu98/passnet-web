@@ -4,6 +4,7 @@ export class JobFormDto {
 	requirement: string;
 	content: string;
 	semester: string;
+	organizationId: string;
 }
 
 export class ProfileDto {

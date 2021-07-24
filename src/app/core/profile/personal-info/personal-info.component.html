@@ -1,31 +1,52 @@
 <div>
 	<mat-list>
 		<div mat-subheader>Basic</div>
-		<p-contextMenu [target]="basicInfo" [model]="menuItems"></p-contextMenu>
-		<div #basicInfo matRipple class="basic-info">
-			<div class="p-grid">
-				<div class="p-col-6">
-					<mat-list-item>
-						<mat-icon mat-list-icon>perm_identity</mat-icon>
-						<div mat-line>{{ personalInfo.fullName }}</div>
-					</mat-list-item>
-					<mat-list-item>
-						<mat-icon mat-list-icon>recent_actors</mat-icon>
-						<div mat-line>{{ personalInfo.cardId }}</div>
-					</mat-list-item>
-					<mat-list-item>
-						<mat-icon mat-list-icon>mail</mat-icon>
-						<div mat-line>{{ personalInfo.email }}</div>
-					</mat-list-item>
+		<div class="p-grid">
+			<div class="p-col-6">
+				<p-contextMenu [target]="basicInfo" [model]="menuItems"></p-contextMenu>
+				<div #basicInfo matRipple class="basic-info">
+					<div class="p-grid">
+						<div class="p-col-6">
+							<mat-list-item>
+								<mat-icon mat-list-icon>perm_identity</mat-icon>
+								<div mat-line>{{ personalInfo.fullName }}</div>
+							</mat-list-item>
+							<mat-list-item>
+								<mat-icon mat-list-icon>mail</mat-icon>
+								<div mat-line>{{ personalInfo.email }}</div>
+							</mat-list-item>
+							<mat-list-item>
+								<mat-icon mat-list-icon>phone</mat-icon>
+								<div mat-line>{{ personalInfo.phoneNumber }}</div>
+							</mat-list-item>
+						</div>
+						<div class="p-col-6"></div>
+					</div>
 				</div>
-				<div class="p-col-6">
-					<mat-list-item>
-						<mat-icon mat-list-icon>phone</mat-icon>
-						<div mat-line>{{ personalInfo.phoneNumber }}</div>
-					</mat-list-item>
+			</div>
+			<div class="p-col-6">
+				<div #basicInfo matRipple class="basic-info">
+					<div class="p-grid">
+						<div class="p-col-8">
+							<mat-list-item>
+								<mat-icon mat-list-icon>school</mat-icon>
+								<div mat-line>{{ personalInfo.university }}</div>
+							</mat-list-item>
+							<mat-list-item *ngIf="isStudent()">
+								<mat-icon mat-list-icon>local_fire_department</mat-icon>
+								<div mat-line>{{ personalInfo.department }}</div>
+							</mat-list-item>
+							<mat-list-item *ngIf="isStudent()">
+								<mat-icon mat-list-icon>recent_actors</mat-icon>
+								<div mat-line>{{ personalInfo.cardId }}</div>
+							</mat-list-item>
+						</div>
+						<div class="p-col-4"></div>
+					</div>
 				</div>
 			</div>
 		</div>
+
 		<p-dialog header="Edit profile" [(visible)]="editProfileDialog" [baseZIndex]="10000">
 			<profile-basic-edit></profile-basic-edit>
 			<ng-template pTemplate="footer">

@@ -13,6 +13,7 @@ export class AuthenticaionApiService {
 	constructor(private httpClient: HttpClient) {}
 
 	register(registerForm: RegisterForm): Observable<any> {
+		console.log(`log register form: ${JSON.stringify(registerForm)}`);
 		return this.httpClient.post(`${authenticationApiServer}/auth/register`, registerForm);
 	}
 }

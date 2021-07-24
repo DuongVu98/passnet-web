@@ -31,7 +31,7 @@
 								<profile-personal-info></profile-personal-info>
 							</div>
 						</p-tabPanel>
-						<p-tabPanel [selected]="tabViewIndex == 1">
+						<p-tabPanel [selected]="tabViewIndex == 1" *ngIf="isTeacher()">
 							<ng-template pTemplate="header">
 								<i class="pi pi-briefcase tab-icon"></i>
 								<span>Jobs</span>

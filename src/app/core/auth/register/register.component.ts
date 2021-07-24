@@ -118,12 +118,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
 		const registerForm: RegisterForm = Builder(RegisterForm)
 			.firstName(this.basicInfoForm.value.firstName)
 			.lastName(this.basicInfoForm.value.lastName)
-			.username(this.basicInfoForm.value.username)
+			.username(this.authenticationForm.value.username)
 			.email(this.authenticationForm.value.email)
 			.password(this.authenticationForm.value.password)
 			.organizationId(this.organizationForm.value.organization)
 			.departmentId(this.organizationForm.value.department)
 			.cardId(this.organizationForm.value.cardId)
+			.role(this.organizationForm.value.role)
 			.build();
 		this.authService.register(registerForm).subscribe(() => {
 			this.router.navigate(["/login"]);

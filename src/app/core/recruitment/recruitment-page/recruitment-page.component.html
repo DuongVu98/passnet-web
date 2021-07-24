@@ -15,6 +15,7 @@
 							</mat-list-item>
 						</div>
 						<div
+							*ngIf="isTeacher()"
 							[ngClass]="{ 'menu-item': true, 'menu-item-active': activeItem === 'owned-jobs' }"
 							[routerLink]="['/recruitment/owned-jobs']"
 							(click)="setActive('owned-jobs')"

@@ -23,6 +23,7 @@ export class RecruitmentApiService {
 	}
 
 	postJob(jobFormDto: JobFormDto, teacherId: string): Observable<any> {
+		console.log(`depbug from before post ${JSON.stringify(jobFormDto)}`);
 		console.log(`teacherId --> ${teacherId}`);
 		return this.httpClient.post<JobFormDto>(`${this.recruitmentApiServer}/jobs/post-job`, jobFormDto, {
 			params: {
