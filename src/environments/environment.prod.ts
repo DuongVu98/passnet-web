@@ -1,7 +1,7 @@
 export const environment = {
 	production: true,
 	authenticationApi: "http://34.139.237.230/passnet-user",
-	profileApi: "http://34.139.237.230/passnet-profile",
+	profileApi: "http://20.97.232.173:8081",
 	recruitmentApi: "http://34.139.237.230/passnet-recruitment",
 	classroomApi: "http://34.139.237.230/passnet-classroom",
 	organizerApi: "http://34.139.237.230/passnet-organizer",
