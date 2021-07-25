@@ -34,9 +34,11 @@ export class ClassroomApiService {
 			classroomMemberType = "LECTURER";
 		}
 
-		return this.httpClient.post<ClassroomViewDto[]>(`${classroomApiHost}/api/query/classrooms/by-role`, {
-			profileId: uid,
-			memberType: memberType.toString(),
+		return this.httpClient.get<ClassroomViewDto[]>(`${classroomApiHost}/api/query/classrooms/by-role`, {
+			params: {
+				profileId: uid,
+				role: memberType.toString(),
+			},
 		});
 	}
 
@@ -57,23 +59,29 @@ export class ClassroomApiService {
 	}
 
 	getPostsByClassroom(classroomId: string): Observable<PostViewDto[]> {
-		return this.httpClient.post<PostViewDto[]>(`${classroomApiHost}/home/post-list`, { classroomId });
+		return this.httpClient.get<PostViewDto[]>(`${classroomApiHost}/api/query/clasrooms/${classroomId}/post-list`);
 	}
 
 	createNewPostToClassroom(content: string, classroomId: string, postOwnerId: string) {
-		return this.httpClient.post<any>(`${classroomApiHost}/home/create-post`, {
+		return this.httpClient.post<any>(`${classroomApiHost}/api/classrooms/${classroomId}/create-post`, {
 			content,
-			classroomId,
 			postOwnerId,
 		});
 	}
 
 	addCommentToPost(ownerId: string, postId: string, content: string, classroomId: string): Observable<any> {
-		return this.httpClient.post<any>(`${classroomApiHost}/home/add-comment`, {
+		return this.httpClient.post<any>(`${classroomApiHost}/api/classrooms/${classroomId}/add-comment`, {
 			ownerId,
 			postId,
 			content,
-			classroomId,
+		});
+	}
+
+	joinClassroomByCode(classCode: string, profileId: string, orgId: string): Observable<any> {
+		return this.httpClient.post<any>(`${classroomApiHost}/api/classrooms/join-class`, {
+			classCode,
+			profileId,
+			orgId,
 		});
 	}
 }
