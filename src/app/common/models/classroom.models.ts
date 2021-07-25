@@ -3,6 +3,7 @@ export class ClassroomViewDto {
 	courseName: string;
 	students: string[];
 	teacher: string;
+	code: string;
 	teacherAssistanceList: string[];
 }
 

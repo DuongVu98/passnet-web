@@ -42,8 +42,8 @@ export class JobApplicationDto {
 }
 
 export class JobApplicationListDto {
-	jobView: JobViewDto;
-	jobApplicationViewList: JobApplicationDto[];
+	job: JobViewDto;
+	applications: JobApplicationDto[];
 }
 
 export class SemesterDto {

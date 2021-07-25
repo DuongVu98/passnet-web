@@ -28,7 +28,7 @@ export class ClassroomService {
 		private recruitmentApiService: RecruitmentApiService
 	) {
 		this.loggedUser$.subscribe((loggedUser) => {
-			this.memberId = loggedUser.user.uid;
+			this.memberId = loggedUser.user.profileId;
 		});
 		this.organizationSelection$.subscribe((state) => {
 			this.organizationId = state.organization.organizationId;
@@ -48,7 +48,7 @@ export class ClassroomService {
 			return of([]);
 		} else {
 			return this.recruitmentApiService.getAllJobApplicationList(jobId).pipe(
-				map((list) => list.jobApplicationViewList),
+				map((list) => list.applications),
 				map((viewList) => viewList.filter((dto) => dto.state === "ACCEPTED").map((dto) => dto.studentId))
 			);
 		}
@@ -58,5 +58,9 @@ export class ClassroomService {
 		this.classroomApiService
 			.createClassroom(this.memberId, courseName, taIds, jobId, this.organizationId)
 			.subscribe();
+	}
+
+	joinClassroom(code: string): Observable<any> {
+		return this.classroomApiService.joinClassroomByCode(code, this.memberId, this.organizationId);
 	}
 }

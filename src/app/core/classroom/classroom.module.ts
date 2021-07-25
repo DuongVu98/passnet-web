@@ -17,6 +17,8 @@ import { ClassroomFilesComponent } from "./classroom-files/classroom-files.compo
 import { ClassroomStudentsComponent } from "./classroom-students/classroom-students.component";
 import { ClassroomSpaceService } from "./services/classroom-space.service";
 import { ClassroomCreateNewPostComponent } from "./classroom-create-new-post/classroom-create-new-post.component";
+import { DiscussionPostComponent } from './discussion-post/discussion-post.component';
+import { JoinClassFormComponent } from './join-class-form/join-class-form.component';
 
 @NgModule({
 	declarations: [
@@ -30,6 +32,8 @@ import { ClassroomCreateNewPostComponent } from "./classroom-create-new-post/cla
 		ClassroomFilesComponent,
 		ClassroomStudentsComponent,
 		ClassroomCreateNewPostComponent,
+		DiscussionPostComponent,
+		JoinClassFormComponent,
 	],
 	imports: [
 		CommonModule,

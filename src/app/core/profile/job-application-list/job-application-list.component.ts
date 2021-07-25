@@ -43,8 +43,8 @@ export class JobApplicationListComponent implements OnInit {
 	ngOnInit(): void {
 		this.route.queryParams.subscribe((params) => {
 			this.recruiterService.getJobApplicationList(params["jobId"]).subscribe((result) => {
-				this.jobId = result.jobView.id;
-				result.jobApplicationViewList.map((application) => {
+				this.jobId = result.job.id;
+				result.applications.map((application) => {
 					this.profileService.getPersonalInfoById(application.studentId).subscribe((candidateInfo) => {
 						this.jobApplicationList.push({
 							id: "",

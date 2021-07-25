@@ -5,6 +5,9 @@ import { Observable } from "rxjs";
 import { Select } from "@ngxs/store";
 import { ActiveClassroomSelection, ClassroomState } from "../store/classroom.state";
 import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
+import { ProfileApiService } from "src/app/common/api/profile-api.service";
+import { ProfileDto } from "src/app/common/models/profile.models";
+import { map } from "rxjs/operators";
 
 @Injectable({
 	providedIn: "root",
@@ -19,12 +22,12 @@ export class ClassroomSpaceService {
 	classroomSpaceId: string;
 	memberId: string;
 
-	constructor(private classroomApiService: ClassroomApiService) {
+	constructor(private classroomApiService: ClassroomApiService, private profileApiService: ProfileApiService) {
 		this.activeClassroom$.subscribe((classroom) => {
 			this.classroomSpaceId = classroom.classroomId;
 		});
 		this.loggedUser$.subscribe((loggedUser) => {
-			this.memberId = loggedUser.user.uid;
+			this.memberId = loggedUser.user.profileId;
 		});
 	}
 
@@ -44,5 +47,16 @@ export class ClassroomSpaceService {
 		console.log(`post: ${postId}\n${commentContent}`);
 
 		return this.classroomApiService.addCommentToPost(this.memberId, postId, commentContent, this.classroomSpaceId);
+	}
+
+	getOwnerProfile(profileId: string): Observable<{ name: string; role: string }> {
+		return this.profileApiService.getProfile(profileId).pipe(
+			map((dto) => {
+				return {
+					name: dto.fullName,
+					role: dto.teacher != null ? "Lecturer" : "",
+				};
+			})
+		);
 	}
 }

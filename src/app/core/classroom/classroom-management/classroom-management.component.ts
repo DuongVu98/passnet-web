@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { Select } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { ProfileSelection, ProfileState, ProfileTypeSelection } from "../../profile/store/profile.state";
 import { ClassroomMemberTypes } from "../models/classroom.models";
 
 @Component({
@@ -11,11 +14,25 @@ export class ClassroomManagementComponent implements OnInit {
 	teacherAssistanceType: ClassroomMemberTypes;
 	teacherType: ClassroomMemberTypes;
 
+	profileType: string;
+
+	@Select(ProfileState.getProfileType)
+	profileTypeSelection$: Observable<ProfileTypeSelection>;
+
 	constructor() {
 		this.studentType = ClassroomMemberTypes.STUDENT;
 		this.teacherAssistanceType = ClassroomMemberTypes.ASSISTANT;
 		this.teacherType = ClassroomMemberTypes.LECTURER;
+		this.profileType = "";
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.profileTypeSelection$.subscribe((state) => {
+			this.profileType = state.profileType;
+		});
+	}
+
+	isLecturer(): boolean {
+		return this.profileType === "TEACHER";
+	}
 }

@@ -66,8 +66,8 @@ export class JobApplicationListComponent implements OnInit, OnDestroy {
 			this.route.queryParams.subscribe((params) => {
 				this.subscriptions.push(
 					this.recruiterService.getJobApplicationList(params["jobId"]).subscribe((result) => {
-						this.jobId = result.jobView.id;
-						result.jobApplicationViewList.map((application) => {
+						this.jobId = result.job.id;
+						result.applications.map((application) => {
 							this.subscriptions.push(
 								this.personalInfoService
 									.getPersonalInfoById(application.studentId)
@@ -84,7 +84,7 @@ export class JobApplicationListComponent implements OnInit, OnDestroy {
 						});
 
 						this.subscriptions.push(
-							this.applicatorService.getJobDetail(result.jobView.id).subscribe((res) => {
+							this.applicatorService.getJobDetail(result.job.id).subscribe((res) => {
 								this.jobDetail.jobTitle = res.jobTitle;
 								this.jobDetail.courseName = res.courseName;
 								this.jobDetail.requirement = res.requirement;

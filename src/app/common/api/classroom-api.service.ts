@@ -15,7 +15,11 @@ export class ClassroomApiService {
 
 	getClassroomById(id: string): Observable<ClassroomViewDto> {
 		console.log(`get classroom by id: ${id}`);
-		return this.httpClient.get<ClassroomViewDto>(`${classroomApiHost}/api/query/classrooms/${id}`);
+		return this.httpClient.get<ClassroomViewDto>(`${classroomApiHost}/api/query/classrooms/by-id`, {
+			params: {
+				id,
+			},
+		});
 	}
 
 	getClassroomByJob(jobId: string): Observable<any> {
@@ -33,7 +37,6 @@ export class ClassroomApiService {
 		} else if (memberType == ClassroomMemberTypes.LECTURER) {
 			classroomMemberType = "LECTURER";
 		}
-
 		return this.httpClient.get<ClassroomViewDto[]>(`${classroomApiHost}/api/query/classrooms/by-role`, {
 			params: {
 				profileId: uid,
@@ -59,7 +62,7 @@ export class ClassroomApiService {
 	}
 
 	getPostsByClassroom(classroomId: string): Observable<PostViewDto[]> {
-		return this.httpClient.get<PostViewDto[]>(`${classroomApiHost}/api/query/clasrooms/${classroomId}/post-list`);
+		return this.httpClient.get<PostViewDto[]>(`${classroomApiHost}/api/query/classrooms/${classroomId}/posts`);
 	}
 
 	createNewPostToClassroom(content: string, classroomId: string, postOwnerId: string) {
