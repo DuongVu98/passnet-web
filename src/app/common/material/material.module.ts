@@ -20,6 +20,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
 	declarations: [],
@@ -45,6 +46,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 		MatStepperModule,
 		MatProgressBarModule,
 		MatSnackBarModule,
+		MatTableModule,
 	],
 })
 export class MaterialModule {}

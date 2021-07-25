@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { ClassroomMemberTypes } from "src/app/core/classroom/models/classroom.models";
-import { ClassroomViewDto, PostViewDto } from "../../common/models/classroom.models";
+import { ClassroomViewDto, MemberDto, PostViewDto } from "../../common/models/classroom.models";
 
 const classroomApiHost = environment.classroomApi;
 
@@ -63,6 +63,10 @@ export class ClassroomApiService {
 
 	getPostsByClassroom(classroomId: string): Observable<PostViewDto[]> {
 		return this.httpClient.get<PostViewDto[]>(`${classroomApiHost}/api/query/classrooms/${classroomId}/posts`);
+	}
+
+	getClassroomMembers(classroomId: string): Observable<MemberDto[]> {
+		return this.httpClient.get<MemberDto[]>(`${classroomApiHost}/api/query/classrooms/${classroomId}/members`);
 	}
 
 	createNewPostToClassroom(content: string, classroomId: string, postOwnerId: string) {

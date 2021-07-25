@@ -19,3 +19,8 @@ export class CommentViewDto {
 	commentOwner: string;
 	content: string;
 }
+
+export class MemberDto {
+	profileId: string;
+	role: string;
+}

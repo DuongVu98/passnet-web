@@ -32,8 +32,8 @@ export class ClassroomSpaceComponent implements OnInit {
 				icon: "assignment_turned_in",
 			},
 			{
-				name: "Students",
-				link: "students",
+				name: "Members",
+				link: "members",
 				icon: "face",
 			},
 			{
