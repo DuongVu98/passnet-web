@@ -8,13 +8,20 @@
 			</div>
 			<div>
 				<p-card styleClass="single-classroom-card p-shadow-6" (click)="openAddClassroomForm()">
-					<div class="classroom-text">{{addClassroomPresentation()}}</div>
+					<div class="classroom-text">{{ addClassroomPresentation() }}</div>
 				</p-card>
 			</div>
 		</div>
 	</div>
-	<p-dialog header="Header" [(visible)]="displayAddClassroomForm" [modal]="true" [style]="{ width: '50vw' }"
-		[baseZIndex]="10000" [draggable]="false" [resizable]="false">
+	<p-dialog
+		header="Header"
+		[(visible)]="displayAddClassroomForm"
+		[modal]="true"
+		[style]="{ width: '50vw' }"
+		[baseZIndex]="10000"
+		[draggable]="false"
+		[resizable]="false"
+	>
 		<common-create-classroom-form></common-create-classroom-form>
 		<ng-template pTemplate="footer">
 			<p-button icon="pi pi-check" (click)="submitAndClose()" label="Create" styleClass="p-button-text">
