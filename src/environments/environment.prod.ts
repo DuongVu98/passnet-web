@@ -8,6 +8,6 @@ export const environment = {
 	okta: {
 		domain: "dev-96211074.okta.com",
 		clientId: "0oa126nrgljPb0QHO5d7",
-		redirectUri: "https://passnet.web.app/login/callback",
+		redirectUri: "http://localhost:4200/login/callback",
 	},
 };
