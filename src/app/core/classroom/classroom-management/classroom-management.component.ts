@@ -13,8 +13,8 @@ export class ClassroomManagementComponent implements OnInit {
 
 	constructor() {
 		this.studentType = ClassroomMemberTypes.STUDENT;
-		this.teacherAssistanceType = ClassroomMemberTypes.TEACHER_ASSISTANCE;
-		this.teacherType = ClassroomMemberTypes.TEACHER;
+		this.teacherAssistanceType = ClassroomMemberTypes.ASSISTANT;
+		this.teacherType = ClassroomMemberTypes.LECTURER;
 	}
 
 	ngOnInit(): void {}

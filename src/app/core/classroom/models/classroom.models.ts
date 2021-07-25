@@ -1,5 +1,5 @@
 export enum ClassroomMemberTypes {
-	TEACHER,
-	TEACHER_ASSISTANCE,
+	LECTURER,
+	ASSISTANT,
 	STUDENT,
 }

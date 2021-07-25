@@ -15,13 +15,11 @@ export class ClassroomApiService {
 
 	getClassroomById(id: string): Observable<ClassroomViewDto> {
 		console.log(`get classroom by id: ${id}`);
-		return this.httpClient.post<ClassroomViewDto>(`${classroomApiHost}/home/classroom-view/classroom-id`, {
-			classroomId: id,
-		});
+		return this.httpClient.get<ClassroomViewDto>(`${classroomApiHost}/api/query/classrooms/${id}`);
 	}
 
 	getClassroomByJob(jobId: string): Observable<any> {
-		return this.httpClient.post<any>(`${classroomApiHost}/home/classroom-view/job-id`, {
+		return this.httpClient.post<any>(`${classroomApiHost}/api/query/classrooms/by-job`, {
 			jobId: jobId,
 		});
 	}
@@ -29,25 +27,32 @@ export class ClassroomApiService {
 	getClassroomListByMemberType(uid: string, memberType: ClassroomMemberTypes): Observable<ClassroomViewDto[]> {
 		let classroomMemberType;
 		if (memberType == ClassroomMemberTypes.STUDENT) {
-			classroomMemberType = "student";
-		} else if (memberType == ClassroomMemberTypes.TEACHER_ASSISTANCE) {
-			classroomMemberType = "teacherAssistance";
-		} else if (memberType == ClassroomMemberTypes.TEACHER) {
-			classroomMemberType = "teacher";
+			classroomMemberType = "STUDENT";
+		} else if (memberType == ClassroomMemberTypes.ASSISTANT) {
+			classroomMemberType = "ASSISTANT";
+		} else if (memberType == ClassroomMemberTypes.LECTURER) {
+			classroomMemberType = "LECTURER";
 		}
 
-		return this.httpClient.post<ClassroomViewDto[]>(`${classroomApiHost}/home/classroom-list`, {
-			uid: uid,
-			memberType: classroomMemberType,
+		return this.httpClient.post<ClassroomViewDto[]>(`${classroomApiHost}/api/query/classrooms/by-role`, {
+			profileId: uid,
+			memberType: memberType.toString(),
 		});
 	}
 
-	createClassroom(uid: string, courseName: string, taIds: string[], jobId: string): Observable<any> {
-		return this.httpClient.post<any>(`${classroomApiHost}/home/create-classroom`, {
-			teacherId: uid,
+	createClassroom(
+		profileId: string,
+		courseName: string,
+		assistants: string[],
+		jobId: string,
+		organizationId: string
+	): Observable<any> {
+		return this.httpClient.post<any>(`${classroomApiHost}/api/classrooms/create-classroom`, {
+			teacherId: profileId,
 			courseName: courseName,
-			taIds: taIds,
+			taIds: assistants,
 			jobId: jobId,
+			organizationId: organizationId,
 		});
 	}
 

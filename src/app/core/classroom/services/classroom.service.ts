@@ -7,7 +7,8 @@ import { Observable, of } from "rxjs";
 import { ClassroomViewDto } from "src/app/common/models/classroom.models";
 import { RecruitmentApiService } from "src/app/common/api/recruitment-api.service";
 import { JobViewDto } from "src/app/common/models/recruitment.models";
-import { filter, map, mergeMap } from "rxjs/operators";
+import { map } from "rxjs/operators";
+import { ProfileState, TeacherOrganizationSelection } from "../../profile/store/profile.state";
 
 @Injectable({
 	providedIn: "root",
@@ -16,7 +17,11 @@ export class ClassroomService {
 	@Select(AuthState.getLoggedUser)
 	loggedUser$: Observable<LoggedUserStateSelection>;
 
+	@Select(ProfileState.getTeacherOrg)
+	organizationSelection$: Observable<TeacherOrganizationSelection>;
+
 	memberId: string;
+	organizationId: string;
 
 	constructor(
 		private classroomApiService: ClassroomApiService,
@@ -24,6 +29,9 @@ export class ClassroomService {
 	) {
 		this.loggedUser$.subscribe((loggedUser) => {
 			this.memberId = loggedUser.user.uid;
+		});
+		this.organizationSelection$.subscribe((state) => {
+			this.organizationId = state.organization.organizationId;
 		});
 	}
 
@@ -47,6 +55,8 @@ export class ClassroomService {
 	}
 
 	createClassroom(courseName: string, taIds: string[], jobId: string) {
-		this.classroomApiService.createClassroom(this.memberId, courseName, taIds, jobId).subscribe();
+		this.classroomApiService
+			.createClassroom(this.memberId, courseName, taIds, jobId, this.organizationId)
+			.subscribe();
 	}
 }
