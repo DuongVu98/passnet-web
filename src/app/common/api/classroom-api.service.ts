@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { ClassroomMemberTypes } from "src/app/core/classroom/models/classroom.models";
-import { ClassroomViewDto, PostViewDto } from "../../common/models/classroom.models";
+import { ClassroomViewDto, MemberDto, PostViewDto } from "../../common/models/classroom.models";
 
 const classroomApiHost = environment.classroomApi;
 
@@ -15,13 +15,15 @@ export class ClassroomApiService {
 
 	getClassroomById(id: string): Observable<ClassroomViewDto> {
 		console.log(`get classroom by id: ${id}`);
-		return this.httpClient.post<ClassroomViewDto>(`${classroomApiHost}/home/classroom-view/classroom-id`, {
-			classroomId: id,
+		return this.httpClient.get<ClassroomViewDto>(`${classroomApiHost}/api/query/classrooms/by-id`, {
+			params: {
+				id,
+			},
 		});
 	}
 
 	getClassroomByJob(jobId: string): Observable<any> {
-		return this.httpClient.post<any>(`${classroomApiHost}/home/classroom-view/job-id`, {
+		return this.httpClient.post<any>(`${classroomApiHost}/api/query/classrooms/by-job`, {
 			jobId: jobId,
 		});
 	}
@@ -29,46 +31,64 @@ export class ClassroomApiService {
 	getClassroomListByMemberType(uid: string, memberType: ClassroomMemberTypes): Observable<ClassroomViewDto[]> {
 		let classroomMemberType;
 		if (memberType == ClassroomMemberTypes.STUDENT) {
-			classroomMemberType = "student";
-		} else if (memberType == ClassroomMemberTypes.TEACHER_ASSISTANCE) {
-			classroomMemberType = "teacherAssistance";
-		} else if (memberType == ClassroomMemberTypes.TEACHER) {
-			classroomMemberType = "teacher";
+			classroomMemberType = "STUDENT";
+		} else if (memberType == ClassroomMemberTypes.ASSISTANT) {
+			classroomMemberType = "ASSISTANT";
+		} else if (memberType == ClassroomMemberTypes.LECTURER) {
+			classroomMemberType = "LECTURER";
 		}
-
-		return this.httpClient.post<ClassroomViewDto[]>(`${classroomApiHost}/home/classroom-list`, {
-			uid: uid,
-			memberType: classroomMemberType,
+		return this.httpClient.get<ClassroomViewDto[]>(`${classroomApiHost}/api/query/classrooms/by-role`, {
+			params: {
+				profileId: uid,
+				role: memberType.toString(),
+			},
 		});
 	}
 
-	createClassroom(uid: string, courseName: string, taIds: string[], jobId: string): Observable<any> {
-		return this.httpClient.post<any>(`${classroomApiHost}/home/create-classroom`, {
-			teacherId: uid,
+	createClassroom(
+		profileId: string,
+		courseName: string,
+		assistants: string[],
+		jobId: string,
+		organizationId: string
+	): Observable<any> {
+		return this.httpClient.post<any>(`${classroomApiHost}/api/classrooms/create-classroom`, {
+			teacherId: profileId,
 			courseName: courseName,
-			taIds: taIds,
+			taIds: assistants,
 			jobId: jobId,
+			organizationId: organizationId,
 		});
 	}
 
 	getPostsByClassroom(classroomId: string): Observable<PostViewDto[]> {
-		return this.httpClient.post<PostViewDto[]>(`${classroomApiHost}/home/post-list`, { classroomId });
+		return this.httpClient.get<PostViewDto[]>(`${classroomApiHost}/api/query/classrooms/${classroomId}/posts`);
+	}
+
+	getClassroomMembers(classroomId: string): Observable<MemberDto[]> {
+		return this.httpClient.get<MemberDto[]>(`${classroomApiHost}/api/query/classrooms/${classroomId}/members`);
 	}
 
 	createNewPostToClassroom(content: string, classroomId: string, postOwnerId: string) {
-		return this.httpClient.post<any>(`${classroomApiHost}/home/create-post`, {
+		return this.httpClient.post<any>(`${classroomApiHost}/api/classrooms/${classroomId}/create-post`, {
 			content,
-			classroomId,
 			postOwnerId,
 		});
 	}
 
 	addCommentToPost(ownerId: string, postId: string, content: string, classroomId: string): Observable<any> {
-		return this.httpClient.post<any>(`${classroomApiHost}/home/add-comment`, {
+		return this.httpClient.post<any>(`${classroomApiHost}/api/classrooms/${classroomId}/add-comment`, {
 			ownerId,
 			postId,
 			content,
-			classroomId,
+		});
+	}
+
+	joinClassroomByCode(classCode: string, profileId: string, orgId: string): Observable<any> {
+		return this.httpClient.post<any>(`${classroomApiHost}/api/classrooms/join-class`, {
+			classCode,
+			profileId,
+			orgId,
 		});
 	}
 }

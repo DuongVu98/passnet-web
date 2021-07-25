@@ -8,13 +8,19 @@
 ::ng-deep .single-classroom-card {
 	width: 175px;
 	height: 140px;
-	background-color: #af8eb5;
+	background-color: #8e44ad;
 	justify-content: center;
 	display: flex;
 	text-align: center;
 	margin: 10px;
 
 	&:hover {
-		background-color: #c0b3c2;
+		background-color: #9b59b6;
+	}
+
+	.classroom-text {
+		font-weight: bold;
+		color: white;
+		font-size: large;
 	}
 }

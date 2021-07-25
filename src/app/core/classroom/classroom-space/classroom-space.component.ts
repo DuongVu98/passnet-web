@@ -17,6 +17,7 @@ export class ClassroomSpaceComponent implements OnInit {
 
 	readonly navigations: any[];
 	courseName: string;
+	classCode: string;
 
 	constructor(private store: Store, private router: Router, private spaceService: ClassroomSpaceService) {
 		this.navigations = [
@@ -31,8 +32,8 @@ export class ClassroomSpaceComponent implements OnInit {
 				icon: "assignment_turned_in",
 			},
 			{
-				name: "Students",
-				link: "students",
+				name: "Members",
+				link: "members",
 				icon: "face",
 			},
 			{
@@ -41,6 +42,8 @@ export class ClassroomSpaceComponent implements OnInit {
 				icon: "description",
 			},
 		];
+		this.courseName = "";
+		this.classCode = "";
 	}
 
 	ngOnInit() {
@@ -54,6 +57,7 @@ export class ClassroomSpaceComponent implements OnInit {
 	fetchData(): void {
 		this.spaceService.getClassroomView().subscribe((classroomView) => {
 			this.courseName = classroomView.courseName;
+			this.classCode = classroomView.code;
 		});
 	}
 

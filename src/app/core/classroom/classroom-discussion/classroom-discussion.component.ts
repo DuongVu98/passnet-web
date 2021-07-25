@@ -5,13 +5,6 @@ import { ClassroomSpaceService } from "../services/classroom-space.service";
 
 export interface PostView {
 	postId: string;
-	ownerId: string;
-	content: string;
-	comments: {
-		commentId: string;
-		ownerId: string;
-		content: string;
-	}[];
 }
 
 @Component({
@@ -21,7 +14,6 @@ export interface PostView {
 })
 export class ClassroomDiscussionComponent implements OnInit, OnDestroy {
 	posts: PostView[];
-	commentContent: string;
 	displayCreatePostForm: boolean;
 
 	@ViewChild(ClassroomCreateNewPostComponent)
@@ -31,7 +23,6 @@ export class ClassroomDiscussionComponent implements OnInit, OnDestroy {
 
 	constructor(private spaceService: ClassroomSpaceService) {
 		this.posts = [];
-		this.commentContent = "";
 		this.displayCreatePostForm = false;
 	}
 
@@ -45,24 +36,7 @@ export class ClassroomDiscussionComponent implements OnInit, OnDestroy {
 
 	fetchData() {
 		this.dataSubscription = this.spaceService.getAllPosts().subscribe((allPosts) => {
-			allPosts.forEach((post) => {
-				let postToPush = {
-					postId: post.postId,
-					ownerId: post.postOwner,
-					content: post.content,
-					comments: [],
-				};
-
-				post.comments.forEach((cmt) => {
-					postToPush.comments.push({
-						commentId: cmt.commentId,
-						ownerId: cmt.commentOwner,
-						content: cmt.content,
-					});
-				});
-
-				this.posts.push(postToPush);
-			});
+			allPosts.map((post) => post.postId).forEach((postId) => this.posts.push({ postId }));
 		});
 	}
 
@@ -75,12 +49,6 @@ export class ClassroomDiscussionComponent implements OnInit, OnDestroy {
 			this.displayCreatePostForm = false;
 			this.posts = [];
 			this.fetchData();
-		});
-	}
-
-	addComment(postId: string): void {
-		this.spaceService.addCommentToPost(postId, this.commentContent).subscribe(() => {
-			this.commentContent = "";
 		});
 	}
 }

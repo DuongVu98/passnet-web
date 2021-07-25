@@ -7,6 +7,7 @@ import { JobViewDto } from "../../models/recruitment.models";
 import { Select } from "@ngxs/store";
 import { AuthState, LoggedUserStateSelection } from "src/app/core/auth/store/auth.state";
 import { map } from "rxjs/operators";
+import { ProfileState, TeacherOrganizationSelection } from "src/app/core/profile/store/profile.state";
 
 interface JobView {
 	jobId: string;
@@ -23,7 +24,11 @@ export class CreateClassroomFormComponent implements OnInit {
 	@Select(AuthState.getLoggedUser)
 	loggedUser$: Observable<LoggedUserStateSelection>;
 
+	@Select(ProfileState.getTeacherOrg)
+	organizationSelection: Observable<TeacherOrganizationSelection>;
+
 	memberId: string;
+	organizationId: string;
 
 	inputSelectedJob: JobView;
 	ownedPostedJobsView: JobView[];
@@ -38,7 +43,10 @@ export class CreateClassroomFormComponent implements OnInit {
 		private recruitmentApiService: RecruitmentApiService
 	) {
 		this.loggedUser$.subscribe((loggedUser) => {
-			this.memberId = loggedUser.user.uid;
+			this.memberId = loggedUser.user.profileId;
+		});
+		this.organizationSelection.subscribe((state) => {
+			this.organizationId = state.organization.organizationId;
 		});
 
 		this.ownedPostedJobsView = [];
@@ -51,20 +59,14 @@ export class CreateClassroomFormComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		console.log("am I here?");
 		this.componetSubsription = this.inputSeletedJob$.asObservable().subscribe((selectedJob) => {
 			this.inputSelectedJob = selectedJob;
 			this.getAcceptedTasFromJob(selectedJob.jobId).subscribe((result) => {
+				console.log(result);
 				this.acceptedTeacherAssistents = result;
 			});
 		});
-		this.fetchData();
-	}
-
-	ngOnDestroy(): void {
-		this.componetSubsription.unsubscribe();
-	}
-
-	fetchData(): void {
 		this.getOwnPostedJobs().subscribe((result) => {
 			this.ownedPostedJobsView = result.map((jobViewDto) => {
 				return {
@@ -74,6 +76,10 @@ export class CreateClassroomFormComponent implements OnInit {
 				};
 			});
 		});
+	}
+
+	ngOnDestroy(): void {
+		this.componetSubsription.unsubscribe();
 	}
 
 	reactiveChange(value: JobView): void {
@@ -89,8 +95,14 @@ export class CreateClassroomFormComponent implements OnInit {
 			return of([]);
 		} else {
 			return this.recruitmentApiService.getAllJobApplicationList(jobId).pipe(
-				map((list) => list.jobApplicationViewList),
-				map((viewList) => viewList.filter((dto) => dto.state === "ACCEPTED").map((dto) => dto.studentId))
+				map((list) => {
+					console.log(JSON.stringify(list));
+					return list.applications;
+				}),
+				map((viewList) => {
+					console.log(viewList);
+					return viewList.filter((dto) => dto.state === "ACCEPTED").map((dto) => dto.studentId);
+				})
 			);
 		}
 	}
@@ -100,6 +112,8 @@ export class CreateClassroomFormComponent implements OnInit {
 	}
 
 	createClassroom(courseName: string, taIds: string[], jobId: string) {
-		this.classroomApiService.createClassroom(this.memberId, courseName, taIds, jobId).subscribe();
+		this.classroomApiService
+			.createClassroom(this.memberId, courseName, taIds, jobId, this.organizationId)
+			.subscribe();
 	}
 }

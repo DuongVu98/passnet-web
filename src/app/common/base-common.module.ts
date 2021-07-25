@@ -10,6 +10,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { HttpRequestInterceptor } from "./interceptors/http-request.interceptor";
 import { AuthenticationInterceptor } from "./interceptors/authentication.interceptor";
 import { CreateClassroomFormComponent } from "./components/create-classroom-form/create-classroom-form.component";
+import { HttpErrorInterceptor } from "./interceptors/http-error.interceptor";
 
 @NgModule({
 	declarations: [CreateClassroomFormComponent],
@@ -35,6 +36,11 @@ import { CreateClassroomFormComponent } from "./components/create-classroom-form
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: AuthenticationInterceptor,
+			multi: true,
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: HttpErrorInterceptor,
 			multi: true,
 		},
 	],
