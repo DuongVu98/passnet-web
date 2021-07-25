@@ -5,6 +5,11 @@ import { Observable } from "rxjs";
 import { AddExperienceRequest } from "src/app/common/models/profile.models";
 import { ProfileService } from "../services/profile.service";
 
+interface SemesterView {
+	id: string;
+	displayName: string;
+}
+
 @Component({
 	selector: "profile-add-exp-form",
 	templateUrl: "./add-exp-form.component.html",
@@ -12,6 +17,7 @@ import { ProfileService } from "../services/profile.service";
 })
 export class AddExpFormComponent implements OnInit {
 	addExpForm: FormGroup;
+	semesters: SemesterView[];
 
 	constructor(private profileService: ProfileService) {
 		this.addExpForm = new FormGroup({
@@ -19,14 +25,24 @@ export class AddExpFormComponent implements OnInit {
 			semester: new FormControl("", [Validators.required]),
 			description: new FormControl("", [Validators.required]),
 		});
+		this.semesters = [];
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.profileService.getSemesters().subscribe((result) => {
+			this.semesters = result.map((sem) => {
+				return {
+					id: sem.id,
+					displayName: `${sem.name} (${sem.startMonth} - ${sem.endMonth})`,
+				};
+			});
+		});
+	}
 
 	submit(): Observable<any> {
 		const formDto = Builder(AddExperienceRequest)
 			.course(this.addExpForm.value.course)
-			.semester(this.addExpForm.value.semester)
+			.semester(this.addExpForm.value.semester.id)
 			.description(this.addExpForm.value.description)
 			.build();
 		return this.profileService.addExperience(formDto);

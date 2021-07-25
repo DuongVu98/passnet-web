@@ -73,7 +73,7 @@ export class JobApplicationListComponent implements OnInit, OnDestroy {
 									.getPersonalInfoById(application.studentId)
 									.subscribe((candidateInfo) => {
 										this.jobApplicationList.push({
-											id: "",
+											id: application.id,
 											studentId: application.studentId,
 											candidateName: candidateInfo.fullName,
 											letter: application.letter,
@@ -102,17 +102,15 @@ export class JobApplicationListComponent implements OnInit, OnDestroy {
 	}
 
 	selectJobApplicationDetail(applicationId: string): void {
-		this.selectedJobApplication = this.jobApplicationList.filter(
-			(application) => application.id === applicationId
-		)[0];
-		this.setNoApplicationSeleted();
+		this.selectedJobApplication = this.jobApplicationList.find((application) => application.id === applicationId);
+		this.setNoApplicationSelected();
 	}
 
 	acceptApplication(applicationId: string): void {
 		this.recruiterService.acceptApplicationForm(applicationId, this.jobId).subscribe();
 	}
 
-	setNoApplicationSeleted() {
-		this.noApplicationSelected = this.selectedJobApplication.id === "" ? false : true;
+	setNoApplicationSelected() {
+		this.noApplicationSelected = false;
 	}
 }

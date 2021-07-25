@@ -6,8 +6,11 @@
 				<input id="course" type="text" pInputText formControlName="course" />
 			</div>
 			<div class="p-field p-col-6">
+				<!-- <label for="semester">Semester</label>
+				<input id="semester" type="text" pInputText formControlName="semester" /> -->
 				<label for="semester">Semester</label>
-				<input id="semester" type="text" pInputText formControlName="semester" />
+				<p-dropdown id="semester" [options]="semesters" formControlName="semester" optionLabel="displayName">
+				</p-dropdown>
 			</div>
 			<div class="p-field p-col-12">
 				<label for="description">Description</label>

@@ -35,6 +35,7 @@ export class JobViewListDto {
 }
 
 export class JobApplicationDto {
+	id: string;
 	studentId: string;
 	letter: string;
 	content: string;
