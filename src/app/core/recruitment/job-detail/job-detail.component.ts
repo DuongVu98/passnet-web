@@ -45,9 +45,6 @@ export class JobDetailComponent implements OnInit {
 				this.recruiterApiService.getProfileView(res.teacherId).subscribe((result) => {
 					this.jobDetail.teacher = result.fullName;
 				});
-				this.recruiterApiService.getSemester(res.semester).subscribe((result) => {
-					this.jobDetail.semester = result.name;
-				});
 			});
 		});
 	}

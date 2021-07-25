@@ -9,8 +9,6 @@ interface MemberView {
 	studentId: string;
 }
 
-interface MemberTableView {}
-
 @Component({
 	selector: "classroom-member-list",
 	templateUrl: "./member-list.component.html",
