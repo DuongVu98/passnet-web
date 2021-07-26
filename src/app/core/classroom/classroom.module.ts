@@ -14,9 +14,11 @@ import { ClassroomState } from "./store/classroom.state";
 import { ClassroomDiscussionComponent } from "./classroom-discussion/classroom-discussion.component";
 import { ClassroomAssignmentComponent } from "./classroom-assignment/classroom-assignment.component";
 import { ClassroomFilesComponent } from "./classroom-files/classroom-files.component";
-import { ClassroomStudentsComponent } from "./classroom-students/classroom-students.component";
 import { ClassroomSpaceService } from "./services/classroom-space.service";
 import { ClassroomCreateNewPostComponent } from "./classroom-create-new-post/classroom-create-new-post.component";
+import { DiscussionPostComponent } from "./discussion-post/discussion-post.component";
+import { JoinClassFormComponent } from "./join-class-form/join-class-form.component";
+import { MemberListComponent } from "./member-list/member-list.component";
 
 @NgModule({
 	declarations: [
@@ -28,8 +30,10 @@ import { ClassroomCreateNewPostComponent } from "./classroom-create-new-post/cla
 		ClassroomDiscussionComponent,
 		ClassroomAssignmentComponent,
 		ClassroomFilesComponent,
-		ClassroomStudentsComponent,
 		ClassroomCreateNewPostComponent,
+		DiscussionPostComponent,
+		JoinClassFormComponent,
+		MemberListComponent,
 	],
 	imports: [
 		CommonModule,

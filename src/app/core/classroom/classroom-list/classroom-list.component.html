@@ -3,11 +3,13 @@
 		<div class="p-d-flex p-flex-column p-flex-md-row">
 			<div *ngFor="let class of classroomList">
 				<p-card styleClass="single-classroom-card p-shadow-6" (click)="goToClassroom(class.classroomId)">
-					{{ class.courseName }}
+					<div class="classroom-text">{{ class.courseName }}</div>
 				</p-card>
 			</div>
 			<div>
-				<p-card styleClass="single-classroom-card p-shadow-6" (click)="openAddClassroomForm()"> Add </p-card>
+				<p-card styleClass="single-classroom-card p-shadow-6" (click)="openAddClassroomForm()">
+					<div class="classroom-text">{{ addClassroomPresentation() }}</div>
+				</p-card>
 			</div>
 		</div>
 	</div>

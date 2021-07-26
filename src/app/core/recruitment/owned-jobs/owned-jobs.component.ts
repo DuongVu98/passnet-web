@@ -26,16 +26,24 @@ export class OwnedJobsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.recruiterService.getOwnedPostedJobs().subscribe((result) => {
-			result.forEach((jobView) => {
-				this.ownedJobList.push({
-					id: jobView.id,
-					title: jobView.jobTitle,
-					courseName: jobView.courseName,
-					semester: jobView.semester,
-					numberOfAlpplication: jobView.appliedAmount,
-					postedDate: "",
+			this.ownedJobList = result
+				.map((jobView) => {
+					return {
+						id: jobView.id,
+						title: jobView.jobTitle,
+						courseName: jobView.courseName,
+						semester: jobView.semester,
+						numberOfAlpplication: jobView.appliedAmount,
+						postedDate: "",
+					};
+				})
+				.map((jowView) => {
+					this.recruiterService.getSemester(jowView.semester).subscribe((sem) => {
+						jowView.semester = sem.name;
+					});
+
+					return jowView;
 				});
-			});
 		});
 	}
 

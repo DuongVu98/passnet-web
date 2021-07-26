@@ -3,6 +3,7 @@ export class ClassroomViewDto {
 	courseName: string;
 	students: string[];
 	teacher: string;
+	code: string;
 	teacherAssistanceList: string[];
 }
 
@@ -17,4 +18,9 @@ export class CommentViewDto {
 	commentId: string;
 	commentOwner: string;
 	content: string;
+}
+
+export class MemberDto {
+	profileId: string;
+	role: string;
 }

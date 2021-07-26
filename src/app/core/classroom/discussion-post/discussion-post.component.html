@@ -1,0 +1,74 @@
+<div>
+	<mat-card>
+		<div class="post-header">
+			<img
+				class="post-avatar"
+				mat-card-image
+				[matMenuTriggerFor]="profileMenu"
+				src="https://rouelibrenmaine.fr/wp-content/uploads/2018/10/empty-avatar.png"
+				alt="Photo of a Shiba Inu"
+			/>
+			<div class="post-owner-name">
+				<p>{{ post.owner.name }}</p>
+			</div>
+			<mat-menu #profileMenu="matMenu">
+				<button mat-menu-item>View profile</button>
+				<button mat-menu-item>chat</button>
+			</mat-menu>
+		</div>
+		<div class="post-body">{{ post.content }}</div>
+		<mat-divider></mat-divider>
+		<div class="post-comments">
+			<div class="comment-list">
+				<div *ngFor="let cmt of post.comments" class="single-comment">
+					<div class="p-grid">
+						<div class="p-col-fixed" style="width: 75px">
+							<div class="comment-avatar">
+								<img
+									class="comment-avatar"
+									src="https://rouelibrenmaine.fr/wp-content/uploads/2018/10/empty-avatar.png"
+									alt="Photo of a Shiba Inu"
+								/>
+							</div>
+						</div>
+						<div class="p-col">
+							<div class="comment-content">
+								<div>{{ cmt.content }}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<mat-divider *ngIf="post.comments.length < 1"></mat-divider>
+		<div class="write-comment-input">
+			<div class="input-field" style="margin: 10px">
+				<div class="p-grid">
+					<div class="p-col-fixed" style="width: 75px">
+						<div class="comment-avatar">
+							<button mat-mini-fab color="warn">
+								<mat-icon>mood</mat-icon>
+							</button>
+						</div>
+					</div>
+					<div class="p-col">
+						<div class="comment-content">
+							<div class="input-box">
+								<textarea
+									style="border-radius: 15px; width: 100%"
+									[rows]="1"
+									pInputTextarea
+									autoResize="autoResize"
+									[(ngModel)]="commentContent"
+								></textarea>
+								<button class="send-button" mat-icon-button (click)="addComment(post.postId)">
+									<mat-icon>send</mat-icon>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</mat-card>
+</div>

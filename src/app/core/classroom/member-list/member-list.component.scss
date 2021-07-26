@@ -1,0 +1,35 @@
+.parent-box {
+	padding-top: 50px;
+	width: 1000px;
+}
+.post-avatar {
+	margin: 3px;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+.mem-card {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	.p-col {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.mem-name {
+	font-weight: bold;
+	font-size: large;
+}
+
+.subheader {
+	font-weight: bold;
+}
+
+.single-list {
+	margin-bottom: 30px;
+}
+
+table {
+	width: 100%;
+}

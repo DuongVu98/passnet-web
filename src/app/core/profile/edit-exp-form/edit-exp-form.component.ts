@@ -9,6 +9,10 @@ import { ProfileService } from "../services/profile.service";
 export interface DialogData {
 	expId: string;
 }
+interface SemesterView {
+	id: string;
+	displayName: string;
+}
 
 @Component({
 	selector: "profile-edit-exp-form",
@@ -17,6 +21,7 @@ export interface DialogData {
 })
 export class EditExpFormComponent implements OnInit, OnDestroy {
 	editExpForm: FormGroup;
+	semesters: SemesterView[];
 
 	subscriptions: Subscription[];
 
@@ -30,6 +35,7 @@ export class EditExpFormComponent implements OnInit, OnDestroy {
 			semester: new FormControl("", [Validators.required]),
 			description: new FormControl("", [Validators.required]),
 		});
+		this.semesters = [];
 		this.subscriptions = [];
 	}
 
@@ -41,6 +47,14 @@ export class EditExpFormComponent implements OnInit, OnDestroy {
 				this.editExpForm.patchValue({ description: result.description });
 			})
 		);
+		this.profileService.getSemesters().subscribe((result) => {
+			this.semesters = result.map((sem) => {
+				return {
+					id: sem.id,
+					displayName: `${sem.name} (${sem.startMonth} - ${sem.endMonth})`,
+				};
+			});
+		});
 	}
 	ngOnDestroy(): void {
 		this.subscriptions.forEach((sub) => sub.unsubscribe());

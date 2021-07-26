@@ -121,14 +121,21 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
 				}
 			}),
 			this.profileService.getExperiencesByProfile().subscribe((result) => {
-				result.forEach((r) => {
-					this.personalInfo.experiences.push({
-						id: r.experienceId,
-						course: r.course,
-						semester: r.semester,
-						description: r.description,
+				this.personalInfo.experiences = result
+					.map((r) => {
+						return {
+							id: r.experienceId,
+							course: r.course,
+							semester: r.semester,
+							description: r.description,
+						};
+					})
+					.map((exp) => {
+						this.profileService.getSemesterById(exp.semester).subscribe((semName) => {
+							exp.semester = semName;
+						});
+						return exp;
 					});
-				});
 			})
 		);
 	}

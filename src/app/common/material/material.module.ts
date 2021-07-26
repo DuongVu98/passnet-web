@@ -18,6 +18,9 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatStepperModule } from "@angular/material/stepper";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
 	declarations: [],
@@ -41,6 +44,9 @@ import { MatStepperModule } from "@angular/material/stepper";
 		MatExpansionModule,
 		MatToolbarModule,
 		MatStepperModule,
+		MatProgressBarModule,
+		MatSnackBarModule,
+		MatTableModule,
 	],
 })
 export class MaterialModule {}

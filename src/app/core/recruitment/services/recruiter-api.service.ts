@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { RecruitmentApiService } from "../../../common/api/recruitment-api.service";
-import { Observable } from "rxjs";
+import { forkJoin, merge, Observable, of } from "rxjs";
 import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
 import { Select } from "@ngxs/store";
 import { JobViewDto, SemesterDto } from "src/app/common/models/recruitment.models";
 import { JobFormDto, ProfileDto } from "src/app/common/models/profile.models";
 import { OrganizerApiService } from "src/app/common/api/organizer-api.service";
-import { map } from "rxjs/operators";
+import { map, mergeMap } from "rxjs/operators";
 import { ProfileApiService } from "src/app/common/api/profile-api.service";
 
 @Injectable({

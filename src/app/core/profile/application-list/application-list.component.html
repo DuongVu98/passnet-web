@@ -1,0 +1,11 @@
+<div>
+	<p-accordion>
+		<p-accordionTab header="{{ app.postedDate }}" *ngFor="let app of applications">
+			<div>
+				<p style="font-weight: bold">Course: {{ app.courseName }}</p>
+				<p [innerHTML]="app.content"></p>
+				<p style="font-style: italic">{{ app.state }}</p>
+			</div>
+		</p-accordionTab>
+	</p-accordion>
+</div>

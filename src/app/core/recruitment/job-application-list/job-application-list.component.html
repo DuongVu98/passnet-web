@@ -25,8 +25,8 @@
 							<mat-card-footer
 								[ngClass]="{
 									'footer-height': true,
-									'footer-pending': jobApplication.state === 'PENDING',
-									'foot-accepted': jobApplication.state === 'ACCEPTED'
+									'footer-accepted': jobApplication.state === 'ACCEPTED',
+									'footer-pending': jobApplication.state === 'PENDING'
 								}"
 							>
 							</mat-card-footer>
@@ -38,7 +38,7 @@
 		<div class="p-col-7">
 			<div class="single-box application-detail p-shadow-3" [hidden]="noApplicationSelected">
 				<h2>{{ selectedJobApplication.candidateName }}</h2>
-				<p>{{ selectedJobApplication.letter }}</p>
+				<p [innerHTML]="selectedJobApplication.letter"></p>
 				<p-button label="Accept" (click)="acceptApplication(selectedJobApplication.id)"></p-button>
 			</div>
 		</div>

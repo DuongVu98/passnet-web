@@ -19,6 +19,7 @@ export class JobViewDto {
 	semester: string;
 	department: string;
 	appliedAmount: number;
+	daysAgo: number;
 }
 
 export class JobDetailViewDto {
@@ -35,15 +36,27 @@ export class JobViewListDto {
 }
 
 export class JobApplicationDto {
+	id: string;
 	studentId: string;
 	letter: string;
 	content: string;
 	state: string;
 }
 
+export class JobApplicationDetailDto {
+	id: string;
+	studentId: string;
+	jobId: string;
+	letter: string;
+	content: string;
+	state: string;
+	course: string;
+	postedDate: string;
+}
+
 export class JobApplicationListDto {
-	jobView: JobViewDto;
-	jobApplicationViewList: JobApplicationDto[];
+	job: JobViewDto;
+	applications: JobApplicationDto[];
 }
 
 export class SemesterDto {

@@ -66,14 +66,15 @@ export class JobApplicationListComponent implements OnInit, OnDestroy {
 			this.route.queryParams.subscribe((params) => {
 				this.subscriptions.push(
 					this.recruiterService.getJobApplicationList(params["jobId"]).subscribe((result) => {
-						this.jobId = result.jobView.id;
-						result.jobApplicationViewList.map((application) => {
+						this.jobId = result.job.id;
+						result.applications.map((application) => {
+							console.log(`log state: ${application.state}`);
 							this.subscriptions.push(
 								this.personalInfoService
 									.getPersonalInfoById(application.studentId)
 									.subscribe((candidateInfo) => {
 										this.jobApplicationList.push({
-											id: "",
+											id: application.id,
 											studentId: application.studentId,
 											candidateName: candidateInfo.fullName,
 											letter: application.letter,
@@ -84,7 +85,7 @@ export class JobApplicationListComponent implements OnInit, OnDestroy {
 						});
 
 						this.subscriptions.push(
-							this.applicatorService.getJobDetail(result.jobView.id).subscribe((res) => {
+							this.applicatorService.getJobDetail(result.job.id).subscribe((res) => {
 								this.jobDetail.jobTitle = res.jobTitle;
 								this.jobDetail.courseName = res.courseName;
 								this.jobDetail.requirement = res.requirement;
@@ -102,17 +103,15 @@ export class JobApplicationListComponent implements OnInit, OnDestroy {
 	}
 
 	selectJobApplicationDetail(applicationId: string): void {
-		this.selectedJobApplication = this.jobApplicationList.filter(
-			(application) => application.id === applicationId
-		)[0];
-		this.setNoApplicationSeleted();
+		this.selectedJobApplication = this.jobApplicationList.find((application) => application.id === applicationId);
+		this.setNoApplicationSelected();
 	}
 
 	acceptApplication(applicationId: string): void {
 		this.recruiterService.acceptApplicationForm(applicationId, this.jobId).subscribe();
 	}
 
-	setNoApplicationSeleted() {
-		this.noApplicationSelected = this.selectedJobApplication.id === "" ? false : true;
+	setNoApplicationSelected() {
+		this.noApplicationSelected = false;
 	}
 }
