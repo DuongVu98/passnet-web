@@ -14,6 +14,7 @@ import { ProfileState } from "./store/profile.state";
 import { BasicEditComponent } from "./basic-edit/basic-edit.component";
 import { AddExpFormComponent } from "./add-exp-form/add-exp-form.component";
 import { EditExpFormComponent } from "./edit-exp-form/edit-exp-form.component";
+import { ApplicationListComponent } from './application-list/application-list.component';
 
 @NgModule({
 	declarations: [
@@ -26,6 +27,7 @@ import { EditExpFormComponent } from "./edit-exp-form/edit-exp-form.component";
 		BasicEditComponent,
 		AddExpFormComponent,
 		EditExpFormComponent,
+		ApplicationListComponent,
 	],
 	imports: [
 		CommonModule,

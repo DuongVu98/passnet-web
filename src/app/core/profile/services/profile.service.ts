@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { OrganizerApiService } from "src/app/common/api/organizer-api.service";
 import { ProfileApiService } from "src/app/common/api/profile-api.service";
+import { RecruitmentApiService } from "src/app/common/api/recruitment-api.service";
 import { OrgMemberDto } from "src/app/common/models/auth.models";
 import {
 	AddExperienceRequest,
@@ -12,7 +13,12 @@ import {
 	ProfileDto,
 	UpdateBasicInfoRequest,
 } from "src/app/common/models/profile.models";
-import { SemesterDto } from "src/app/common/models/recruitment.models";
+import {
+	JobApplicationDetailDto,
+	JobApplicationDto,
+	JobApplicationListDto,
+	SemesterDto,
+} from "src/app/common/models/recruitment.models";
 import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
 import { ProfileState, TeacherOrganizationSelection } from "../store/profile.state";
 
@@ -29,7 +35,11 @@ export class ProfileService {
 	userId: string;
 	organizationId: string;
 
-	constructor(private profileApiService: ProfileApiService, private organizerApiService: OrganizerApiService) {
+	constructor(
+		private profileApiService: ProfileApiService,
+		private organizerApiService: OrganizerApiService,
+		private recruitmentApiService: RecruitmentApiService
+	) {
 		this.loggedUser$.subscribe((loggedUser) => {
 			this.profileId = loggedUser.user.profileId;
 			this.userId = loggedUser.user.uid;
@@ -77,5 +87,9 @@ export class ProfileService {
 
 	getSemesterById(semId: string): Observable<string> {
 		return this.organizerApiService.getSemesterById(semId).pipe(map((sem) => sem.name));
+	}
+
+	getOwnedApplications(): Observable<JobApplicationDetailDto[]> {
+		return this.recruitmentApiService.getOwnedApplications(this.profileId);
 	}
 }

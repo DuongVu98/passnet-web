@@ -42,6 +42,17 @@ export class JobApplicationDto {
 	state: string;
 }
 
+export class JobApplicationDetailDto {
+	id: string;
+	studentId: string;
+	jobId: string;
+	letter: string;
+	content: string;
+	state: string;
+	course: string;
+	postedDate: string;
+}
+
 export class JobApplicationListDto {
 	job: JobViewDto;
 	applications: JobApplicationDto[];

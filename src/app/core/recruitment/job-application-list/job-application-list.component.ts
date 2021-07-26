@@ -68,6 +68,7 @@ export class JobApplicationListComponent implements OnInit, OnDestroy {
 					this.recruiterService.getJobApplicationList(params["jobId"]).subscribe((result) => {
 						this.jobId = result.job.id;
 						result.applications.map((application) => {
+							console.log(`log state: ${application.state}`);
 							this.subscriptions.push(
 								this.personalInfoService
 									.getPersonalInfoById(application.studentId)

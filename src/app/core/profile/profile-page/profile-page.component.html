@@ -3,18 +3,10 @@
 		<div class="profile-card">
 			<mat-card>
 				<div class="profile-representation">
-					<img
-						class="profile-background"
-						mat-card-image
-						src="https://images7.alphacoders.com/110/1102604.jpg"
-						alt="Photo of a Shiba Inu"
-					/>
-					<img
-						class="profile-avatar"
-						mat-card-image
-						src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-						alt="Photo of a Shiba Inu"
-					/>
+					<img class="profile-background" mat-card-image src="https://images7.alphacoders.com/110/1102604.jpg"
+						alt="Photo of a Shiba Inu" />
+					<img class="profile-avatar" mat-card-image
+						src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" />
 					<h2 class="profile-name">{{ fullName }}</h2>
 					<div class="white-space"></div>
 				</div>
@@ -41,12 +33,14 @@
 								</div>
 							</div>
 						</p-tabPanel>
-						<p-tabPanel [selected]="tabViewIndex == 2">
+						<p-tabPanel [selected]="tabViewIndex == 2" *ngIf="!isTeacher()">
 							<ng-template pTemplate="header">
-								<i class="pi pi-users tab-icon"></i>
-								<span>Classrooms</span>
+								<i class="pi pi-briefcase tab-icon"></i>
+								<span>Applications</span>
 							</ng-template>
-							<div class="tab-content">Classrooms</div>
+							<div class="tab-content">
+								<profile-application-list></profile-application-list>
+							</div>
 						</p-tabPanel>
 					</p-tabView>
 				</mat-card-content>

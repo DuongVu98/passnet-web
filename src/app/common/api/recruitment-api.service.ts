@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { JobFormDto } from "../models/profile.models";
 import {
 	ApplicationFormDto,
+	JobApplicationDetailDto,
 	JobApplicationDto,
 	JobApplicationListDto,
 	JobDetailViewDto,
@@ -75,14 +76,24 @@ export class RecruitmentApiService {
 		);
 	}
 
+	getOwnedApplications(studentId: string): Observable<JobApplicationDetailDto[]> {
+		return this.httpClient.get<JobApplicationDetailDto[]>(
+			`${this.recruitmentApiServer}/query/applications/by-profile`,
+			{
+				params: {
+					studentId: studentId,
+				},
+			}
+		);
+	}
+
 	acceptApplicationForm(applicationId: string, jobId: string): Observable<any> {
 		return this.httpClient.put<any>(
-			`${this.recruitmentApiServer}/jobs/accept-application`,
+			`${this.recruitmentApiServer}/jobs/${jobId}/accept-application`,
 			{},
 			{
 				params: {
 					jobApplicationId: applicationId,
-					jobId: jobId,
 				},
 			}
 		);
