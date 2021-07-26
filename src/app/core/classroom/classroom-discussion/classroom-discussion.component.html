@@ -3,11 +3,9 @@
 		<mat-card>
 			<div style="display: inline-flex; align-items: center">
 				<div>
-					<img
-						class="post-avatar"
-						src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-						alt="Photo of a Shiba Inu"
-					/>
+					<img class="post-avatar"
+						src="https://rouelibrenmaine.fr/wp-content/uploads/2018/10/empty-avatar.png"
+						alt="Photo of a Shiba Inu" />
 				</div>
 				<div>Write something...</div>
 			</div>
@@ -16,15 +14,8 @@
 	<div *ngFor="let post of posts" class="post-card">
 		<classroom-discussion-post [postId]="post.postId"></classroom-discussion-post>
 	</div>
-	<p-dialog
-		header="Create new post"
-		[(visible)]="displayCreatePostForm"
-		[modal]="true"
-		[style]="{ width: '30vw' }"
-		[baseZIndex]="10000"
-		[draggable]="false"
-		[resizable]="false"
-	>
+	<p-dialog header="Create new post" [(visible)]="displayCreatePostForm" [modal]="true" [style]="{ width: '30vw' }"
+		[baseZIndex]="10000" [draggable]="false" [resizable]="false">
 		<classroom-classroom-create-new-post></classroom-classroom-create-new-post>
 		<ng-template pTemplate="footer">
 			<p-button icon="pi pi-check" (click)="submitAndClose()" label="Create" styleClass="p-button-text">
