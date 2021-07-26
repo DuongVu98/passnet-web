@@ -28,8 +28,12 @@
 						<mdb-icon fab icon="instagram"></mdb-icon>
 					</a>
 				</li>
-				<li class="nav-item waves-light" mdbWavesEffect *ngIf="!isAuthenticated"
-					style="background-color: #ab47bc; border-radius: 5px">
+				<li
+					class="nav-item waves-light"
+					mdbWavesEffect
+					*ngIf="!isAuthenticated"
+					style="background-color: #ab47bc; border-radius: 5px"
+				>
 					<a class="nav-link" routerLink="/register">Sign up</a>
 				</li>
 				<div mdbDropdown *ngIf="isAuthenticated">
