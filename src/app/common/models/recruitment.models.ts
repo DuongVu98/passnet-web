@@ -19,6 +19,7 @@ export class JobViewDto {
 	semester: string;
 	department: string;
 	appliedAmount: number;
+	daysAgo: number;
 }
 
 export class JobDetailViewDto {
