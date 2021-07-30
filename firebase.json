@@ -1,10 +1,16 @@
 {
-    "hosting": {
-        "public": "dist/passnet-web",
-        "ignore": [
-            "firebase.json",
-            "**/.*",
-            "**/node_modules/**"
-        ]
-    }
+	"hosting": {
+		"public": "dist/passnet-web",
+		"ignore": [
+			"firebase.json",
+			"**/.*",
+			"**/node_modules/**"
+		],
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "dist/passnet-web/index.html"
+			}
+		]
+	}
 }
