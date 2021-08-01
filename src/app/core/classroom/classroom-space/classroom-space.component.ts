@@ -46,7 +46,7 @@ export class ClassroomSpaceComponent implements OnInit {
 		this.classCode = "";
 	}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.activeTab$.subscribe((activeTab) => {
 			this.router.navigate([`classrooms/space/${activeTab.selectedTab}`]);
 		});
