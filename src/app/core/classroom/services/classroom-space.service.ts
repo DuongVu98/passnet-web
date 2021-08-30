@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
-import { ClassroomViewDto, PostViewDto } from "src/app/common/models/classroom.models";
+import { ClassroomViewDto, MemberDto, PostViewDto } from "src/app/common/models/classroom.models";
 import { ClassroomApiService } from "../../../common/api/classroom-api.service";
-import { Observable } from "rxjs";
+import { forkJoin, merge, Observable, of } from "rxjs";
 import { Select } from "@ngxs/store";
 import { ActiveClassroomSelection, ClassroomState } from "../store/classroom.state";
 import { AuthState, LoggedUserStateSelection } from "../../auth/store/auth.state";
 import { ProfileApiService } from "src/app/common/api/profile-api.service";
-import { ProfileDto } from "src/app/common/models/profile.models";
-import { map } from "rxjs/operators";
+import { map, mergeMap } from "rxjs/operators";
+import { OrganizerApiService } from "../../../common/api/organizer-api.service";
 
 @Injectable({
 	providedIn: "root",
@@ -19,15 +19,26 @@ export class ClassroomSpaceService {
 	@Select(ClassroomState.getActiveClassroom)
 	activeClassroom$: Observable<ActiveClassroomSelection>;
 
+	@Select(ClassroomState.getActiveClassroom)
+	activeClassroomSelection$: Observable<ActiveClassroomSelection>;
+
 	classroomSpaceId: string;
 	memberId: string;
+	activeClassroomId: string;
 
-	constructor(private classroomApiService: ClassroomApiService, private profileApiService: ProfileApiService) {
+	constructor(
+		private classroomApiService: ClassroomApiService,
+		private profileApiService: ProfileApiService,
+		private organizationApiService: OrganizerApiService
+	) {
 		this.activeClassroom$.subscribe((classroom) => {
 			this.classroomSpaceId = classroom.classroomId;
 		});
 		this.loggedUser$.subscribe((loggedUser) => {
 			this.memberId = loggedUser.user.profileId;
+		});
+		this.activeClassroomSelection$.subscribe((state) => {
+			this.activeClassroomId = state.classroomId;
 		});
 	}
 
@@ -58,5 +69,26 @@ export class ClassroomSpaceService {
 				};
 			})
 		);
+	}
+
+	getClassroomMembers(): Observable<MemberDto[]> {
+		return this.classroomApiService.getClassroomMembers(this.activeClassroomId);
+	}
+
+	getMemberName(memberId: string): Observable<{ name: string; studentId: string; email: string }> {
+		return this.profileApiService.getProfile(memberId).pipe(
+			map((profile) => {
+				return forkJoin({
+					name: of(profile.fullName),
+					studentId: this.getStudentId(profile.uid),
+					email: of(profile.email),
+				});
+			}),
+			mergeMap((mem) => merge(mem))
+		);
+	}
+
+	getStudentId(uid: string): Observable<string> {
+		return this.organizationApiService.getStudentByUid(uid).pipe(map((student) => student.cardId));
 	}
 }

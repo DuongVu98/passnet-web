@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { AddJobFormComponent } from "../../profile/add-job-form/add-job-form.component";
-import { RecruiterApiService } from "../services/recruiter-api.service";
+import { RecruiterService } from "../services/recruiter-api.service";
 
 interface OwnedJobView {
 	id: string;
@@ -20,7 +20,7 @@ interface OwnedJobView {
 })
 export class OwnedJobsComponent implements OnInit {
 	ownedJobList: OwnedJobView[];
-	constructor(private recruiterService: RecruiterApiService, private router: Router, private matDialog: MatDialog) {
+	constructor(private recruiterService: RecruiterService, private router: Router, private matDialog: MatDialog) {
 		this.ownedJobList = [];
 	}
 

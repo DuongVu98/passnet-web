@@ -1,5 +1,5 @@
 <div>
-	<div *ngFor="let job of postedJobsView.postedJobs">
+	<div *ngFor="let job of postedJobs$ | async">
 		<div class="single-job-card">
 			<mat-card>
 				<mat-card-title>
@@ -7,7 +7,7 @@
 				</mat-card-title>
 				<mat-card-content>
 					<p>{{ job.courseName }}</p>
-					<p>{{ job.semester }}</p>
+					<p>{{ job.semester.name }}</p>
 					<p>{{ job.department }}</p>
 					<p>Applied: {{ job.appliedAmount }}</p>
 					<p>Posted {{ job.daysAgo }} days ago</p>

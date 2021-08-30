@@ -12,7 +12,7 @@ import { ProfileApiService } from "src/app/common/api/profile-api.service";
 @Injectable({
 	providedIn: "root",
 })
-export class RecruiterApiService {
+export class RecruiterService {
 	@Select(AuthState.getLoggedUser)
 	loggedUser$: Observable<LoggedUserStateSelection>;
 

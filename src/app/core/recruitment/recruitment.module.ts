@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 
 import { BaseCommonModule } from "../../common/base-common.module";
 import { RecruitmentPageComponent } from "./recruitment-page/recruitment-page.component";
-import { RecruiterApiService } from "./services/recruiter-api.service";
+import { RecruiterService } from "./services/recruiter-api.service";
 import { ApplicatorService } from "./services/applicator-api.service";
 import { JobDetailComponent } from "./job-detail/job-detail.component";
 import { ApplicationFormComponent } from "./application-form/application-form.component";
@@ -35,6 +35,6 @@ import { AddJobFormComponent } from "./add-job-form/add-job-form.component";
 		NgxsModule.forFeature([RecruitmentState]),
 	],
 	exports: [RecruitmentPageComponent, JobDetailComponent],
-	providers: [RecruiterApiService, ApplicatorService],
+	providers: [RecruiterService, ApplicatorService],
 })
 export class RecruitmentModule {}

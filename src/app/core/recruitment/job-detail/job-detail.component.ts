@@ -3,7 +3,7 @@ import { ApplicatorService } from "../services/applicator-api.service";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { ApplicationForm, JobDetail } from "../models/recruitment.models";
 import { ApplicationFormComponent } from "../application-form/application-form.component";
-import { RecruiterApiService } from "../services/recruiter-api.service";
+import { RecruiterService } from "../services/recruiter-api.service";
 
 @Component({
 	selector: "recruitment-job-detail",
@@ -23,7 +23,7 @@ export class JobDetailComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private applicatorApiService: ApplicatorService,
-		private recruiterApiService: RecruiterApiService
+		private recruiterApiService: RecruiterService
 	) {
 		this.isLoading = true;
 		this.jobDetail = {} as JobDetail;

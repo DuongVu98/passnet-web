@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
+import { forkJoin, from, merge, Observable, of } from "rxjs";
+import { map, mergeMap, toArray } from "rxjs/operators";
 import { ApplicationFormComponent } from "../application-form/application-form.component";
-import { RecruiterApiService } from "../services/recruiter-api.service";
+import { RecruiterService } from "../services/recruiter-api.service";
 
 @Component({
 	selector: "recruitment-jobs-browser",
@@ -9,31 +11,34 @@ import { RecruiterApiService } from "../services/recruiter-api.service";
 	styleUrls: ["./jobs-browser.component.scss"],
 })
 export class JobsBrowserComponent implements OnInit {
-	postedJobsView: {
-		postedJobs: any[];
-	};
+	postedJobs$: Observable<any[]>;
 	applicationFormDialog: boolean;
 	jobIdToApply: string;
 
 	@ViewChild(ApplicationFormComponent)
 	recruitmentApplicationForm: ApplicationFormComponent;
 
-	constructor(private recruiterApiService: RecruiterApiService, private router: Router) {
-		this.postedJobsView = {
-			postedJobs: [],
-		};
+	constructor(private recruiterApiService: RecruiterService, private router: Router) {
 		this.applicationFormDialog = false;
 		this.jobIdToApply = "";
 	}
 
 	ngOnInit(): void {
 		this.recruiterApiService.getAllRecruiterPostedJobs().subscribe((result) => {
-			this.postedJobsView.postedJobs = result;
-			result.forEach((job) => {
-				this.recruiterApiService.getSemester(job.semester).subscribe((sem) => {
-					job.semester = sem.name;
-				});
-			});
+			this.postedJobs$ = from(result).pipe(
+				mergeMap((job) =>
+					forkJoin({
+						id: of(job.id),
+						courseName: of(job.courseName),
+						jobTitle: of(job.jobTitle),
+						semester: this.recruiterApiService.getSemester(job.semester),
+						department: of(job.department),
+						appliedAmount: of(job.appliedAmount),
+						daysAgo: of(job.daysAgo),
+					})
+				),
+				toArray()
+			);
 		});
 	}
 

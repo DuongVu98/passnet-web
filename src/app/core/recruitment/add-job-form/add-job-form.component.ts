@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Builder } from "builder-pattern";
 import { JobFormDto } from "src/app/common/models/profile.models";
-import { RecruiterApiService } from "../services/recruiter-api.service";
+import { RecruiterService } from "../services/recruiter-api.service";
 
 interface DepartmentOption {
 	name: string;
@@ -19,7 +19,7 @@ export class AddJobFormComponent implements OnInit {
 	departments: DepartmentOption[];
 	addJobForm: FormGroup;
 
-	constructor(private recruiterService: RecruiterApiService) {
+	constructor(private recruiterService: RecruiterService) {
 		this.departments = [
 			{ name: "Computer Science", id: "dep1" },
 			{ name: "Biotechnology", id: "dep2" },

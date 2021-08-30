@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ClassroomMemberTypes } from "../models/classroom.models";
-import { ClassroomService } from "../services/classroom.service";
+import { ClassroomSpaceService } from "../services/classroom-space.service";
 
 interface MemberView {
 	profileId: string;
@@ -21,10 +21,10 @@ export class MemberListComponent implements OnInit {
 
 	displayedColumns: string[] = ["name", "email", "studentId"];
 
-	constructor(private classroomService: ClassroomService) {}
+	constructor(private classroomSpaceService: ClassroomSpaceService) {}
 
 	ngOnInit(): void {
-		this.classroomService.getClassroomMembers().subscribe((result) => {
+		this.classroomSpaceService.getClassroomMembers().subscribe((result) => {
 			this.lecturer = result
 				.filter((mem) => mem.role === ClassroomMemberTypes.LECTURER.toString())
 				.map((mem) => {
@@ -36,7 +36,7 @@ export class MemberListComponent implements OnInit {
 					};
 				})
 				.map((mem) => {
-					this.classroomService.getMemberName(mem.profileId).subscribe((name) => {
+					this.classroomSpaceService.getMemberName(mem.profileId).subscribe((name) => {
 						mem.name = name.email;
 						mem.email = name.email;
 					});
@@ -53,7 +53,7 @@ export class MemberListComponent implements OnInit {
 					};
 				})
 				.map((mem) => {
-					this.classroomService.getMemberName(mem.profileId).subscribe((name) => {
+					this.classroomSpaceService.getMemberName(mem.profileId).subscribe((name) => {
 						mem.name = name.name;
 						mem.email = name.email;
 						mem.studentId = name.studentId;
@@ -71,7 +71,7 @@ export class MemberListComponent implements OnInit {
 					};
 				})
 				.map((mem) => {
-					this.classroomService.getMemberName(mem.profileId).subscribe((name) => {
+					this.classroomSpaceService.getMemberName(mem.profileId).subscribe((name) => {
 						mem.name = name.name;
 						mem.email = name.email;
 						mem.studentId = name.studentId;
