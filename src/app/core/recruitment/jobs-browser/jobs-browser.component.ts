@@ -24,22 +24,21 @@ export class JobsBrowserComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.recruiterApiService.getAllRecruiterPostedJobs().subscribe((result) => {
-			this.postedJobs$ = from(result).pipe(
-				mergeMap((job) =>
-					forkJoin({
-						id: of(job.id),
-						courseName: of(job.courseName),
-						jobTitle: of(job.jobTitle),
-						semester: this.recruiterApiService.getSemester(job.semester),
-						department: of(job.department),
-						appliedAmount: of(job.appliedAmount),
-						daysAgo: of(job.daysAgo),
-					})
-				),
-				toArray()
-			);
-		});
+		this.postedJobs$ = this.recruiterApiService.getAllRecruiterPostedJobs().pipe(
+			mergeMap((results) => from(results)),
+			mergeMap((job) =>
+				forkJoin({
+					id: of(job.id),
+					courseName: of(job.courseName),
+					jobTitle: of(job.jobTitle),
+					semester: this.recruiterApiService.getSemester(job.semester),
+					department: of(job.department),
+					appliedAmount: of(job.appliedAmount),
+					daysAgo: of(job.daysAgo),
+				})
+			),
+			toArray()
+		);
 	}
 
 	goToJobDetail(jobId: string): void {
